@@ -1,381 +1,303 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>My Ultra-Complex Store</title>
-<!-- Deeply detailed CSS with layered effects, animations, and transitions -->
+<title>Ultimate Visual Store</title>
+<!-- Extensive CSS for layered effects, animations, and responsiveness -->
 <style>
-  /* Reset */
+  /* Reset and base styles */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
-  /* Body with animated gradient background and overlay particles effect */
-body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  background-size: 600% 600%;
-  animation: GradientShift 30s ease infinite;
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Gradient shift animation for background */
-@keyframes GradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-/* Canvas overlay for animated particles & lines for depth */
-#particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background: transparent;
-}
-
-/* Header with glassmorphism, layered edges, glow effects */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
-  box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 8px 20px rgba(0,0,0,0.3);
-  border-radius: 20px;
-  margin: 20px;
-  position: relative;
-  overflow: hidden;
-  animation: headerFadeIn 2s ease-out;
-  z-index: 10;
-}
-
-/* Header entrance fade */
-@keyframes headerFadeIn {
-  from {opacity: 0; transform: translateY(-50px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* Logo with multi-layered glow and hover animation */
-.logo {
-  height: 80px;
-  width: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255,255,255,0.7);
-  cursor: pointer;
-  transition: all 0.4s ease;
-}
-.logo:hover {
-  box-shadow: 0 0 60px #ffd700, inset 0 0 30px #ffd700;
-  transform: rotateZ(3deg) scale(1.05);
-  animation: pulseGlow 2s infinite alternate;
-}
-
-/* Pulsating glow effect for logo */
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 30px #ffd700; }
-  100% { box-shadow: 0 0 60px #ffd700; }
-}
-
-/* Navigation container with layered shadows and hover effects */
-nav {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.nav {
-  list-style: none;
-  display: flex;
-  gap: 50px;
-  align-items: center;
-  font-family: 'Arial Black', sans-serif;
-  transition: all 0.3s ease;
-}
-.nav li {
-  position: relative;
-}
-.nav a {
-  text-decoration: none;
-  padding: 14px 28px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  border-radius: 10px;
-  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-.nav a:hover {
-  color: #ffd700;
-  background: rgba(255,255,255,0.2);
-  box-shadow: 0 0 20px #ffd700;
-  transform: scale(1.1);
-}
-@media(max-width: 768px){
-  .nav {
+  body {
+    font-family: 'Arial Rounded MT Bold', cursive, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-size: 200% 200%;
+    animation: bgGradient 25s ease infinite;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
-    width: 100%;
-    background: rgba(0,0,0,0.4);
+    overflow-x: hidden;
+  }
+  @keyframes bgGradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* Particle overlay canvas for depth effect */
+  #particle-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+  }
+
+  /* Header styling with glassmorphism and animated glow */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 40px;
+    margin: 30px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 15px 30px rgba(0,0,0,0.4);
+    animation: headerFadeIn 2s ease-out;
+    position: relative;
+    z-index: 10;
+  }
+
+  @keyframes headerFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Logo with animated glow and hover pulsate */
+  .logo {
+    height: 90px;
+    cursor: pointer;
+    border-radius: 14px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.75);
+    transition: all 0.4s ease;
+  }
+  .logo:hover {
+    box-shadow: 0 0 50px #ffd700, inset 0 0 30px #ffd700;
+    transform: rotateZ(2deg) scale(1.07);
+    animation: pulseGlow 2s infinite alternate;
+  }
+  @keyframes pulseGlow {
+    from { box-shadow: 0 0 25px #ffd700; }
+    to { box-shadow: 0 0 50px #ffd700; }
+  }
+
+  /* Navigation with layered hover effects and dropdowns */
+  nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 45px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .nav-item {
+    position: relative;
+  }
+  .nav-link {
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .nav-link:hover {
+    background: rgba(255,255,255,0.2);
+    color: #ffd700;
+    box-shadow: 0 0 20px #ffd700;
+    transform: scale(1.1);
+  }
+
+  /* Dropdown submenu styling with layered effects */
+  .dropdown {
     position: absolute;
     top: 100%;
-    right: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    border-radius: 15px;
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    z-index: 20;
   }
-  .nav.show {
-    max-height: 1000px;
+  .nav-item:hover > .dropdown {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
   }
-}
 
-/* Dropdown submenu with layered effects, animated appearance, and hover glow */
-.submenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: rgba(0,0,0,0.8);
-  padding: 20px;
-  border-radius: 15px;
-  display: none;
-  flex-direction: column;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-  z-index: 20;
-}
-li:hover > .submenu {
-  display: flex;
-  opacity: 1;
-  transform: translateY(0);
-}
-.submenu a {
-  padding: 12px 20px;
-  margin-top: 8px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.1);
-  font-weight: bold;
-  color: #fff;
-  transition: all 0.2s ease;
-}
-.submenu a:hover {
-  background: rgba(255,255,255,0.3);
-  transform: translateX(5px);
-}
+  /* Dropdown links with hover glow and scaling */
+  .dropdown a {
+    padding: 10px 15px;
+    margin-top: 8px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .dropdown a:hover {
+    background: rgba(255,255,255,0.4);
+    box-shadow: 0 0 30px #ffd700;
+    transform: translateX(5px);
+  }
 
-/* Main Content with animated entrance & layered background */
-.content {
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 40px;
-  background: linear-gradient(135deg, #f6d365, #fda085);
-  border-radius: 30px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-  backdrop-filter: blur(15px);
-  animation: contentFadeIn 2s ease;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-@keyframes contentFadeIn {
-  from {opacity: 0; transform: translateY(50px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+  /* Main content area with animated entrance and layered styling */
+ .main-content {
+    max-width: 1350px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px);
+    animation: fadeInUp 2s ease;
+    position: relative;
+  }
 
-/* Review section with animated shimmer and inset glow */
-#review-section {
-  margin-top: 70px;
-  padding: 40px;
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-  border-radius: 30px;
-  box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
-  color: #fff;
-  font-family: 'Arial Rounded MT Bold', sans-serif;
-  position: relative;
-  overflow: hidden;
-}
-#review-section h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
-  text-shadow: 0 0 15px #fff, 0 0 30px #fff;
-}
-#review-section p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-.shimmer {
-  height: 100px;
-  margin: 20px 0;
-  border-radius: 15px;
-  background: linear-gradient(120deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-}
-@keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
 
-/* Flavors grid with glow & hover effects */
-.flavors {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-.flavor {
-  background: rgba(255,255,255,0.2);
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  text-shadow: 0 0 8px #fff;
-}
-.flavor:hover {
-  box-shadow: 0 0 50px #ffd700, inset 0 0 20px #ffd700;
-  transform: scale(1.12);
-  background: rgba(255,255,255,0.3);
-  z-index: 5;
-}
+  /* Review section with shimmer and glow effects */
+ #reviews {
+    margin-top: 70px;
+    padding: 40px;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    border-radius: 30px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+    color: #fff;
+  }
+  #reviews h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+  }
+  .review-shimmer {
+    height: 80px;
+    margin: 15px 0;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
 
-/* Button for mobile menu toggle style (hidden for desktop) */
-button.menu-toggle {
-  display: none;
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  background: transparent;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #fff;
-  z-index: 30;
-}
+  /* Flavors grid with glow & hover effects */
+ .flavors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .flavor-card {
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .flavor-card:hover {
+    box-shadow: 0 0 40px #ffd700, inset 0 0 20px #ffd700;
+    transform: scale(1.1);
+    background: rgba(255,255,255,0.3);
+  }
+
+  /* Responsive adjustments for mobile */
 @media(max-width: 768px){
-  button.menu-toggle {
-    display: block;
+  header {
+    flex-direction: column;
+    align-items: flex-start;
   }
   nav {
     position: absolute;
-    top: 80px;
-    right: 0;
-    background: rgba(0,0,0,0.8);
+    top: 90px;
+    right: 20px;
+    background: rgba(0,0,0,0.9);
     border-radius: 10px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s ease;
-    width: 200px;
-    flex-direction: column;
+    transition: max-height 0.4s ease;
+    width: 220px;
   }
   nav.show {
     max-height: 1000px;
   }
-}
-
-/* Additional hover glow effects for entire page for depth */
-body {
-  --page-glow: 0px 0px 50px rgba(255,255,255,0.2);
-  box-shadow: var(--page-glow);
-  transition: box-shadow 2s ease;
+  .nav-list {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- Canvas for animated particles -->
-<canvas id="particles"></canvas>
+<!-- Canvas for particles & animated effects -->
+<canvas id="particle-canvas"></canvas>
 
-<!-- Header with logo and navigation -->
+<!-- Header with logo & navigation -->
 <header>
   <img src="https://via.placeholder.com/150x70?text=LOGO" class="logo" alt="Logo" />
   <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
-  <nav id="main-nav">
-    <ul class="nav">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li>
-        <a href="#shop" class="nav-link">Shop</a>
-        <ul class="submenu">
-          <li>
-            <a href="#lollies" class="category-link" data-category="lollies">Lollies</a>
-            <div class="category-details" id="lollies-details" style="display:none;">
-              <h4>Exotic Flavours</h4>
-              <div class="flavors" id="lollies-exotic"></div>
-              <h4>Normal Flavours</h4>
-              <div class="flavors" id="lollies-normal"></div>
-            </div>
-          </li>
-          <li>
-            <a href="#drinks" class="category-link" data-category="drinks">Drinks</a>
-            <div class="category-details" id="drinks-details" style="display:none;">
-              <h4>Exotic Flavours</h4>
-              <div class="flavors" id="drinks-exotic"></div>
-              <h4>Normal Flavours</h4>
-              <div class="flavors" id="drinks-normal"></div>
-            </div>
-          </li>
-          <li>
-            <a href="#chocolate" class="category-link" data-category="chocolate">Chocolate</a>
-            <div class="category-details" id="chocolate-details" style="display:none;">
-              <h4>Exotic Flavours</h4>
-              <div class="flavors" id="chocolate-exotic"></div>
-              <h4>Normal Flavours</h4>
-              <div class="flavors" id="chocolate-normal"></div>
-            </div>
-          </li>
-          <li>
-            <a href="#chips" class="category-link" data-category="chips">Chips</a>
-            <div class="category-details" id="chips-details" style="display:none;">
-              <h4>Exotic Flavours</h4>
-              <div class="flavors" id="chips-exotic"></div>
-              <h4>Normal Flavours</h4>
-              <div class="flavors" id="chips-normal"></div>
-            </div>
-          </li>
-        </ul>
+  <nav id="nav-menu">
+    <ul class="nav-list">
+      <li><a class="nav-link" href="#home">Home</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="#shop">Shop</a>
+        <div class="dropdown">
+          <a class="dropdown-link" data-category="lollies" href="#lollies">Lollies</a>
+          <a class="dropdown-link" data-category="drinks" href="#drinks">Drinks</a>
+          <a class="dropdown-link" data-category="chocolate" href="#chocolate">Chocolate</a>
+          <a class="dropdown-link" data-category="chips" href="#chips">Chips</a>
+        </div>
       </li>
-      <li><a href="#cart" class="nav-link">Cart</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a class="nav-link" href="#cart">Cart</a></li>
+      <li><a class="nav-link" href="#contact">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- Main Content -->
-<div class="content" id="main-content">
-  <h1>Welcome to the Ultra-Complex Store</h1>
-  <p>Hover over the menu items and explore our infinite effects, animations, and flavors!</p>
+<!-- Main content area -->
+<div class="main-content" id="main">
+  <h1 style="text-align:center; margin-bottom:20px;">Welcome to the Ultimate Visual Store</h1>
+  <p style="text-align:center; max-width:800px; margin:auto;">Explore our dynamic flavors, animations, and effects by navigating through the menu!</p>
 </div>
 
-<!-- Review Section with shimmer placeholders -->
-<section id="review-section">
-  <h2>Customer Feedback & Reviews</h2>
-  <div class="shimmer"></div>
-  <div class="shimmer"></div>
-  <div class="shimmer"></div>
+<!-- Reviews section with shimmer placeholders -->
+<section id="reviews">
+  <h2 style="text-align:center;">Customer Feedback & Reviews</h2>
+  <div class="review-shimmer"></div>
+  <div class="review-shimmer"></div>
+  <div class="review-shimmer"></div>
 </section>
 
-<!-- JavaScript for effects and interactions -->
+<!-- Flavors display container -->
+<div id="flavor-display" style="margin:50px auto; max-width:1200px; padding:20px;">
+  <h2 style="text-align:center; margin-bottom:20px;">Select a category to view flavors</h2>
+  <div class="flavors-grid" id="flavors-grid"></div>
+</div>
+
+<!-- JavaScript for effects and interactivity -->
 <script>
-  // =================== Part 1: Particles Canvas Effect ===================
-  const canvas = document.getElementById('particles');
+  // =================== Part 1: Canvas Particles & Lines ===================
+  const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');
 
-  let particlesArray;
+  let particles = [];
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -389,19 +311,19 @@ body {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
       this.size = Math.random() * 2 + 1;
-      this.speedX = (Math.random() - 0.5) * 1;
-      this.speedY = (Math.random() - 0.5) * 1;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
       this.alpha = Math.random();
     }
     update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-      if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x > canvas.width || this.x < 0) this.vx *= -1;
+      if (this.y > canvas.height || this.y < 0) this.vy *= -1;
     }
     draw() {
       ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
       ctx.fill();
@@ -409,16 +331,16 @@ body {
   }
 
   function initParticles() {
-    particlesArray = [];
+    particles = [];
     for (let i=0; i<150; i++) {
-      particlesArray.push(new Particle());
+      particles.push(new Particle());
     }
   }
 
   function animateParticles() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillStyle = 'rgba(0,0,0,0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    particlesArray.forEach(p => {
+    particles.forEach(p => {
       p.update();
       p.draw();
     });
@@ -427,17 +349,17 @@ body {
   }
 
   function connectParticles() {
-    for (let a=0; a<particlesArray.length; a++) {
-      for (let b=a+1; b<particlesArray.length; b++) {
-        const dx = particlesArray[a].x - particlesArray[b].x;
-        const dy = particlesArray[a].y - particlesArray[b].y;
+    for (let a=0; a<particles.length; a++) {
+      for (let b=a+1; b<particles.length; b++) {
+        const dx = particles[a].x - particles[b].x;
+        const dy = particles[a].y - particles[b].y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < 100) {
           ctx.strokeStyle = `rgba(255,255,255, ${1 - dist/100})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-          ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
           ctx.stroke();
         }
       }
@@ -447,7 +369,7 @@ body {
   initParticles();
   animateParticles();
 
-  // =================== Part 2: Flavor Data & Dynamic Population ===================
+  // =================== Part 2: Flavor Data & Dynamic Loading ===================
   const flavorData = {
     lollies: {
       exotic: ["Dragon Fruit", "Lychee", "Passion Fruit", "Pomegranate"],
@@ -467,149 +389,58 @@ body {
     }
   };
 
-  function populateFlavors(category, type) {
-    const container = document.getElementById(`${category}-${type}`);
+  // Function to generate flavor cards with animation
+  function displayFlavors(category) {
+    const container = document.getElementById('flavors-grid');
     container.innerHTML = '';
-    const flavors = flavorData[category][type];
-    flavors.forEach((flavor, index) => {
-      const div = document.createElement('div');
-      div.className = 'flavor';
-      div.innerHTML = `<span>${flavor}</span>`;
-      div.style.opacity = 0;
-      div.style.transform = 'translateY(20px)';
-      setTimeout(() => {
-        div.animate([
-          { opacity: 0, transform: 'translateY(20px)' },
-          { opacity: 1, transform: 'translateY(0)' }
-        ], {
-          duration: 700,
-          delay: index * 150,
-          fill: 'forwards',
-          easing: 'ease-out'
-        }).onfinish = () => {
-          div.style.opacity = 1;
-          div.style.transform = 'translateY(0)';
-        };
-      }, index * 150);
-      container.appendChild(div);
-    });
+    const data = flavorData[category];
+    for (const type in data) {
+      data[type].forEach((flavor, index) => {
+        const card = document.createElement('div');
+        card.className = 'flavor-card';
+        card.innerText = flavor;
+        card.style.opacity = 0;
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.animate([
+            { opacity: 0, transform: 'translateY(20px)' },
+            { opacity: 1, transform: 'translateY(0)' }
+          ], {
+            duration: 600,
+            delay: index * 100,
+            fill: 'forwards',
+            easing: 'ease-out'
+          }).onfinish = () => {
+            card.style.opacity = 1;
+            card.style.transform = 'translateY(0)';
+          };
+        }, index * 100);
+        container.appendChild(card);
+        // Add click event to simulate adding to cart
+        card.addEventListener('click', () => {
+          alert(`Added "${flavor}" to your cart!`);
+        });
+      });
+    }
   }
 
-  window.onload = () => {
-    for (const cat in flavorData) {
-      populateFlavors(cat, 'exotic');
-      populateFlavors(cat, 'normal');
-    }
-  };
-
-  // =================== Part 3: Interactive Dropdowns with Cascading Animations ===================
-  document.querySelectorAll('.nav > li').forEach(li => {
-    li.addEventListener('mouseenter', () => {
-      const submenu = li.querySelector('.submenu');
-      if (submenu) {
-        submenu.style.display = 'flex';
-        submenu.animate([
-          { opacity: 0, transform: 'translateY(-30px) scale(0.95)' },
-          { opacity: 1, transform: 'translateY(0) scale(1)' }
-        ], {
-          duration: 600,
-          easing: 'ease-out',
-          fill: 'forwards'
-        });
-      }
-    });
-    li.addEventListener('mouseleave', () => {
-      const submenu = li.querySelector('.submenu');
-      if (submenu) {
-        const anim = submenu.animate([
-          { opacity: 1, transform: 'translateY(0) scale(1)' },
-          { opacity: 0, transform: 'translateY(-30px) scale(0.95)' }
-        ], {
-          duration: 600,
-          easing: 'ease-in',
-          fill: 'forwards'
-        });
-        anim.onfinish = () => { submenu.style.display = 'none'; };
-      }
-    });
-  });
-
-  // Toggle category details with smooth height animation
-  document.querySelectorAll('.category-link').forEach(link => {
+  // =================== Part 3: Menu & Interaction Logic ===================
+  document.querySelectorAll('.dropdown-link').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const category = e.target.dataset.category;
-      const detailsDiv = document.getElementById(`${category}-details`);
-      if (detailsDiv.style.display === 'none' || !detailsDiv.style.display) {
-        // Animate open
-        detailsDiv.style.display = 'block';
-        const height = detailsDiv.scrollHeight + 'px';
-        detailsDiv.animate([
-          { height: '0px', opacity: 0 },
-          { height: height, opacity: 1 }
-        ], {
-          duration: 800,
-          fill: 'forwards',
-          easing: 'ease-out'
-        });
-      } else {
-        // Animate close
-        const height = detailsDiv.scrollHeight + 'px';
-        const anim = detailsDiv.animate([
-          { height: height, opacity: 1 },
-          { height: '0px', opacity: 0 }
-        ], {
-          duration: 800,
-          fill: 'forwards',
-          easing: 'ease-in'
-        });
-        anim.onfinish = () => { detailsDiv.style.display = 'none'; };
-      }
+      displayFlavors(category);
     });
   });
 
-  // =================== Part 4: Responsive Mobile Menu Toggle ===================
+  // Toggle mobile menu
   const menuBtn = document.querySelector('.menu-toggle');
-  const navMenu = document.getElementById('main-nav');
+  const nav = document.querySelector('#nav-menu');
   menuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
-
-  // =================== Part 5: Interactivity - Add to Cart ===================
-  document.querySelectorAll('.flavor').forEach(item => {
-    item.addEventListener('click', () => {
-      alert(`Added "${item.innerText}" to your cart!`);
-    });
-  });
-
-  // =================== Part 6: Extra Visual Effects ===================
-  // Animate glow effect on body for immersive experience
-  setInterval(() => {
-    document.body.style.setProperty('--page-glow', `0px 0px ${Math.random()*80+20}px rgba(255,255,255,${(Math.random()*0.4)+0.2})`);
-  }, 4000);
-
-  // Animate glow around logo on hover
-  document.querySelector('.logo').addEventListener('mouseenter', () => {
-    document.querySelector('.logo').style.boxShadow = '0 0 80px #ffd700, inset 0 0 40px #ffd700';
-  });
-  document.querySelector('.logo').addEventListener('mouseleave', () => {
-    document.querySelector('.logo').style.boxShadow = '0 0 30px rgba(255,255,255,0.7)';
-  });
-
-  // =================== Part 7: Additional Effects: Particle Interaction ===================
-  // Add interaction: particles react to mouse movement
-  document.addEventListener('mousemove', e => {
-    if (particlesArray) {
-      particlesArray.forEach(p => {
-        const dx = p.x - e.clientX;
-        const dy = p.y - e.clientY;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 100) {
-          // Repel particles
-          p.x += dx * 0.02;
-          p.y += dy * 0.02;
-        }
-      });
+    if (nav.classList.contains('show')) {
+      nav.classList.remove('show');
+    } else {
+      nav.classList.add('show');
     }
   });
 </script>
