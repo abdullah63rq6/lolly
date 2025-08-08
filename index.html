@@ -4,91 +4,88 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>My Ultra-Complex Store</title>
-<!-- Extensive CSS for layered effects, animations, and responsive design -->
+<!-- Extended CSS for layered effects, animations, responsiveness -->
 <style>
-  /* Reset and base styles */
+  /* Reset & base styles */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  /* Body with animated gradient background and subtle animated particles overlay */
-body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  background-size: 600% 600%;
-  animation: gradientShift 20s ease infinite;
-  color: #fff;
-  line-height: 1.6;
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+  body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-size: 600% 600%;
+    animation: backgroundGradient 30s ease infinite;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-/* Keyframe for animated background gradient */
-@keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
+  @keyframes backgroundGradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
 
-/* Canvas overlay for animated particles (for visual complexity) */
+  /* Canvas overlay for particles and animated effects */
 #particles {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
+  background: transparent;
 }
 
-/* Header with layered, animated background and glass effect */
+/* Header styling with glass effect, layered shadows, animated background */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
   background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  position: relative;
-  z-index: 10;
-  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-radius: 20px;
   margin: 20px;
+  position: relative;
   overflow: hidden;
-  animation: headerFadeIn 2s ease-out;
+  animation: headerFadeIn 2s ease;
+  z-index: 10;
 }
 
-/* Header entrance animation */
+/* Header fade in animation */
 @keyframes headerFadeIn {
   from {opacity: 0; transform: translateY(-50px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Logo with animated glow and layered transform effects */
+/* Logo styling with animated glow and 3D effect */
 .logo {
   height: 80px;
   width: auto;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  box-shadow: 0 0 25px rgba(255,255,255,0.6);
   cursor: pointer;
   transition: all 0.4s ease;
-  /* complex hover glow with pulsating effect */
 }
 .logo:hover {
-  box-shadow: 0 0 40px #ffd700, inset 0 0 20px #ffd700;
-  transform: rotate(3deg) scale(1.05);
+  box-shadow: 0 0 50px #ffd700, inset 0 0 20px #ffd700;
+  transform: rotateZ(2deg) scale(1.05);
   animation: pulseGlow 2s infinite alternate;
 }
 
+/* Pulsate glow effect for logo */
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 20px #ffd700; }
-  100% { box-shadow: 0 0 40px #ffd700; }
+  0% { box-shadow: 0 0 25px #ffd700; }
+  100% { box-shadow: 0 0 50px #ffd700; }
 }
 
-/* Navigation container with layered shadows and animated entrance */
+/* Navigation container with layered shadows, animated entrance, responsive */
 nav {
   flex: 1;
   display: flex;
@@ -98,28 +95,29 @@ nav {
 .nav {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 50px;
+  align-items: center;
   position: relative;
+  font-family: 'Arial Black', sans-serif;
 }
 .nav li {
   position: relative;
 }
 .nav a {
   text-decoration: none;
-  padding: 12px 24px;
-  font-size: 18px;
+  padding: 14px 28px;
+  font-size: 20px;
   font-weight: bold;
   color: #fff;
-  border-radius: 8px;
-  transition: all 0.3s ease, transform 0.3s ease;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
 }
 .nav a:hover {
   color: #ffd700;
   background: rgba(255,255,255,0.2);
-  transform: scale(1.1) translateY(-2px);
-}
-.nav li:hover > a {
-  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ffd700;
 }
 @media(max-width: 768px){
   .nav {
@@ -128,49 +126,46 @@ nav {
     position: absolute;
     top: 100%;
     right: 0;
-    border-radius: 10px;
-    overflow: hidden;
+    width: 200px;
     max-height: 0;
-    transition: max-height 0.5s ease;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-radius: 10px;
   }
   .nav.show {
     max-height: 1000px;
   }
 }
 
-/* Submenu with complex slide and fade animations, layered shadows, and hover effects */
+/* Submenu styling with layered shadow, layered animations, and opacity transitions */
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(0,0,0,0.7);
-  border-radius: 10px;
-  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 12px;
   display: none;
+  flex-direction: column;
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
   z-index: 20;
 }
 li:hover > .submenu {
   display: flex;
-  flex-direction: column;
   opacity: 1;
   transform: translateY(0);
 }
-.submenu:hover {
-  display: flex;
-}
 .submenu a {
-  display: block;
-  padding: 10px 15px;
+  padding: 12px 20px;
   margin-top: 8px;
   border-radius: 8px;
   background: rgba(255,255,255,0.1);
-  color: #fff;
   font-weight: bold;
+  color: #fff;
   transition: all 0.2s ease;
 }
 .submenu a:hover {
@@ -178,106 +173,107 @@ li:hover > .submenu {
   transform: translateX(5px);
 }
 
-/* Main content styles with animated entrance and layered background */
+/* Main content with animated entrance and layered background effects */
 .content {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 40px auto;
-  padding: 30px;
+  padding: 40px;
   background: linear-gradient(135deg, #f6d365, #fda085);
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
-  animation: contentFadeIn 1.5s ease;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  animation: contentFadeIn 2s ease;
   position: relative;
   overflow: hidden;
 }
 @keyframes contentFadeIn {
-  0% {opacity: 0; transform: translateY(50px);}
-  100% {opacity: 1; transform: translateY(0);}
+  from {opacity: 0; transform: translateY(50px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
-/* Review section with animated shimmer effect and layered overlays */
+/* Review section with shimmering animated background, layered overlays */
 #review-section {
-  margin-top: 60px;
-  padding: 30px;
-  background: radial-gradient(circle at center, #89f7fe, #66a6ff);
-  border-radius: 20px;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  margin-top: 70px;
+  padding: 40px;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff);
+  border-radius: 30px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
   color: #fff;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
   position: relative;
   overflow: hidden;
 }
 #review-section h2 {
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 20px;
   text-shadow: 0 0 10px #fff, 0 0 20px #fff;
 }
 #review-section p {
   font-size: 18px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
-@keyframes shimmer {
-  0% {background-position: -1000px 0;}
-  100% {background-position: 1000px 0;}
-}
+/* shimmering animated placeholder blocks for reviews */
 .shimmer {
+  height: 100px;
+  margin: 15px 0;
+  border-radius: 15px;
   background: linear-gradient(120deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
-  height: 100px;
-  margin-top: 20px;
-  border-radius: 10px;
+}
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
 }
 
-/* Flavors grid with animated glow, box-shadow layers, and hover effects */
+/* Flavors grid with glow effects and hover animations for interactivity */
 .flavors {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .flavor {
   background: rgba(255,255,255,0.2);
   padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  text-align: center;
-  font-size: 16px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.4s ease;
+  text-shadow: 0 0 8px #fff;
+  position: relative;
 }
 .flavor:hover {
-  box-shadow: 0 0 40px #ffd700, inset 0 0 20px #ffd700;
-  transform: scale(1.1);
+  box-shadow: 0 0 50px #ffd700, inset 0 0 20px #ffd700;
+  transform: scale(1.12);
   background: rgba(255,255,255,0.3);
 }
-
-/* Responsive design adjustments */
+/* Additional responsive adjustments for smaller screens */
 @media(max-width: 768px){
   header {
     flex-direction: column;
-    align-items: flex-start;
-  }
-  nav {
-    width: 100%;
-    margin-top: 10px;
   }
   .nav {
     flex-direction: column;
+    width: 100%;
   }
   .nav li {
     width: 100%;
+  }
+  nav {
+    justify-content: center;
   }
 }
 </style>
 </head>
 <body>
 
-<!-- Canvas for animated particles overlay -->
+<!-- Canvas for animated particles and layered effects -->
 <canvas id="particles"></canvas>
 
-<!-- Header with layered animated background and logo -->
+<!-- Header with animated background, logo, nav -->
 <header>
   <img src="https://via.placeholder.com/150x70?text=LOGO" alt="Logo" class="logo" />
   <nav>
@@ -285,7 +281,7 @@ li:hover > .submenu {
       <li><a href="#home" class="nav-link">Home</a></li>
       <li>
         <a href="#shop" class="nav-link">Shop</a>
-        <ul class="submenu" id="shop-menu">
+        <ul class="submenu" id="shop-submenu">
           <li>
             <a href="#lollies" class="category-link" data-category="lollies">Lollies</a>
             <div class="category-details" id="lollies-details" style="display:none;">
@@ -330,14 +326,13 @@ li:hover > .submenu {
   </nav>
 </header>
 
-<!-- Main Content -->
+<!-- Main Content Area -->
 <div class="content" id="main-content">
   <h1>Welcome to the Ultra-Complex Store</h1>
-  <p>Explore our dynamic flavors and experience the animation effects.</p>
-  <!-- Placeholder for dynamic content -->
+  <p>Hover over the menu items and explore our exotic and normal flavors with layered animations and effects!</p>
 </div>
 
-<!-- Review Section with animated shimmer -->
+<!-- Review Section with animated shimmer placeholders -->
 <section id="review-section">
   <h2>Customer Feedback & Reviews</h2>
   <div class="shimmer"></div>
@@ -347,7 +342,7 @@ li:hover > .submenu {
 
 <!-- JavaScript for complex interactions -->
 <script>
-  // Setup particles overlay for animated background
+  // =================== Part 1: Canvas Particles Effect ===================
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particlesArray;
@@ -364,8 +359,8 @@ li:hover > .submenu {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
       this.size = Math.random() * 2 + 1;
-      this.speedX = (Math.random() - 0.5) * 0.5;
-      this.speedY = (Math.random() - 0.5) * 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.8;
+      this.speedY = (Math.random() - 0.5) * 0.8;
       this.alpha = Math.random();
     }
     update() {
@@ -376,22 +371,22 @@ li:hover > .submenu {
     }
     draw() {
       ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = "rgba(255,255,255,0.6)";
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
       ctx.fill();
     }
   }
 
   function initParticles() {
     particlesArray = [];
-    for (let i=0; i<200; i++) {
+    for (let i=0; i<150; i++) {
       particlesArray.push(new Particle());
     }
   }
 
   function animateParticles() {
-    ctx.fillStyle = 'rgba(0,0,0,0.1)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     particlesArray.forEach(p => {
       p.update();
@@ -407,8 +402,8 @@ li:hover > .submenu {
         const dx = particlesArray[a].x - particlesArray[b].x;
         const dy = particlesArray[a].y - particlesArray[b].y;
         const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 100) {
-          ctx.strokeStyle = `rgba(255,255,255,${1 - dist/100})`;
+        if (dist < 80) {
+          ctx.strokeStyle = `rgba(255,255,255, ${1 - dist/80})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -422,7 +417,7 @@ li:hover > .submenu {
   initParticles();
   animateParticles();
 
-  // Flavor Data
+  // =================== Part 2: Data & Content Logic ===================
   const flavorData = {
     lollies: {
       exotic: ["Dragon Fruit", "Lychee", "Passion Fruit", "Pomegranate"],
@@ -442,15 +437,15 @@ li:hover > .submenu {
     }
   };
 
-  // Populate flavors dynamically with animations
+  // Function to populate flavors dynamically with animated cascading effects
   function populateFlavors(category, type) {
     const container = document.getElementById(`${category}-${type}`);
     container.innerHTML = '';
-    flavorData[category][type].forEach((flavor, index) => {
+    const flavors = flavorData[category][type];
+    flavors.forEach((flavor, index) => {
       const div = document.createElement('div');
       div.className = 'flavor';
       div.innerHTML = `<span>${flavor}</span>`;
-      // Animate with delay for cascading effect
       div.style.opacity = 0;
       div.style.transform = 'translateY(20px)';
       setTimeout(() => {
@@ -458,28 +453,30 @@ li:hover > .submenu {
           { opacity: 0, transform: 'translateY(20px)' },
           { opacity: 1, transform: 'translateY(0)' }
         ], {
-          duration: 600,
-          delay: index * 100,
+          duration: 700,
+          delay: index * 150,
           fill: 'forwards',
           easing: 'ease-out'
         }).onfinish = () => {
           div.style.opacity = 1;
           div.style.transform = 'translateY(0)';
         };
-      }, index * 100);
+      }, index * 150);
       container.appendChild(div);
     });
   }
 
-  // Initialize flavors on load
-  window.addEventListener('load', () => {
+  // Initialize all flavor categories on page load
+  window.onload = () => {
     for (const category in flavorData) {
       populateFlavors(category, 'exotic');
       populateFlavors(category, 'normal');
     }
-  });
+  };
 
-  // Animate submenu appearance with layered slide and fade
+  // =================== Part 3: Interactive Menu & Animations ===================
+
+  // Animate dropdown menus with layered slide and fade
   document.querySelectorAll('.nav > li').forEach(li => {
     li.addEventListener('mouseenter', () => {
       const submenu = li.querySelector('.submenu');
@@ -489,7 +486,7 @@ li:hover > .submenu {
           { opacity: 0, transform: 'translateY(-30px) scale(0.95)' },
           { opacity: 1, transform: 'translateY(0) scale(1)' }
         ], {
-          duration: 500,
+          duration: 600,
           easing: 'ease-out',
           fill: 'forwards'
         });
@@ -498,45 +495,45 @@ li:hover > .submenu {
     li.addEventListener('mouseleave', () => {
       const submenu = li.querySelector('.submenu');
       if (submenu) {
-        const animation = submenu.animate([
+        const anim = submenu.animate([
           { opacity: 1, transform: 'translateY(0) scale(1)' },
           { opacity: 0, transform: 'translateY(-30px) scale(0.95)' }
         ], {
-          duration: 500,
+          duration: 600,
           easing: 'ease-in',
           fill: 'forwards'
         });
-        animation.onfinish = () => {
+        anim.onfinish = () => {
           submenu.style.display = 'none';
         };
       }
     });
   });
 
-  // Toggle category details with smooth height and opacity animations
+  // Toggle category details with smooth height and opacity transitions
   document.querySelectorAll('.category-link').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const category = e.target.dataset.category;
       const detailsDiv = document.getElementById(`${category}-details`);
       if (detailsDiv.style.display === 'none' || !detailsDiv.style.display) {
-        // Animate open
+        // Open with animation
         detailsDiv.style.display = 'block';
         detailsDiv.animate([
           { height: '0px', opacity: 0 },
           { height: `${detailsDiv.scrollHeight}px`, opacity: 1 }
         ], {
-          duration: 600,
+          duration: 700,
           fill: 'forwards',
           easing: 'ease-out'
         });
       } else {
-        // Animate close
+        // Close with animation
         const closeAnim = detailsDiv.animate([
           { height: `${detailsDiv.scrollHeight}px`, opacity: 1 },
           { height: '0px', opacity: 0 }
         ], {
-          duration: 600,
+          duration: 700,
           fill: 'forwards',
           easing: 'ease-in'
         });
@@ -547,24 +544,39 @@ li:hover > .submenu {
     });
   });
 
-  // Responsive menu toggle for mobile
-  const navToggleBtn = document.createElement('button');
-  navToggleBtn.innerHTML = '☰';
-  navToggleBtn.style.position = 'absolute';
-  navToggleBtn.style.top = '25px';
-  navToggleBtn.style.right = '40px';
-  navToggleBtn.style.fontSize = '24px';
-  navToggleBtn.style.background = 'none';
-  navToggleBtn.style.border = 'none';
-  navToggleBtn.style.color = '#fff';
-  navToggleBtn.style.cursor = 'pointer';
-  navToggleBtn.style.zIndex = '999';
-  document.querySelector('header').appendChild(navToggleBtn);
-
-  navToggleBtn.addEventListener('click', () => {
+  // Responsive mobile menu toggle
+  const menuButton = document.createElement('button');
+  menuButton.innerHTML = '☰';
+  menuButton.style.position = 'absolute';
+  menuButton.style.top = '25px';
+  menuButton.style.right = '40px';
+  menuButton.style.fontSize = '28px';
+  menuButton.style.background = 'none';
+  menuButton.style.border = 'none';
+  menuButton.style.color = '#fff';
+  menuButton.style.cursor = 'pointer';
+  menuButton.style.zIndex = '999';
+  document.querySelector('header').appendChild(menuButton);
+  menuButton.addEventListener('click', () => {
     document.getElementById('main-nav').classList.toggle('show');
   });
-</script>
 
+  // =================== Part 4: Additional Visual Effects ===================
+
+  // Add click event for flavor items to simulate adding to cart
+  document.querySelectorAll('.flavor').forEach(item => {
+    item.addEventListener('click', () => {
+      alert(`Added "${item.innerText}" to your cart!`);
+      // You can expand this to update cart dynamically
+    });
+  });
+
+  // Add a background glow effect to the entire page for depth
+  document.body.style.setProperty('--page-glow', '0px 0px 50px rgba(255, 255, 255, 0.2)');
+  // Animate glow
+  setInterval(() => {
+    document.body.style.setProperty('--page-glow', `0px 0px ${Math.random()*80+20}px rgba(255,255,255,${(Math.random()*0.4)+0.2})`);
+  }, 3000);
+</script>
 </body>
 </html>
