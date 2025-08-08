@@ -4,33 +4,37 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>My Ultra-Complex Store</title>
-<!-- Extended CSS for layered effects, animations, responsiveness -->
+<!-- Deeply detailed CSS with layered effects, animations, and transitions -->
 <style>
-  /* Reset & base styles */
+  /* Reset */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    background-size: 600% 600%;
-    animation: backgroundGradient 30s ease infinite;
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  /* Body with animated gradient background and overlay particles effect */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background-size: 600% 600%;
+  animation: GradientShift 30s ease infinite;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
 
-  @keyframes backgroundGradient {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-  }
+/* Gradient shift animation for background */
+@keyframes GradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
 
-  /* Canvas overlay for particles and animated effects */
+/* Canvas overlay for animated particles & lines for depth */
 #particles {
   position: fixed;
   top: 0;
@@ -41,51 +45,51 @@
   background: transparent;
 }
 
-/* Header styling with glass effect, layered shadows, animated background */
+/* Header with glassmorphism, layered edges, glow effects */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
   background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  backdrop-filter: blur(15px);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.2), 0 8px 20px rgba(0,0,0,0.3);
   border-radius: 20px;
   margin: 20px;
   position: relative;
   overflow: hidden;
-  animation: headerFadeIn 2s ease;
+  animation: headerFadeIn 2s ease-out;
   z-index: 10;
 }
 
-/* Header fade in animation */
+/* Header entrance fade */
 @keyframes headerFadeIn {
   from {opacity: 0; transform: translateY(-50px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Logo styling with animated glow and 3D effect */
+/* Logo with multi-layered glow and hover animation */
 .logo {
   height: 80px;
   width: auto;
   border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255,255,255,0.6);
+  box-shadow: 0 0 30px rgba(255,255,255,0.7);
   cursor: pointer;
   transition: all 0.4s ease;
 }
 .logo:hover {
-  box-shadow: 0 0 50px #ffd700, inset 0 0 20px #ffd700;
-  transform: rotateZ(2deg) scale(1.05);
+  box-shadow: 0 0 60px #ffd700, inset 0 0 30px #ffd700;
+  transform: rotateZ(3deg) scale(1.05);
   animation: pulseGlow 2s infinite alternate;
 }
 
-/* Pulsate glow effect for logo */
+/* Pulsating glow effect for logo */
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 25px #ffd700; }
-  100% { box-shadow: 0 0 50px #ffd700; }
+  0% { box-shadow: 0 0 30px #ffd700; }
+  100% { box-shadow: 0 0 60px #ffd700; }
 }
 
-/* Navigation container with layered shadows, animated entrance, responsive */
+/* Navigation container with layered shadows and hover effects */
 nav {
   flex: 1;
   display: flex;
@@ -97,8 +101,8 @@ nav {
   display: flex;
   gap: 50px;
   align-items: center;
-  position: relative;
   font-family: 'Arial Black', sans-serif;
+  transition: all 0.3s ease;
 }
 .nav li {
   position: relative;
@@ -110,48 +114,47 @@ nav {
   font-weight: bold;
   color: #fff;
   border-radius: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
 }
 .nav a:hover {
   color: #ffd700;
   background: rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px #ffd700;
   transform: scale(1.1);
-  box-shadow: 0 0 15px #ffd700;
 }
 @media(max-width: 768px){
   .nav {
     flex-direction: column;
+    width: 100%;
     background: rgba(0,0,0,0.4);
     position: absolute;
     top: 100%;
     right: 0;
-    width: 200px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
-    border-radius: 10px;
   }
   .nav.show {
     max-height: 1000px;
   }
 }
 
-/* Submenu styling with layered shadow, layered animations, and opacity transitions */
+/* Dropdown submenu with layered effects, animated appearance, and hover glow */
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 15px;
-  border-radius: 12px;
+  background: rgba(0,0,0,0.8);
+  padding: 20px;
+  border-radius: 15px;
   display: none;
   flex-direction: column;
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
   z-index: 20;
 }
 li:hover > .submenu {
@@ -173,31 +176,32 @@ li:hover > .submenu {
   transform: translateX(5px);
 }
 
-/* Main content with animated entrance and layered background effects */
+/* Main Content with animated entrance & layered background */
 .content {
   max-width: 1400px;
   margin: 40px auto;
   padding: 40px;
   background: linear-gradient(135deg, #f6d365, #fda085);
-  border-radius: 25px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  backdrop-filter: blur(12px);
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  backdrop-filter: blur(15px);
   animation: contentFadeIn 2s ease;
   position: relative;
   overflow: hidden;
+  transition: all 0.5s ease;
 }
 @keyframes contentFadeIn {
   from {opacity: 0; transform: translateY(50px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* Review section with shimmering animated background, layered overlays */
+/* Review section with animated shimmer and inset glow */
 #review-section {
   margin-top: 70px;
   padding: 40px;
   background: linear-gradient(135deg, #89f7fe, #66a6ff);
   border-radius: 30px;
-  box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
   color: #fff;
   font-family: 'Arial Rounded MT Bold', sans-serif;
   position: relative;
@@ -206,16 +210,15 @@ li:hover > .submenu {
 #review-section h2 {
   font-size: 30px;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+  text-shadow: 0 0 15px #fff, 0 0 30px #fff;
 }
 #review-section p {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
-/* shimmering animated placeholder blocks for reviews */
 .shimmer {
   height: 100px;
-  margin: 15px 0;
+  margin: 20px 0;
   border-radius: 15px;
   background: linear-gradient(120deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
@@ -226,7 +229,7 @@ li:hover > .submenu {
   100% { background-position: 1000px 0; }
 }
 
-/* Flavors grid with glow effects and hover animations for interactivity */
+/* Flavors grid with glow & hover effects */
 .flavors {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -243,78 +246,104 @@ li:hover > .submenu {
   cursor: pointer;
   transition: all 0.4s ease;
   text-shadow: 0 0 8px #fff;
-  position: relative;
 }
 .flavor:hover {
   box-shadow: 0 0 50px #ffd700, inset 0 0 20px #ffd700;
   transform: scale(1.12);
   background: rgba(255,255,255,0.3);
+  z-index: 5;
 }
-/* Additional responsive adjustments for smaller screens */
+
+/* Button for mobile menu toggle style (hidden for desktop) */
+button.menu-toggle {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+  z-index: 30;
+}
 @media(max-width: 768px){
-  header {
-    flex-direction: column;
-  }
-  .nav {
-    flex-direction: column;
-    width: 100%;
-  }
-  .nav li {
-    width: 100%;
+  button.menu-toggle {
+    display: block;
   }
   nav {
-    justify-content: center;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    border-radius: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    width: 200px;
+    flex-direction: column;
   }
+  nav.show {
+    max-height: 1000px;
+  }
+}
+
+/* Additional hover glow effects for entire page for depth */
+body {
+  --page-glow: 0px 0px 50px rgba(255,255,255,0.2);
+  box-shadow: var(--page-glow);
+  transition: box-shadow 2s ease;
 }
 </style>
 </head>
 <body>
 
-<!-- Canvas for animated particles and layered effects -->
+<!-- Canvas for animated particles -->
 <canvas id="particles"></canvas>
 
-<!-- Header with animated background, logo, nav -->
+<!-- Header with logo and navigation -->
 <header>
-  <img src="https://via.placeholder.com/150x70?text=LOGO" alt="Logo" class="logo" />
-  <nav>
-    <ul class="nav" id="main-nav">
+  <img src="https://via.placeholder.com/150x70?text=LOGO" class="logo" alt="Logo" />
+  <button class="menu-toggle" aria-label="Toggle Menu">☰</button>
+  <nav id="main-nav">
+    <ul class="nav">
       <li><a href="#home" class="nav-link">Home</a></li>
       <li>
         <a href="#shop" class="nav-link">Shop</a>
-        <ul class="submenu" id="shop-submenu">
+        <ul class="submenu">
           <li>
             <a href="#lollies" class="category-link" data-category="lollies">Lollies</a>
             <div class="category-details" id="lollies-details" style="display:none;">
-              <h4 style="margin-bottom:10px;">Exotic Flavours</h4>
+              <h4>Exotic Flavours</h4>
               <div class="flavors" id="lollies-exotic"></div>
-              <h4 style="margin-top:20px;margin-bottom:10px;">Normal Flavours</h4>
+              <h4>Normal Flavours</h4>
               <div class="flavors" id="lollies-normal"></div>
             </div>
           </li>
           <li>
             <a href="#drinks" class="category-link" data-category="drinks">Drinks</a>
             <div class="category-details" id="drinks-details" style="display:none;">
-              <h4 style="margin-bottom:10px;">Exotic Flavours</h4>
+              <h4>Exotic Flavours</h4>
               <div class="flavors" id="drinks-exotic"></div>
-              <h4 style="margin-top:20px;margin-bottom:10px;">Normal Flavours</h4>
+              <h4>Normal Flavours</h4>
               <div class="flavors" id="drinks-normal"></div>
             </div>
           </li>
           <li>
             <a href="#chocolate" class="category-link" data-category="chocolate">Chocolate</a>
             <div class="category-details" id="chocolate-details" style="display:none;">
-              <h4 style="margin-bottom:10px;">Exotic Flavours</h4>
+              <h4>Exotic Flavours</h4>
               <div class="flavors" id="chocolate-exotic"></div>
-              <h4 style="margin-top:20px;margin-bottom:10px;">Normal Flavours</h4>
+              <h4>Normal Flavours</h4>
               <div class="flavors" id="chocolate-normal"></div>
             </div>
           </li>
           <li>
             <a href="#chips" class="category-link" data-category="chips">Chips</a>
             <div class="category-details" id="chips-details" style="display:none;">
-              <h4 style="margin-bottom:10px;">Exotic Flavours</h4>
+              <h4>Exotic Flavours</h4>
               <div class="flavors" id="chips-exotic"></div>
-              <h4 style="margin-top:20px;margin-bottom:10px;">Normal Flavours</h4>
+              <h4>Normal Flavours</h4>
               <div class="flavors" id="chips-normal"></div>
             </div>
           </li>
@@ -326,13 +355,13 @@ li:hover > .submenu {
   </nav>
 </header>
 
-<!-- Main Content Area -->
+<!-- Main Content -->
 <div class="content" id="main-content">
   <h1>Welcome to the Ultra-Complex Store</h1>
-  <p>Hover over the menu items and explore our exotic and normal flavors with layered animations and effects!</p>
+  <p>Hover over the menu items and explore our infinite effects, animations, and flavors!</p>
 </div>
 
-<!-- Review Section with animated shimmer placeholders -->
+<!-- Review Section with shimmer placeholders -->
 <section id="review-section">
   <h2>Customer Feedback & Reviews</h2>
   <div class="shimmer"></div>
@@ -340,11 +369,12 @@ li:hover > .submenu {
   <div class="shimmer"></div>
 </section>
 
-<!-- JavaScript for complex interactions -->
+<!-- JavaScript for effects and interactions -->
 <script>
-  // =================== Part 1: Canvas Particles Effect ===================
+  // =================== Part 1: Particles Canvas Effect ===================
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
+
   let particlesArray;
 
   function resizeCanvas() {
@@ -359,8 +389,8 @@ li:hover > .submenu {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
       this.size = Math.random() * 2 + 1;
-      this.speedX = (Math.random() - 0.5) * 0.8;
-      this.speedY = (Math.random() - 0.5) * 0.8;
+      this.speedX = (Math.random() - 0.5) * 1;
+      this.speedY = (Math.random() - 0.5) * 1;
       this.alpha = Math.random();
     }
     update() {
@@ -371,7 +401,7 @@ li:hover > .submenu {
     }
     draw() {
       ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = "rgba(255,255,255,0.6)";
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
       ctx.fill();
@@ -402,8 +432,8 @@ li:hover > .submenu {
         const dx = particlesArray[a].x - particlesArray[b].x;
         const dy = particlesArray[a].y - particlesArray[b].y;
         const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 80) {
-          ctx.strokeStyle = `rgba(255,255,255, ${1 - dist/80})`;
+        if (dist < 100) {
+          ctx.strokeStyle = `rgba(255,255,255, ${1 - dist/100})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -417,7 +447,7 @@ li:hover > .submenu {
   initParticles();
   animateParticles();
 
-  // =================== Part 2: Data & Content Logic ===================
+  // =================== Part 2: Flavor Data & Dynamic Population ===================
   const flavorData = {
     lollies: {
       exotic: ["Dragon Fruit", "Lychee", "Passion Fruit", "Pomegranate"],
@@ -437,7 +467,6 @@ li:hover > .submenu {
     }
   };
 
-  // Function to populate flavors dynamically with animated cascading effects
   function populateFlavors(category, type) {
     const container = document.getElementById(`${category}-${type}`);
     container.innerHTML = '';
@@ -466,17 +495,14 @@ li:hover > .submenu {
     });
   }
 
-  // Initialize all flavor categories on page load
   window.onload = () => {
-    for (const category in flavorData) {
-      populateFlavors(category, 'exotic');
-      populateFlavors(category, 'normal');
+    for (const cat in flavorData) {
+      populateFlavors(cat, 'exotic');
+      populateFlavors(cat, 'normal');
     }
   };
 
-  // =================== Part 3: Interactive Menu & Animations ===================
-
-  // Animate dropdown menus with layered slide and fade
+  // =================== Part 3: Interactive Dropdowns with Cascading Animations ===================
   document.querySelectorAll('.nav > li').forEach(li => {
     li.addEventListener('mouseenter', () => {
       const submenu = li.querySelector('.submenu');
@@ -503,80 +529,89 @@ li:hover > .submenu {
           easing: 'ease-in',
           fill: 'forwards'
         });
-        anim.onfinish = () => {
-          submenu.style.display = 'none';
-        };
+        anim.onfinish = () => { submenu.style.display = 'none'; };
       }
     });
   });
 
-  // Toggle category details with smooth height and opacity transitions
+  // Toggle category details with smooth height animation
   document.querySelectorAll('.category-link').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const category = e.target.dataset.category;
       const detailsDiv = document.getElementById(`${category}-details`);
       if (detailsDiv.style.display === 'none' || !detailsDiv.style.display) {
-        // Open with animation
+        // Animate open
         detailsDiv.style.display = 'block';
+        const height = detailsDiv.scrollHeight + 'px';
         detailsDiv.animate([
           { height: '0px', opacity: 0 },
-          { height: `${detailsDiv.scrollHeight}px`, opacity: 1 }
+          { height: height, opacity: 1 }
         ], {
-          duration: 700,
+          duration: 800,
           fill: 'forwards',
           easing: 'ease-out'
         });
       } else {
-        // Close with animation
-        const closeAnim = detailsDiv.animate([
-          { height: `${detailsDiv.scrollHeight}px`, opacity: 1 },
+        // Animate close
+        const height = detailsDiv.scrollHeight + 'px';
+        const anim = detailsDiv.animate([
+          { height: height, opacity: 1 },
           { height: '0px', opacity: 0 }
         ], {
-          duration: 700,
+          duration: 800,
           fill: 'forwards',
           easing: 'ease-in'
         });
-        closeAnim.onfinish = () => {
-          detailsDiv.style.display = 'none';
-        };
+        anim.onfinish = () => { detailsDiv.style.display = 'none'; };
       }
     });
   });
 
-  // Responsive mobile menu toggle
-  const menuButton = document.createElement('button');
-  menuButton.innerHTML = '☰';
-  menuButton.style.position = 'absolute';
-  menuButton.style.top = '25px';
-  menuButton.style.right = '40px';
-  menuButton.style.fontSize = '28px';
-  menuButton.style.background = 'none';
-  menuButton.style.border = 'none';
-  menuButton.style.color = '#fff';
-  menuButton.style.cursor = 'pointer';
-  menuButton.style.zIndex = '999';
-  document.querySelector('header').appendChild(menuButton);
-  menuButton.addEventListener('click', () => {
-    document.getElementById('main-nav').classList.toggle('show');
+  // =================== Part 4: Responsive Mobile Menu Toggle ===================
+  const menuBtn = document.querySelector('.menu-toggle');
+  const navMenu = document.getElementById('main-nav');
+  menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
   });
 
-  // =================== Part 4: Additional Visual Effects ===================
-
-  // Add click event for flavor items to simulate adding to cart
+  // =================== Part 5: Interactivity - Add to Cart ===================
   document.querySelectorAll('.flavor').forEach(item => {
     item.addEventListener('click', () => {
       alert(`Added "${item.innerText}" to your cart!`);
-      // You can expand this to update cart dynamically
     });
   });
 
-  // Add a background glow effect to the entire page for depth
-  document.body.style.setProperty('--page-glow', '0px 0px 50px rgba(255, 255, 255, 0.2)');
-  // Animate glow
+  // =================== Part 6: Extra Visual Effects ===================
+  // Animate glow effect on body for immersive experience
   setInterval(() => {
     document.body.style.setProperty('--page-glow', `0px 0px ${Math.random()*80+20}px rgba(255,255,255,${(Math.random()*0.4)+0.2})`);
-  }, 3000);
+  }, 4000);
+
+  // Animate glow around logo on hover
+  document.querySelector('.logo').addEventListener('mouseenter', () => {
+    document.querySelector('.logo').style.boxShadow = '0 0 80px #ffd700, inset 0 0 40px #ffd700';
+  });
+  document.querySelector('.logo').addEventListener('mouseleave', () => {
+    document.querySelector('.logo').style.boxShadow = '0 0 30px rgba(255,255,255,0.7)';
+  });
+
+  // =================== Part 7: Additional Effects: Particle Interaction ===================
+  // Add interaction: particles react to mouse movement
+  document.addEventListener('mousemove', e => {
+    if (particlesArray) {
+      particlesArray.forEach(p => {
+        const dx = p.x - e.clientX;
+        const dy = p.y - e.clientY;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          // Repel particles
+          p.x += dx * 0.02;
+          p.y += dy * 0.02;
+        }
+      });
+    }
+  });
 </script>
 </body>
 </html>
