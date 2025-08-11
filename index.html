@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sweet Treats Store</title>
 <style>
-  /* Extensive CSS for styling all parts, including layout, colors, fonts, animations, etc. */
-
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     background-color: #f8f8f8;
   }
-
-  /* Logo */
+  /* Header & Navigation */
   header {
     display: flex;
     align-items: center;
@@ -24,62 +21,56 @@
     top: 0;
     z-index: 1000;
   }
-
   header img {
     height: 50px;
-    margin-right: 15px;
+    margin-right: 10px;
   }
-
   header h1 {
     color: #fff;
     margin: 0;
   }
-
-  /* Navigation links */
   nav {
     margin-left: auto;
   }
-
   nav a {
     color: #fff;
     margin: 0 15px;
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
   }
-
   nav a:hover {
     text-decoration: underline;
   }
 
-  /* Sections styling */
+  /* Sections styling with bigger gaps */
 section {
   padding: 60px 20px;
+  margin-bottom: 100px; /* Larger gaps between sections for clarity */
   border-bottom: 1px solid #ccc;
   background-color: #fff;
+  display: none; /* Hidden by default, shown via JS */
 }
 
+/* Specific styles for each section */
 #home {
   background: linear-gradient(to right, #ffecd2, #fcb69f);
   text-align: center;
-  padding: 80px 20px;
 }
-
 #home h2 {
   font-size: 3em;
   margin-bottom: 20px;
 }
-
 #home p {
   font-size: 1.2em;
 }
 
-/* Product categories styling */
+/* Product categories */
 .category {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
-
 .product {
   background: #fff;
   border-radius: 8px;
@@ -90,41 +81,41 @@ section {
   text-align: center;
   transition: transform 0.2s;
 }
-
 .product:hover {
   transform: scale(1.05);
 }
-
 .product img {
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
-
 .product h3 {
   margin-top: 10px;
   font-size: 1.2em;
 }
-
 .product p {
   margin: 5px 0;
+}
+
+/* Cart, Checkout, and Reviews sections visible on different "pages" */
+#cart, #checkout, #reviews {
+  display: none;
+}
+#cart.active, #checkout.active, #reviews.active {
+  display: block;
 }
 
 /* Cart styling */
 #cart {
   background-color: #e0f7fa;
-  padding: 20px;
 }
-
 #cart h2 {
   margin-top: 0;
 }
-
 #cart-items {
   list-style: none;
   padding: 0;
 }
-
 #cart-items li {
   background: #fff;
   margin: 10px 0;
@@ -133,7 +124,6 @@ section {
   display: flex;
   justify-content: space-between;
 }
-
 #cart-items button {
   background-color: #ff5252;
   color: white;
@@ -143,36 +133,27 @@ section {
   cursor: pointer;
 }
 
-#cart-summary {
-  margin-top: 20px;
-  font-size: 1.2em;
-}
-
-/* Checkout form styling */
+/* Checkout styling */
 #checkout {
   background-color: #ffe0b2;
-  padding: 20px;
   max-width: 600px;
   margin: auto;
+  padding: 40px 20px;
   border-radius: 8px;
 }
-
 #checkout h2 {
   margin-top: 0;
 }
-
 #checkout form {
   display: flex;
   flex-direction: column;
 }
-
 #checkout input {
   margin: 10px 0;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
-
 #checkout button {
   background-color: #4caf50;
   color: white;
@@ -183,18 +164,16 @@ section {
   cursor: pointer;
 }
 
-/* Review and comment styling */
+/* Reviews styling */
 #reviews {
   background: #f1f8e9;
   padding: 20px;
 }
-
 .star {
   font-size: 2em;
   color: gold;
   cursor: pointer;
 }
-
 #review-comments textarea {
   width: 100%;
   height: 80px;
@@ -203,45 +182,40 @@ section {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
-
-/* Logo styling */
+/* Logo style */
 .logo {
   height: 50px;
   margin-right: 10px;
 }
-
-/* Additional styling for long page, responsiveness, etc., can be added here */
-
 </style>
 </head>
 <body>
 
 <header>
   <img src="https://via.placeholder.com/50?text=Logo" alt="Logo" class="logo"/>
-  <h1>Sweet Treats Store</h1>
+  <h1 style="color:white;">Sweet Treats Store</h1>
   <nav>
-    <a href="#home">Home</a>
-    <a href="#lollies">Lollies</a>
-    <a href="#chocolates">Chocolates</a>
-    <a href="#chips">Chips</a>
-    <a href="#drinks">Drinks</a>
-    <a href="#cart">Cart</a>
-    <a href="#checkout">Buy</a>
-    <a href="#reviews">Reviews</a>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('lollies')">Lollies</a>
+    <a onclick="showPage('chocolates')">Chocolates</a>
+    <a onclick="showPage('chips')">Chips</a>
+    <a onclick="showPage('drinks')">Drinks</a>
+    <a onclick="showPage('cart')">Cart</a>
+    <a onclick="showPage('checkout')">Buy</a>
+    <a onclick="showPage('reviews')">Reviews</a>
   </nav>
 </header>
 
-<!-- Home Welcome Part -->
+<!-- Home -->
 <section id="home">
   <h2>Welcome to the Sweet Treats Store!</h2>
   <p>Delicious candies, chocolates, chips, and drinks! Explore our products and enjoy shopping.</p>
 </section>
 
-<!-- Lollies Part -->
+<!-- Lollies -->
 <section id="lollies">
   <h2>Lollies</h2>
   <div class="category">
-    <!-- 5 Lollies -->
     <div class="product" data-name="Gummy Bears" data-price="2">
       <img src="https://via.placeholder.com/150?text=Gummy+Bears" alt="Gummy Bears"/>
       <h3>Gummy Bears</h3>
@@ -275,11 +249,10 @@ section {
   </div>
 </section>
 
-<!-- Chocolates Part -->
+<!-- Chocolates -->
 <section id="chocolates">
   <h2>Chocolates</h2>
   <div class="category">
-    <!-- 5 Chocolates -->
     <div class="product" data-name="Milk Chocolate" data-price="3">
       <img src="https://via.placeholder.com/150?text=Milk+Chocolate" alt="Milk Chocolate"/>
       <h3>Milk Chocolate</h3>
@@ -313,11 +286,10 @@ section {
   </div>
 </section>
 
-<!-- Chips Part -->
+<!-- Chips -->
 <section id="chips">
   <h2>Chips</h2>
   <div class="category">
-    <!-- 5 Chips -->
     <div class="product" data-name="Potato Chips" data-price="1.5">
       <img src="https://via.placeholder.com/150?text=Potato+Chips" alt="Potato Chips"/>
       <h3>Potato Chips</h3>
@@ -351,11 +323,10 @@ section {
   </div>
 </section>
 
-<!-- Drinks Part -->
+<!-- Drinks -->
 <section id="drinks">
   <h2>Drinks</h2>
   <div class="category">
-    <!-- 5 Drinks -->
     <div class="product" data-name="Cola" data-price="1.5">
       <img src="https://via.placeholder.com/150?text=Cola" alt="Cola"/>
       <h3>Cola</h3>
@@ -389,25 +360,30 @@ section {
   </div>
 </section>
 
-<!-- Cart Section -->
+<!-- Cart (Page) -->
 <section id="cart">
   <h2>Your Cart</h2>
   <ul id="cart-items"></ul>
   <div id="cart-summary">Total: $0.00</div>
+  <button onclick="showPage('checkout')">Proceed to Buy</button>
+  <button onclick="showPage('home')">Back to Home</button>
 </section>
 
-<!-- Buy/Checkout Section -->
+<!-- Checkout (Page) -->
 <section id="checkout">
   <h2>Checkout</h2>
   <form id="paymentForm" onsubmit="return processPayment()">
     <input type="text" placeholder="Name" id="name" required />
+    <input type="email" placeholder="Email" id="email" required />
+    <input type="tel" placeholder="Phone Number" id="phone" required />
     <input type="text" placeholder="Address" id="address" required />
     <input type="text" placeholder="Card Number" id="card" required />
     <button type="submit">Buy Now</button>
   </form>
+  <button onclick="showPage('cart')">Back to Cart</button>
 </section>
 
-<!-- Review Page -->
+<!-- Reviews & Comments (Page) -->
 <section id="reviews">
   <h2>Reviews & Comments</h2>
   <div>
@@ -426,92 +402,89 @@ section {
     <textarea id="comment" placeholder="Write your comment..."></textarea>
     <button onclick="submitReview()">Submit Review</button>
   </div>
-  <div id="reviewsList">
-    <h3>Reviews</h3>
-    <!-- Reviews will appear here -->
-  </div>
+  <div id="reviewsList"></div>
+  <button onclick="showPage('home')">Back to Home</button>
 </section>
 
 <script>
-// JavaScript for interactivity
+  // Show specific page/section
+  function showPage(pageId) {
+    document.querySelectorAll('section').forEach(sec => sec.style.display='none');
+    document.getElementById(pageId).style.display='block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-// Cart array to store items
-let cart = [];
-let totalPrice = 0;
+  // Initialize to home page
+  showPage('home');
 
-// Function to add items to cart
-function addToCart(name, price) {
-  cart.push({name: name, price: parseFloat(price)});
-  updateCart();
-}
+  // Cart array
+  let cart = [];
 
-// Function to update cart display
-function updateCart() {
-  const cartItemsContainer = document.getElementById('cart-items');
-  const cartSummary = document.getElementById('cart-summary');
+  function addToCart(name, price) {
+    cart.push({name: name, price: parseFloat(price)});
+    updateCart();
+  }
 
-  cartItemsContainer.innerHTML = '';
+  function updateCart() {
+    const list = document.getElementById('cart-items');
+    list.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+      total += item.price;
+      const li = document.createElement('li');
+      li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remove</button>`;
+      list.appendChild(li);
+    });
+    document.getElementById('cart-summary').innerText = `Total: $${total.toFixed(2)}`;
+  }
 
-  let total = 0;
-  cart.forEach((item, index) => {
-    total += item.price;
-    const li = document.createElement('li');
-    li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remove</button>`;
-    cartItemsContainer.appendChild(li);
-  });
-  document.getElementById('cart-summary').innerText = `Total: $${total.toFixed(2)}`;
-}
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
 
-// Remove item from cart
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  updateCart();
-}
+  // Process payment
+  function processPayment() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const card = document.getElementById('card').value.trim();
 
-// Process payment
-function processPayment() {
-  const name = document.getElementById('name').value.trim();
-  const address = document.getElementById('address').value.trim();
-  const card = document.getElementById('card').value.trim();
-
-  if (cart.length === 0) {
-    alert('Your cart is empty!');
+    if (cart.length === 0) {
+      alert('Your cart is empty!');
+      return false;
+    }
+    if (!name || !email || !phone || !address || !card) {
+      alert('Please fill in all fields!');
+      return false;
+    }
+    alert(`Thank you for your purchase, ${name}!`);
+    cart = [];
+    updateCart();
+    showPage('home');
+    document.getElementById('paymentForm').reset();
     return false;
   }
 
-  if (!name || !address || !card) {
-    alert('Please fill in all fields.');
-    return false;
+  // Review system
+  let currentRating = 0;
+  function setRating(rating) {
+    currentRating = rating;
+    document.getElementById('ratingValue').innerText = `Rating: ${rating}`;
   }
-
-  alert(`Thank you for your purchase, ${name}!`);
-  cart = [];
-  updateCart();
-  document.getElementById('paymentForm').reset();
-  return false; // prevent actual form submission
-}
-
-// Review star rating
-let currentRating = 0;
-
-function setRating(rating) {
-  currentRating = rating;
-  document.getElementById('ratingValue').innerText = `Rating: ${rating}`;
-  // Optional: highlight stars
-}
-
-function submitReview() {
-  const comment = document.getElementById('comment').value.trim();
-  if (currentRating === 0) {
-    alert('Please rate us!');
-    return;
+  function submitReview() {
+    const commentText = document.getElementById('comment').value.trim();
+    if (currentRating === 0) {
+      alert('Please rate us!');
+      return;
+    }
+    const reviewDiv = document.createElement('div');
+    reviewDiv.innerHTML = `<strong>Rating: ${currentRating} stars</strong><br/>${commentText}<hr/>`;
+    document.getElementById('reviewsList').appendChild(reviewDiv);
+    document.getElementById('comment').value = '';
+    alert('Review submitted! Thanks!');
   }
-  const reviewDiv = document.createElement('div');
-  reviewDiv.innerHTML = `<strong>Rating: ${currentRating} stars</strong><br/>${comment}<hr/>`;
-  document.getElementById('reviewsList').appendChild(reviewDiv);
-  document.getElementById('comment').value = '';
-  alert('Review submitted! Thanks!');
-}
 </script>
 
 </body>
