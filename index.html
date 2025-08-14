@@ -2,489 +2,912 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sweet Treats Store</title>
 <style>
-  body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f8f8f8;
-  }
-  /* Header & Navigation */
-  header {
-    display: flex;
-    align-items: center;
-    background: #222;
-    padding: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  header img {
-    height: 50px;
-    margin-right: 10px;
-  }
-  header h1 {
-    color: #fff;
-    margin: 0;
-  }
-  nav {
-    margin-left: auto;
-  }
-  nav a {
-    color: #fff;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  /* Sections styling with bigger gaps */
-section {
-  padding: 60px 20px;
-  margin-bottom: 100px; /* Larger gaps between sections for clarity */
-  border-bottom: 1px solid #ccc;
-  background-color: #fff;
-  display: none; /* Hidden by default, shown via JS */
+/* RESET AND BASE STYLES */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Specific styles for each section */
-#home {
-  background: linear-gradient(to right, #ffecd2, #fcb69f);
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  line-height: 1.6;
+}
+
+/* NAVIGATION BAR STYLES */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ff6f61;
+  padding: 10px 20px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-section img {
+  height: 50px;
+  width: 50px;
+}
+
+.store-name {
+  font-size: 1.8em;
+  color: white;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  margin: 0 5px;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.nav-buttons a:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* CART AND NOTIFICATION */
+.cart-container {
+  position: relative;
+  margin-left: 15px;
+}
+
+#cart-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+#cart-count {
+  background-color: #fff;
+  color: #ff6f61;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8em;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-weight: bold;
+  min-width: 20px;
   text-align: center;
 }
-#home h2 {
-  font-size: 3em;
-  margin-bottom: 20px;
-}
-#home p {
-  font-size: 1.2em;
+
+#notification {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #4BB543;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  transform: translateY(-10px);
+  z-index: 1001;
+  font-weight: bold;
 }
 
-/* Product categories */
-.category {
+#notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MAIN CONTENT AREA */
+#content {
+  padding: 20px;
+}
+
+/* FOOTER AND CONTACT DETAILS */
+footer {
+  background-color: #333;
+  color: #eee;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* BUTTONS AND FORMS */
+button {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #e65b50;
+}
+
+/* PRODUCT CARDS */
+.product-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 10px;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-name {
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+}
+
+.product-price {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.products-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.product {
+
+/* REVIEWS */
+.review-container {
+  margin-top: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   background: #fff;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 200px;
-  margin: 15px;
-  padding: 10px;
+}
+.review-title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
   text-align: center;
-  transition: transform 0.2s;
 }
-.product:hover {
-  transform: scale(1.05);
-}
-.product img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-.product h3 {
-  margin-top: 10px;
-  font-size: 1.2em;
-}
-.product p {
-  margin: 5px 0;
-}
-
-/* Cart, Checkout, and Reviews sections visible on different "pages" */
-#cart, #checkout, #reviews {
-  display: none;
-}
-#cart.active, #checkout.active, #reviews.active {
-  display: block;
-}
-
-/* Cart styling */
-#cart {
-  background-color: #e0f7fa;
-}
-#cart h2 {
-  margin-top: 0;
-}
-#cart-items {
-  list-style: none;
-  padding: 0;
-}
-#cart-items li {
-  background: #fff;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-}
-#cart-items button {
-  background-color: #ff5252;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+.star-rating {
+  font-size: 1.5em;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
-
-/* Checkout styling */
-#checkout {
-  background-color: #ffe0b2;
-  max-width: 600px;
-  margin: auto;
-  padding: 40px 20px;
-  border-radius: 8px;
+.star {
+  color: #ccc;
+  margin: 0 5px;
+  transition: color 0.3s;
 }
-#checkout h2 {
-  margin-top: 0;
+.star.filled {
+  color: gold;
 }
-#checkout form {
+.review-input {
+  width: 100%;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
-#checkout input {
-  margin: 10px 0;
+.review-input textarea {
+  resize: vertical;
+  min-height: 80px;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
-#checkout button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px;
-  border: none;
+.review-submit {
   margin-top: 10px;
-  border-radius: 4px;
-  cursor: pointer;
+  align-self: center;
 }
 
-/* Reviews styling */
-#reviews {
-  background: #f1f8e9;
-  padding: 20px;
-}
-.star {
-  font-size: 2em;
-  color: gold;
-  cursor: pointer;
-}
-#review-comments textarea {
+/* Map container */
+#map {
   width: 100%;
-  height: 80px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  height: 400px;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
 }
-/* Logo style */
-.logo {
-  height: 50px;
-  margin-right: 10px;
+
+/* Contact details style */
+.contact-details {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.contact-item {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  margin: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.contact-item h3 {
+  margin-bottom: 10px;
+  color: #ff6f61;
+}
+@media(max-width: 1000px) {
+  .products-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-details {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <img src="https://via.placeholder.com/50?text=Logo" alt="Logo" class="logo"/>
-  <h1 style="color:white;">Sweet Treats Store</h1>
-  <nav>
-    <a onclick="showPage('home')">Home</a>
-    <a onclick="showPage('lollies')">Lollies</a>
-    <a onclick="showPage('chocolates')">Chocolates</a>
-    <a onclick="showPage('chips')">Chips</a>
-    <a onclick="showPage('drinks')">Drinks</a>
-    <a onclick="showPage('cart')">Cart</a>
-    <a onclick="showPage('checkout')">Buy</a>
-    <a onclick="showPage('reviews')">Reviews</a>
-  </nav>
+<!-- Navigation Bar -->
+<header class="navbar">
+  <div class="logo-section">
+    <img src="https://via.placeholder.com/50" alt="Logo" />
+    <span class="store-name">Sweet Treats</span>
+  </div>
+  <div class="nav-buttons">
+    <a href="#" data-page="home">Home</a>
+    <a href="#" data-page="lollies">Lollies</a>
+    <a href="#" data-page="chocolates">Chocolates</a>
+    <a href="#" data-page="drinks">Drinks</a>
+    <div class="cart-container">
+      <button id="cart-btn" aria-label="Cart">🛒 <span id="cart-count">0</span></button>
+      <div id="notification"></div>
+    </div>
+  </div>
 </header>
 
-<!-- Home -->
-<section id="home">
-  <h2>Welcome to the Sweet Treats Store!</h2>
-  <p>Delicious candies, chocolates, chips, and drinks! Explore our products and enjoy shopping.</p>
-</section>
+<!-- Main content area -->
+<div id="content"></div>
 
-<!-- Lollies -->
-<section id="lollies">
-  <h2>Lollies</h2>
-  <div class="category">
-    <div class="product" data-name="Gummy Bears" data-price="2">
-      <img src="https://via.placeholder.com/150?text=Gummy+Bears" alt="Gummy Bears"/>
-      <h3>Gummy Bears</h3>
-      <p>$2</p>
-      <button onclick="addToCart('Gummy Bears', 2)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Lollipop" data-price="1">
-      <img src="https://via.placeholder.com/150?text=Lollipop" alt="Lollipop"/>
-      <h3>Lollipop</h3>
-      <p>$1</p>
-      <button onclick="addToCart('Lollipop', 1)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Sour Worms" data-price="2.5">
-      <img src="https://via.placeholder.com/150?text=Sour+Worms" alt="Sour Worms"/>
-      <h3>Sour Worms</h3>
-      <p>$2.5</p>
-      <button onclick="addToCart('Sour Worms', 2.5)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Jelly Beans" data-price="2.2">
-      <img src="https://via.placeholder.com/150?text=Jelly+Beans" alt="Jelly Beans"/>
-      <h3>Jelly Beans</h3>
-      <p>$2.2</p>
-      <button onclick="addToCart('Jelly Beans', 2.2)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Fruit Taffy" data-price="3">
-      <img src="https://via.placeholder.com/150?text=Fruit+Taffy" alt="Fruit Taffy"/>
-      <h3>Fruit Taffy</h3>
-      <p>$3</p>
-      <button onclick="addToCart('Fruit Taffy', 3)">Add to Cart</button>
+<!-- Footer with contact info -->
+<footer>
+  <div class="contact-details">
+    <div class="contact-item">
+      <h3>Contact Us</h3>
+      <p>Phone: +123 456 7890</p>
+      <p>Email: contact@sweettreats.com</p>
+      <p>Address: 123 Candy Lane, Sweet City</p>
     </div>
   </div>
-</section>
+</footer>
 
-<!-- Chocolates -->
-<section id="chocolates">
-  <h2>Chocolates</h2>
-  <div class="category">
-    <div class="product" data-name="Milk Chocolate" data-price="3">
-      <img src="https://via.placeholder.com/150?text=Milk+Chocolate" alt="Milk Chocolate"/>
-      <h3>Milk Chocolate</h3>
-      <p>$3</p>
-      <button onclick="addToCart('Milk Chocolate', 3)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Dark Chocolate" data-price="3.5">
-      <img src="https://via.placeholder.com/150?text=Dark+Chocolate" alt="Dark Chocolate"/>
-      <h3>Dark Chocolate</h3>
-      <p>$3.5</p>
-      <button onclick="addToCart('Dark Chocolate', 3.5)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Chocolate Bars" data-price="2.5">
-      <img src="https://via.placeholder.com/150?text=Chocolate+Bars" alt="Chocolate Bars"/>
-      <h3>Chocolate Bars</h3>
-      <p>$2.5</p>
-      <button onclick="addToCart('Chocolate Bars', 2.5)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Truffles" data-price="4">
-      <img src="https://via.placeholder.com/150?text=Truffles" alt="Truffles"/>
-      <h3>Truffles</h3>
-      <p>$4</p>
-      <button onclick="addToCart('Truffles', 4)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Chocolate Mints" data-price="2">
-      <img src="https://via.placeholder.com/150?text=Choc+Mints" alt="Chocolate Mints"/>
-      <h3>Chocolate Mints</h3>
-      <p>$2</p>
-      <button onclick="addToCart('Chocolate Mints', 2)">Add to Cart</button>
-    </div>
-  </div>
-</section>
-
-<!-- Chips -->
-<section id="chips">
-  <h2>Chips</h2>
-  <div class="category">
-    <div class="product" data-name="Potato Chips" data-price="1.5">
-      <img src="https://via.placeholder.com/150?text=Potato+Chips" alt="Potato Chips"/>
-      <h3>Potato Chips</h3>
-      <p>$1.5</p>
-      <button onclick="addToCart('Potato Chips', 1.5)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="BBQ Chips" data-price="1.8">
-      <img src="https://via.placeholder.com/150?text=BBQ+Chips" alt="BBQ Chips"/>
-      <h3>BBQ Chips</h3>
-      <p>$1.8</p>
-      <button onclick="addToCart('BBQ Chips', 1.8)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Cheese Chips" data-price="2">
-      <img src="https://via.placeholder.com/150?text=Cheese+Chips" alt="Cheese Chips"/>
-      <h3>Cheese Chips</h3>
-      <p>$2</p>
-      <button onclick="addToCart('Cheese Chips', 2)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Salt & Vinegar" data-price="1.7">
-      <img src="https://via.placeholder.com/150?text=S&V+Chips" alt="Salt & Vinegar Chips"/>
-      <h3>Salt & Vinegar</h3>
-      <p>$1.7</p>
-      <button onclick="addToCart('Salt & Vinegar', 1.7)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Seafood Chips" data-price="2.2">
-      <img src="https://via.placeholder.com/150?text=Seafood+Chips" alt="Seafood Chips"/>
-      <h3>Seafood Chips</h3>
-      <p>$2.2</p>
-      <button onclick="addToCart('Seafood Chips', 2.2)">Add to Cart</button>
-    </div>
-  </div>
-</section>
-
-<!-- Drinks -->
-<section id="drinks">
-  <h2>Drinks</h2>
-  <div class="category">
-    <div class="product" data-name="Cola" data-price="1.5">
-      <img src="https://via.placeholder.com/150?text=Cola" alt="Cola"/>
-      <h3>Cola</h3>
-      <p>$1.5</p>
-      <button onclick="addToCart('Cola', 1.5)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Orange Juice" data-price="2">
-      <img src="https://via.placeholder.com/150?text=Orange+Juice" alt="Orange Juice"/>
-      <h3>Orange Juice</h3>
-      <p>$2</p>
-      <button onclick="addToCart('Orange Juice', 2)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Lemonade" data-price="1.8">
-      <img src="https://via.placeholder.com/150?text=Lemonade" alt="Lemonade"/>
-      <h3>Lemonade</h3>
-      <p>$1.8</p>
-      <button onclick="addToCart('Lemonade', 1.8)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Iced Tea" data-price="1.7">
-      <img src="https://via.placeholder.com/150?text=Iced+Tea" alt="Iced Tea"/>
-      <h3>Iced Tea</h3>
-      <p>$1.7</p>
-      <button onclick="addToCart('Iced Tea', 1.7)">Add to Cart</button>
-    </div>
-    <div class="product" data-name="Mineral Water" data-price="1">
-      <img src="https://via.placeholder.com/150?text=Mineral+Water" alt="Mineral Water"/>
-      <h3>Mineral Water</h3>
-      <p>$1</p>
-      <button onclick="addToCart('Mineral Water', 1)">Add to Cart</button>
-    </div>
-  </div>
-</section>
-
-<!-- Cart (Page) -->
-<section id="cart">
-  <h2>Your Cart</h2>
-  <ul id="cart-items"></ul>
-  <div id="cart-summary">Total: $0.00</div>
-  <button onclick="showPage('checkout')">Proceed to Buy</button>
-  <button onclick="showPage('home')">Back to Home</button>
-</section>
-
-<!-- Checkout (Page) -->
-<section id="checkout">
-  <h2>Checkout</h2>
-  <form id="paymentForm" onsubmit="return processPayment()">
-    <input type="text" placeholder="Name" id="name" required />
-    <input type="email" placeholder="Email" id="email" required />
-    <input type="tel" placeholder="Phone Number" id="phone" required />
-    <input type="text" placeholder="Address" id="address" required />
-    <input type="text" placeholder="Card Number" id="card" required />
-    <button type="submit">Buy Now</button>
-  </form>
-  <button onclick="showPage('cart')">Back to Cart</button>
-</section>
-
-<!-- Reviews & Comments (Page) -->
-<section id="reviews">
-  <h2>Reviews & Comments</h2>
-  <div>
-    <h3>Rate Us</h3>
-    <div>
-      <span class="star" onclick="setRating(1)">★</span>
-      <span class="star" onclick="setRating(2)">★</span>
-      <span class="star" onclick="setRating(3)">★</span>
-      <span class="star" onclick="setRating(4)">★</span>
-      <span class="star" onclick="setRating(5)">★</span>
-    </div>
-    <p id="ratingValue">Rating: 0</p>
-  </div>
-  <div>
-    <h3>Leave a Comment</h3>
-    <textarea id="comment" placeholder="Write your comment..."></textarea>
-    <button onclick="submitReview()">Submit Review</button>
-  </div>
-  <div id="reviewsList"></div>
-  <button onclick="showPage('home')">Back to Home</button>
-</section>
+<!-- Load Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 
 <script>
-  // Show specific page/section
-  function showPage(pageId) {
-    document.querySelectorAll('section').forEach(sec => sec.style.display='none');
-    document.getElementById(pageId).style.display='block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// JavaScript code embedded in the same file for complexity and all-in-one functionality
+
+// ---- GLOBAL VARIABLES AND STATE ----
+const pages = ['home', 'lollies', 'chocolates', 'drinks', 'cart', 'contact'];
+let currentPage = 'home';
+
+// Cart data
+let cart = [];
+const maxCartItems = 99; // limit for cart items
+
+// Reviews data stored locally
+let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+// Map variable
+let map;
+
+// ---- UTILITY FUNCTIONS ----
+
+function showNotification(message) {
+  const notif = document.getElementById('notification');
+  notif.innerText = message;
+  notif.className = 'show';
+  setTimeout(() => {
+    notif.className = '';
+  }, 2000);
+}
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function loadCart() {
+  const stored = localStorage.getItem('cart');
+  if (stored) {
+    cart = JSON.parse(stored);
   }
+}
 
-  // Initialize to home page
-  showPage('home');
+function updateCartDisplay() {
+  document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+}
 
-  // Cart array
-  let cart = [];
+// ---- PAGE RENDERING FUNCTIONS ----
 
-  function addToCart(name, price) {
-    cart.push({name: name, price: parseFloat(price)});
-    updateCart();
+function renderPage(page) {
+  currentPage = page;
+  const contentDiv = document.getElementById('content');
+  contentDiv.innerHTML = ''; // clear previous content
+
+  if (page === 'home') {
+    renderHomePage(contentDiv);
+  } else if (page === 'lollies') {
+    renderProductsPage('Lollies', generateSampleProducts('Lolly'), contentDiv);
+  } else if (page === 'chocolates') {
+    renderProductsPage('Chocolates', generateSampleProducts('Chocolate'), contentDiv);
+  } else if (page === 'drinks') {
+    renderProductsPage('Drinks', generateSampleProducts('Drink'), contentDiv);
+  } else if (page === 'cart') {
+    renderCartPage(contentDiv);
+  } else if (page === 'contact') {
+    renderContactPage(contentDiv);
   }
+}
 
-  function updateCart() {
-    const list = document.getElementById('cart-items');
-    list.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-      total += item.price;
-      const li = document.createElement('li');
-      li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remove</button>`;
-      list.appendChild(li);
+// Generate sample products
+function generateSampleProducts(type) {
+  const products = [];
+  for (let i=1; i<=8; i++) {
+    products.push({
+      id: `${type.toLowerCase()}_${i}`,
+      name: `${type} ${i}`,
+      price: (Math.random() * 5 + 1).toFixed(2),
+      image: 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(`${type} ${i}`)
     });
-    document.getElementById('cart-summary').innerText = `Total: $${total.toFixed(2)}`;
+  }
+  return products;
+}
+
+// ---- PAGE RENDERERS ----
+
+function renderHomePage(container) {
+  // Welcome text
+  const welcome = document.createElement('h2');
+  welcome.innerText = 'Welcome to Sweet Treats!';
+  welcome.style.textAlign = 'center';
+  container.appendChild(welcome);
+
+  // Products showcase
+  const categories = ['Lollies', 'Chocolates', 'Drinks'];
+  categories.forEach(cat => {
+    const heading = document.createElement('h3');
+    heading.innerText = cat;
+    heading.style.marginTop = '20px';
+    container.appendChild(heading);
+
+    const products = generateSampleProducts(cat);
+    const prodContainer = document.createElement('div');
+    prodContainer.className = 'products-container';
+
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+
+      const img = document.createElement('img');
+      img.src = p.image;
+      img.className = 'product-image';
+
+      const name = document.createElement('div');
+      name.className = 'product-name';
+      name.innerText = p.name;
+
+      const price = document.createElement('div');
+      price.className = 'product-price';
+      price.innerText = `$${p.price}`;
+
+      const addBtn = document.createElement('button');
+      addBtn.innerText = 'Add to Cart';
+      addBtn.onclick = () => {
+        addToCart({id: p.id, name: p.name, price: parseFloat(p.price), quantity:1});
+      };
+
+      card.appendChild(img);
+      card.appendChild(name);
+      card.appendChild(price);
+      card.appendChild(addBtn);
+
+      prodContainer.appendChild(card);
+    });
+
+    container.appendChild(prodContainer);
+  });
+
+  // Google Map
+  const mapHeading = document.createElement('h3');
+  mapHeading.innerText = 'Our Location';
+  mapHeading.style.marginTop = '30px';
+  container.appendChild(mapHeading);
+
+  const mapDiv = document.createElement('div');
+  mapDiv.id = 'map';
+  container.appendChild(mapDiv);
+
+  // Initialize Google Map
+  setTimeout(initMap, 100);
+  
+  // Contact details
+  const contactDetailsHead = document.createElement('h3');
+  contactDetailsHead.innerText = 'Contact Details';
+  contactDetailsHead.style.marginTop = '30px';
+  container.appendChild(contactDetailsHead);
+  
+  const detailsDiv = document.createElement('div');
+  detailsDiv.className = 'contact-details';
+
+  const detail1 = document.createElement('div');
+  detail1.className = 'contact-item';
+  detail1.innerHTML = `
+    <h4>Phone</h4>
+    <p>+123 456 7890</p>
+  `;
+
+  const detail2 = document.createElement('div');
+  detail2.className = 'contact-item';
+  detail2.innerHTML = `
+    <h4>Email</h4>
+    <p>contact@sweettreats.com</p>
+  `;
+
+  const detail3 = document.createElement('div');
+  detail3.className = 'contact-item';
+  detail3.innerHTML = `
+    <h4>Address</h4>
+    <p>123 Candy Lane, Sweet City</p>
+  `;
+
+  detailsDiv.appendChild(detail1);
+  detailsDiv.appendChild(detail2);
+  detailsDiv.appendChild(detail3);
+  container.appendChild(detailsDiv);
+}
+
+function renderProductsPage(title, products, container) {
+  const heading = document.createElement('h2');
+  heading.innerText = title;
+  container.appendChild(heading);
+
+  const productsDiv = document.createElement('div');
+  productsDiv.className = 'products-container';
+
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    const img = document.createElement('img');
+    img.src = p.image;
+    img.className = 'product-image';
+
+    const name = document.createElement('div');
+    name.className = 'product-name';
+    name.innerText = p.name;
+
+    const price = document.createElement('div');
+    price.className = 'product-price';
+    price.innerText = `$${p.price}`;
+
+    const addBtn = document.createElement('button');
+    addBtn.innerText = 'Add to Cart';
+    addBtn.onclick = () => {
+      addToCart({id: p.id, name: p.name, price: parseFloat(p.price), quantity:1});
+    };
+
+    card.appendChild(img);
+    card.appendChild(name);
+    card.appendChild(price);
+    card.appendChild(addBtn);
+    productsDiv.appendChild(card);
+  });
+
+  container.appendChild(productsDiv);
+}
+
+function renderCartPage(container) {
+  const title = document.createElement('h2');
+  title.innerText = 'Your Cart';
+  container.appendChild(title);
+
+  if (cart.length === 0) {
+    const emptyMsg = document.createElement('p');
+    emptyMsg.innerText = 'Your cart is empty.';
+    container.appendChild(emptyMsg);
+    return;
   }
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCart();
-  }
+  const table = document.createElement('table');
+  table.style.width = '100%';
+  table.style.borderCollapse = 'collapse';
 
-  // Process payment
-  function processPayment() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const card = document.getElementById('card').value.trim();
+  const headerRow = document.createElement('tr');
+  ['Item', 'Price', 'Quantity', 'Total', 'Remove'].forEach(text => {
+    const th = document.createElement('th');
+    th.innerText = text;
+    th.style.border = '1px solid #ddd';
+    th.style.padding = '8px';
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
 
-    if (cart.length === 0) {
-      alert('Your cart is empty!');
-      return false;
-    }
-    if (!name || !email || !phone || !address || !card) {
-      alert('Please fill in all fields!');
-      return false;
-    }
-    alert(`Thank you for your purchase, ${name}!`);
+  let totalPrice = 0;
+
+  cart.forEach((item, index) => {
+    const row = document.createElement('tr');
+
+    // Item name
+    const nameTd = document.createElement('td');
+    nameTd.innerText = item.name;
+    nameTd.style.border = '1px solid #ddd';
+    nameTd.style.padding = '8px';
+
+    // Price
+    const priceTd = document.createElement('td');
+    priceTd.innerText = `$${item.price.toFixed(2)}`;
+    priceTd.style.border = '1px solid #ddd';
+    priceTd.style.padding = '8px';
+
+    // Quantity
+    const qtyTd = document.createElement('td');
+    const qtyInput = document.createElement('input');
+    qtyInput.type = 'number';
+    qtyInput.min = 1;
+    qtyInput.max = maxCartItems;
+    qtyInput.value = item.quantity;
+    qtyInput.style.width = '60px';
+    qtyInput.onchange = () => {
+      const newQty = parseInt(qtyInput.value);
+      if (isNaN(newQty) || newQty <1) {
+        qtyInput.value = item.quantity;
+        return;
+      }
+      item.quantity = newQty;
+      saveCart();
+      updateCartDisplay();
+      renderPage('cart');
+    };
+    qtyTd.appendChild(qtyInput);
+    qtyTd.style.border = '1px solid #ddd';
+    qtyTd.style.padding = '8px';
+
+    // Total
+    const totalTd = document.createElement('td');
+    const itemTotal = item.price * item.quantity;
+    totalTd.innerText = `$${itemTotal.toFixed(2)}`;
+    totalTd.style.border = '1px solid #ddd';
+    totalTd.style.padding = '8px';
+
+    totalPrice += itemTotal;
+
+    // Remove button
+    const removeTd = document.createElement('td');
+    const remBtn = document.createElement('button');
+    remBtn.innerText = 'Remove';
+    remBtn.onclick = () => {
+      cart.splice(index,1);
+      saveCart();
+      updateCartDisplay();
+      renderPage('cart');
+    };
+    removeTd.appendChild(remBtn);
+    removeTd.style.border = '1px solid #ddd';
+    removeTd.style.padding = '8px';
+
+    row.appendChild(nameTd);
+    row.appendChild(priceTd);
+    row.appendChild(qtyTd);
+    row.appendChild(totalTd);
+    row.appendChild(removeTd);
+
+    table.appendChild(row);
+  });
+
+  // Total sum row
+  const sumRow = document.createElement('tr');
+  const sumTd = document.createElement('td');
+  sumTd.colSpan = 3;
+  sumTd.innerText = 'Total';
+  sumTd.style.border = '1px solid #ddd';
+  sumTd.style.padding = '8px';
+  sumTd.style.fontWeight = 'bold';
+
+  const totalSumTd = document.createElement('td');
+  totalSumTd.innerText = `$${totalPrice.toFixed(2)}`;
+  totalSumTd.style.border = '1px solid #ddd';
+  totalSumTd.style.padding = '8px';
+
+  const emptyTd = document.createElement('td');
+  emptyTd.innerHTML = '';
+
+  sumRow.appendChild(sumTd);
+  sumRow.appendChild(totalSumTd);
+  sumRow.appendChild(emptyTd);
+  table.appendChild(sumRow);
+
+  container.appendChild(table);
+
+  // Checkout button
+  const checkoutBtn = document.createElement('button');
+  checkoutBtn.innerText = 'Checkout';
+  checkoutBtn.onclick = () => {
+    alert('Thank you for your purchase!');
     cart = [];
-    updateCart();
-    showPage('home');
-    document.getElementById('paymentForm').reset();
-    return false;
+    saveCart();
+    updateCartDisplay();
+    renderPage('home');
+  };
+  container.appendChild(checkoutBtn);
+}
+
+function renderContactPage(container) {
+  const title = document.createElement('h2');
+  title.innerText = 'Contact Us';
+  container.appendChild(title);
+
+  // Contact Form
+  const form = document.createElement('form');
+  form.id = 'contact-form';
+
+  const nameLabel = document.createElement('label');
+  nameLabel.innerText = 'Name: ';
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.required = true;
+  nameInput.style.width = '100%';
+
+  const emailLabel = document.createElement('label');
+  emailLabel.innerText = 'Email: ';
+  const emailInput = document.createElement('input');
+  emailInput.type = 'email';
+  emailInput.required = true;
+  emailInput.style.width = '100%';
+
+  const messageLabel = document.createElement('label');
+  messageLabel.innerText = 'Message: ';
+  const messageTextarea = document.createElement('textarea');
+  messageTextarea.required = true;
+  messageTextarea.style.width = '100%';
+
+  const submitBtn = document.createElement('button');
+  submitBtn.type = 'submit';
+  submitBtn.innerText = 'Send Message';
+
+  form.appendChild(nameLabel);
+  form.appendChild(nameInput);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(emailLabel);
+  form.appendChild(emailInput);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(messageLabel);
+  form.appendChild(messageTextarea);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(submitBtn);
+
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    alert('Message sent! We will get back to you.');
+    form.reset();
+  };
+
+  container.appendChild(form);
+
+  // Review Section
+  const reviewSection = document.createElement('div');
+  reviewSection.className = 'review-container';
+
+  const reviewTitle = document.createElement('div');
+  reviewTitle.className = 'review-title';
+  reviewTitle.innerText = 'Leave a Review';
+
+  const starRatingDiv = document.createElement('div');
+  starRatingDiv.className = 'star-rating';
+
+  const stars = [];
+  for (let i=1; i<=5; i++) {
+    const starSpan = document.createElement('span');
+    starSpan.className = 'star';
+    starSpan.innerHTML = '&#9733;';
+    starSpan.dataset.value = i;
+    starSpan.onclick = () => {
+      setStarRating(i);
+    };
+    stars.push(starSpan);
+    starRatingDiv.appendChild(starSpan);
   }
 
-  // Review system
-  let currentRating = 0;
-  function setRating(rating) {
-    currentRating = rating;
-    document.getElementById('ratingValue').innerText = `Rating: ${rating}`;
+  let selectedStars = 0;
+
+  function setStarRating(rating) {
+    selectedStars = rating;
+    stars.forEach((s, index) => {
+      s.className = 'star' + (index < rating ? ' filled' : '');
+    });
   }
-  function submitReview() {
-    const commentText = document.getElementById('comment').value.trim();
-    if (currentRating === 0) {
-      alert('Please rate us!');
+
+  // Review text area
+  const reviewInputDiv = document.createElement('div');
+  reviewInputDiv.className = 'review-input';
+
+  const reviewTextArea = document.createElement('textarea');
+  reviewTextArea.placeholder = 'Write your review here...';
+
+  reviewInputDiv.appendChild(reviewTextArea);
+
+  // Submit review button
+  const reviewSubmitBtn = document.createElement('button');
+  reviewSubmitBtn.className = 'review-submit';
+  reviewSubmitBtn.innerText = 'Submit Review';
+
+  reviewSubmitBtn.onclick = () => {
+    if (selectedStars === 0 || reviewTextArea.value.trim() === '') {
+      alert('Please select stars and write a review.');
       return;
     }
-    const reviewDiv = document.createElement('div');
-    reviewDiv.innerHTML = `<strong>Rating: ${currentRating} stars</strong><br/>${commentText}<hr/>`;
-    document.getElementById('reviewsList').appendChild(reviewDiv);
-    document.getElementById('comment').value = '';
-    alert('Review submitted! Thanks!');
+    // Save review
+    reviews.push({
+      stars: selectedStars,
+      text: reviewTextArea.value.trim(),
+      date: new Date().toISOString()
+    });
+    localStorage.setItem('reviews', JSON.stringify(reviews));
+    alert('Thank you for your review!');
+    // Reset
+    setStarRating(0);
+    reviewTextArea.value = '';
+    renderReviews(container); 
+  };
+
+  // Append everything
+  reviewSection.appendChild(reviewTitle);
+  reviewSection.appendChild(starRatingDiv);
+  reviewSection.appendChild(reviewInputDiv);
+  reviewSection.appendChild(reviewSubmitBtn);
+
+  container.appendChild(reviewSection);
+
+  // Display existing reviews
+  renderReviews(container);
+}
+
+function renderReviews(container) {
+  // Remove old reviews if any
+  const existingReviewsDiv = document.getElementById('reviews-list');
+  if (existingReviewsDiv) {
+    existingReviewsDiv.remove();
   }
+
+  const reviewsDiv = document.createElement('div');
+  reviewsDiv.id = 'reviews-list';
+  reviewsDiv.style.marginTop = '20px';
+
+  if (reviews.length === 0) {
+    reviewsDiv.innerText = 'No reviews yet.';
+  } else {
+    reviews.forEach(r => {
+      const reviewDiv = document.createElement('div');
+      reviewDiv.style.borderBottom = '1px solid #ccc';
+      reviewDiv.style.padding = '10px 0';
+
+      const starsSpan = document.createElement('span');
+      starsSpan.innerHTML = '&#9733;'.repeat(r.stars) + '&#9734;'.repeat(5 - r.stars);
+      starsSpan.style.color = 'gold';
+
+      const dateSpan = document.createElement('span');
+      dateSpan.innerText = new Date(r.date).toLocaleString();
+      dateSpan.style.fontSize = '0.8em';
+      dateSpan.style.marginLeft = '10px';
+
+      const textP = document.createElement('p');
+      textP.innerText = r.text;
+      textP.style.marginTop = '5px';
+
+      reviewDiv.appendChild(starsSpan);
+      reviewDiv.appendChild(dateSpan);
+      reviewDiv.appendChild(document.createElement('br'));
+      reviewDiv.appendChild(textP);
+
+      reviewsDiv.appendChild(reviewDiv);
+    });
+  }
+
+  container.appendChild(reviewsDiv);
+}
+
+// ---- ADD TO CART FUNCTION ----
+
+function addToCart(item) {
+  const existing = cart.find(i => i.id === item.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    if (cart.reduce((sum, i) => sum + i.quantity, 0) >= maxCartItems) {
+      alert('Cart limit reached!');
+      return;
+    }
+    item.quantity = 1;
+    cart.push(item);
+  }
+  saveCart();
+  updateCartDisplay();
+  showNotification('Item added to cart!');
+}
+
+// ---- INITIALIZATION ----
+
+function init() {
+  loadCart();
+  updateCartDisplay();
+  setupNavigation();
+  renderPage('home');
+  // Load reviews from local storage
+  reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+}
+
+// Navigation setup
+function setupNavigation() {
+  document.querySelectorAll('.nav-buttons a').forEach(link => {
+    link.onclick = (e) => {
+      e.preventDefault();
+      const page = e.target.dataset.page;
+      if (pages.includes(page)) {
+        renderPage(page);
+      }
+    };
+  });
+
+  // Cart button
+  document.getElementById('cart-btn').onclick = () => {
+    renderPage('cart');
+  };
+}
+
+// Google Map initialization
+function initMap() {
+  const location = { lat: 40.7128, lng: -74.0060 }; // Example: New York
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: location
+  });
+  new google.maps.Marker({ position: location, map: map });
+}
+
+// Run init after DOM loaded
+document.addEventListener('DOMContentLoaded', init);
 </script>
 
 </body>
