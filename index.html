@@ -5,324 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Candy Cartel - Sweet Confections</title>
 <style>
-/* ==================== Reset & Base Styles ==================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* =================== Reset & Base Styles =================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Arial', sans-serif;
-  background: #fff8f0;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  line-height: 1.6;
+  font-family: 'Arial', sans-serif; background: #fff8f0; color: #333; display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6;
 }
-a {
-  text-decoration: none;
-  color: inherit;
-}
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 10px;
-}
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4, h5, h6 { margin-bottom: 10px; }
 button {
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #ff6f61;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
-  font-size: 1em;
-  transition: all 0.3s ease;
+  cursor: pointer; border: none; border-radius: 5px; background-color: #ff6f61; color: #fff; font-weight: bold; padding: 10px 20px; font-size: 1em; transition: all 0.3s ease;
 }
-button:hover {
-  background-color: #e65b50;
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
+button:hover { background-color: #e65b50; transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
-/* ==================== Navbar ==================== */
+/* =================== Navbar Styles =================== */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(135deg, #ff6f61, #ff3b3b);
-  padding: 10px 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 999;
+  display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #ff6f61, #ff3b3b);
+  padding: 10px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); flex-wrap: wrap; position: relative; z-index: 999;
 }
-.logo-section {
-  display: flex;
-  align-items: center;
-}
-.logo-section img {
-  height: 50px;
-  width: 50px;
-  margin-right: 10px;
-  animation: bounce 2s infinite;
-}
+.logo-section { display: flex; align-items: center; }
+.logo-section img { height: 50px; width: 50px; margin-right: 10px; animation: bounce 2s infinite; }
 .store-name {
-  font-family: 'Brush Script MT', cursive;
-  font-size: 1.8em;
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-family: 'Brush Script MT', cursive; font-size: 1.8em; color: #fff; font-weight: bold; letter-spacing: 2px;
 }
 .nav-buttons {
-  display: flex;
-  align-items: center;
-  margin-top: 5px;
+  display: flex; align-items: center; margin-top: 5px;
 }
 .nav-buttons a {
-  padding: 8px 14px;
-  margin: 0 8px;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 4px;
-  background: transparent;
-  transition: background 0.3s, transform 0.2s;
+  padding: 8px 14px; margin: 0 8px; font-size: 1em; font-weight: bold; border-radius: 4px; background: transparent; transition: background 0.3s, transform 0.2s;
 }
-.nav-buttons a:hover {
-  background: rgba(255,255,255,0.2);
-  transform: translateY(-2px);
-}
-/* Cart Icon & Badge */
-#cart-container {
-  position: relative;
-  margin-left: 15px;
-}
-#cart-btn {
-  font-size: 1.8em;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-#cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #fff;
-  color: #ff6f61;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  font-size: 0.8em;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-/* Notification near navbar */
-#notification {
-  position: absolute;
-  top: 70px;
-  right: 20px;
-  background-color: #4BB543;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-weight: bold;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.4s, transform 0.4s;
-  z-index: 1000;
-}
-#notification.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+.nav-buttons a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
-/* ==================== Main Content ==================== */
+/* Cart & Notification */
+#cart-container { position: relative; margin-left: 15px; }
+#cart-btn { font-size: 1.8em; position: relative; display: flex; align-items: center; }
+#cart-badge {
+  position: absolute; top: -8px; right: -8px; background: #fff; color: #ff6f61; width: 20px; height: 20px; border-radius: 50%; font-size: 0.8em; font-weight: bold; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.3s ease;
+}
+/* Notifications near navbar */
+#notification {
+  position: absolute; top: 70px; right: 20px; background-color: #4BB543; color: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold; opacity: 0; transform: translateY(-10px); transition: all 0.4s ease; z-index: 1050;
+}
+#notification.show { opacity: 1; transform: translateY(0); }
+
+/* =================== Main Content Styles =================== */
 #content {
-  flex: 1;
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-  width: 100%;
+  flex: 1; padding: 20px; max-width: 1200px; margin: auto; width: 100%;
 }
 .page-title {
-  font-family: 'Brush Script MT', cursive;
-  font-size: 2.5em;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #ff6f61;
-  letter-spacing: 2px;
+  font-family: 'Brush Script MT', cursive; font-size: 2.5em; text-align: center; margin-bottom: 20px; color: #ff6f61; letter-spacing: 2px;
 }
-
-/* ==================== Product Grid ==================== */
+/* Product Grid */
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
 }
 .product-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  transition: all 0.3s ease;
+  background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 10px; transition: all 0.3s ease;
 }
-.product-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-.product-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-.product-name {
-  font-weight: bold;
-  margin: 10px 0 5px 0;
-  text-align: center;
-}
-.product-price {
-  color: #555;
-  margin-bottom: 10px;
-}
+.product-card:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.product-image { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; }
+.product-name { font-weight: bold; margin: 10px 0 5px 0; text-align: center; }
+.product-price { color: #555; margin-bottom: 10px; }
 .add-cart-btn {
-  background-color: #ff6f61;
-  padding: 8px 14px;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: all 0.3s ease;
+  background-color: #ff6f61; padding: 8px 14px; border-radius: 4px; font-weight: bold; transition: all 0.3s ease;
 }
-.add-cart-btn:hover {
-  background-color: #e65b50;
-  transform: scale(1.02);
-}
+.add-cart-btn:hover { background-color: #e65b50; transform: scale(1.02); }
 
-/* ==================== Cart & Checkout Styles ==================== */
+/* Cart Table Styles */
 #cart-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  width: 100%; border-collapse: collapse; margin-top: 20px;
 }
-#cart-table th, #cart-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-#cart-table th {
-  background-color: #f4f4f4;
-}
-.total-row {
-  font-weight: bold;
-  font-size: 1.2em;
-  background-color: #fafafa;
-}
+#cart-table th, #cart-table td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+#cart-table th { background-color: #f4f4f4; }
+.total-row { font-weight: bold; font-size: 1.2em; background-color: #fafafa; }
 #checkout-btn {
-  display: block;
-  margin: 30px auto;
-  padding: 14px 20px;
-  font-size: 1.2em;
-  background-color: #ff6f61;
+  display: block; margin: 30px auto; padding: 14px 20px; font-size: 1.2em; background-color: #ff6f61;
 }
-#checkout-btn:hover {
-  background-color: #e65b50;
-}
+#checkout-btn:hover { background-color: #e65b50; }
 
-/* ==================== Contact & Review Styles ==================== */
-#contact-form, #review-form {
-  max-width: 600px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+/* Forms styles (Contact, Checkout, Review) */
+form {
+  max-width: 600px; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-#contact-form label, #review-form label {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
+form label {
+  display: block; margin-top: 10px; font-weight: bold;
 }
 input[type="text"], input[type="email"], textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 1em;
-  transition: border-color 0.3s;
+  width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; font-size: 1em; transition: border-color 0.3s;
 }
-input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-  border-color: #ff6f61;
-  outline: none;
-}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus { border-color: #ff6f61; outline: none; }
 #review-stars {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  display: flex; justify-content: center; margin-top: 10px;
 }
 .star {
-  font-size: 2em;
-  color: #ccc;
-  margin: 0 8px;
-  cursor: pointer;
-  transition: color 0.3s;
+  font-size: 2em; color: #ccc; margin: 0 8px; cursor: pointer; transition: color 0.3s;
 }
-.star.filled {
-  color: gold;
-}
-#review-text {
-  min-height: 80px;
-  resize: vertical;
-  margin-top: 10px;
-}
+.star.filled { color: gold; }
+#review-text { min-height: 80px; resize: vertical; margin-top: 10px; }
 #review-submit {
-  margin-top: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 15px; display: block; margin-left: auto; margin-right: auto;
 }
-
-/* ==================== Responsive & Animations ==================== */
-@media(max-width: 768px) {
-  .nav-buttons {
-    flex-direction: column;
-  }
-}
+/* Responsive adjustments */
+@media(max-width:768px){ .nav-buttons { flex-direction: column; } }
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
+  0%,100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
 }
+/* Notifications Banner */
 .notification-banner {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  background-color: #4BB543;
-  color: #fff;
-  padding: 14px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-weight: bold;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.4s ease;
-  z-index: 1050;
+  position: fixed; top: 80px; right: 20px; background-color: #4BB543; color: #fff; padding: 14px 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold; opacity: 0; transform: translateY(-20px); transition: all 0.4s ease; z-index: 1050;
 }
-.notification-banner.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+.notification-banner.show { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- Navigation Bar -->
 <header class="navbar">
   <div class="logo-section">
     <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.4&auto=format&fit=crop&w=50&q=80" alt="Candy Logo"/>
@@ -333,7 +130,7 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     <a href="#" data-page="lollies">Lollies</a>
     <a href="#" data-page="chocolates">Chocolates</a>
     <a href="#" data-page="drinks">Drinks</a>
-    <a href="#" data-page="chips">Chips</a>
+    <a href="#" data-page="reviews">Reviews</a>
     <div id="cart-container" style="position: relative;">
       <button id="cart-btn" aria-label="Cart">🛒</button>
       <div id="cart-badge">0</div>
@@ -346,59 +143,49 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 
 <!-- Google Maps API -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
-
 <script>
-// =================== JavaScript Logic ===================
+// =================== JavaScript Modules ===================
 
-const pages = ['home','lollies','chocolates','drinks','chips','cart','checkout','contact'];
-let currentPage = 'home';
+const pages = ['home','lollies','chocolates','drinks','reviews','cart','checkout','contact'];
+let currentPage='home';
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-const MAX_ITEMS = 999;
+let cart=JSON.parse(localStorage.getItem('cart'))||[];
+let reviews=JSON.parse(localStorage.getItem('reviews'))||[];
 
-let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-
-/* Utility functions */
+// Utility functions
 function showNotification(msg) {
-  const div = document.createElement('div');
-  div.className = 'notification-banner show';
-  div.innerText = msg;
+  const div=document.createElement('div');
+  div.className='notification-banner show';
+  div.innerText=msg;
   document.body.appendChild(div);
-  setTimeout(() => {
-    div.className = 'notification-banner hide';
-    setTimeout(() => div.remove(), 500);
-  }, 2500);
+  setTimeout(()=>{ div.className='notification-banner hide'; setTimeout(()=>div.remove(),500); },2500);
 }
-
 function updateCartBadge() {
-  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cart-badge').innerText = totalCount;
+  const total=cart.reduce((sum,i)=>sum+i.quantity,0);
+  document.getElementById('cart-badge').innerText=total;
 }
-
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
-
+function saveCart() { localStorage.setItem('cart',JSON.stringify(cart)); }
 function loadCart() {
-  const stored = localStorage.getItem('cart');
-  if (stored) cart = JSON.parse(stored);
+  const s=localStorage.getItem('cart');
+  if(s) cart=JSON.parse(s);
 }
+function saveReviews() { localStorage.setItem('reviews',JSON.stringify(reviews)); }
 
-/* Page rendering functions */
+// Render page based on navigation
 function render(page) {
-  currentPage = page;
-  document.getElementById('content').innerHTML = '';
-  if (page==='home') renderHome();
-  else if (page==='lollies') renderProducts('Lollies', generateProducts('Lollies'));
-  else if (page==='chocolates') renderProducts('Chocolates', generateProducts('Chocolates'));
-  else if (page==='drinks') renderProducts('Drinks', generateProducts('Drinks'));
-  else if (page==='chips') renderProducts('Chips', generateProducts('Chips'));
-  else if (page==='cart') renderCart();
-  else if (page==='checkout') renderCheckout();
-  else if (page==='contact') renderContact();
+  currentPage=page;
+  document.getElementById('content').innerHTML='';
+  if(page==='home') renderHomePage();
+  else if(page==='lollies') renderProductsPage('Lollies', generateProducts('Lollies'));
+  else if(page==='chocolates') renderProductsPage('Chocolates', generateProducts('Chocolates'));
+  else if(page==='drinks') renderProductsPage('Drinks', generateProducts('Drinks'));
+  else if(page==='reviews') renderReviewPage();
+  else if(page==='cart') renderCartPage();
+  else if(page==='checkout') renderCheckoutPage();
+  else if(page==='contact') renderContactPage();
 }
 
-/* Generate product data with names */
+// Generate product data
 function generateProducts(type) {
   const namesMap = {
     'Lollies': ['Rainbow Swirl', 'Strawberry Bliss', 'Gummy Bears', 'Lemon Zest', 'Cherry Pop', 'Fruit Chews', 'Sour Worms', 'Candy Cane'],
@@ -406,134 +193,121 @@ function generateProducts(type) {
     'Drinks': ['Cola Classic', 'Lemonade Spark', 'Strawberry Shake', 'Mint Mojito', 'Fruit Punch', 'Cream Soda', 'Iced Tea', 'Grape Fizz'],
     'Chips': ['Salt & Vinegar', 'BBQ Ribs', 'Cheddar Crisps', 'Spicy Jalapeno', 'Sweet Potato', 'Classic Potato', 'Sour Cream & Onion', 'BBQ Blaze']
   };
-  const names = namesMap[type] || [`${type} ${Math.ceil(Math.random()*100)}`];
-  return names.map((name, index) => ({
-    id: `${type.toLowerCase()}_${index}`,
+  const names=namesMap[type]||[`${type} ${Math.ceil(Math.random()*100)}`];
+  return names.map((name,i)=>({
+    id:`${type.toLowerCase()}_${i}`,
     name,
-    price: (Math.random()*3+1).toFixed(2),
-    image: 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(name)
+    price:(Math.random()*3+1).toFixed(2),
+    image:'https://via.placeholder.com/200x150?text='+encodeURIComponent(name)
   }));
 }
 
 /* =================== Page Components =================== */
 
-function renderHome() {
-  const container = document.getElementById('content');
-
-  // Welcome Header
-  const header = document.createElement('h1');
+function renderHomePage() {
+  const c=document.getElementById('content');
+  // Welcome header
+  const header=document.createElement('h1');
   header.innerText='Welcome to Candy Cartel!';
   header.style.textAlign='center';
   header.style.marginBottom='20px';
   header.style.fontFamily="'Brush Script MT', cursive";
   header.style.color='#ff6f61';
-  container.appendChild(header);
-
+  c.appendChild(header);
   // Google Map
-  const mapDiv = document.createElement('div');
+  const mapDiv=document.createElement('div');
   mapDiv.id='map';
   mapDiv.style.width='100%';
   mapDiv.style.height='400px';
   mapDiv.style.borderRadius='8px';
   mapDiv.style.overflow='hidden';
-  container.appendChild(mapDiv);
-  setTimeout(initMap, 100);
+  c.appendChild(mapDiv);
+  setTimeout(initMap,100);
 
-  // Contact Info
-  const contactDiv = document.createElement('div');
+  // Contact info
+  const contactDiv=document.createElement('div');
   contactDiv.style.display='flex';
   contactDiv.style.justifyContent='space-around';
   contactDiv.style.marginTop='30px';
 
-  const contacts = [
-    { title: 'Phone', info: '+1 234 567 8901' },
-    { title: 'Email', info: 'info@candycartel.com' },
-    { title: 'Message', info: 'Visit us for sweet treats!' }
+  const contacts=[
+    {title:'Phone',info:'+1 234 567 8901'},
+    {title:'Email',info:'info@candycartel.com'},
+    {title:'Message',info:'Visit us for sweet treats!'}
   ];
 
-  contacts.forEach(c => {
-    const box = document.createElement('div');
+  contacts.forEach(cItem=>{
+    const box=document.createElement('div');
     box.style.background='#fff';
     box.style.padding='15px';
     box.style.borderRadius='8px';
     box.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';
     box.style.minWidth='200px';
 
-    const title = document.createElement('h3');
-    title.innerText=c.title;
+    const title=document.createElement('h3');
+    title.innerText=cItem.title;
     title.style.color='#ff6f61';
 
-    const info = document.createElement('p');
-    info.innerText=c.info;
+    const info=document.createElement('p');
+    info.innerText=cItem.info;
 
     box.appendChild(title);
     box.appendChild(info);
     contactDiv.appendChild(box);
   });
-  container.appendChild(contactDiv);
+  c.appendChild(contactDiv);
 }
 
-function renderProducts(title, products) {
-  const container = document.getElementById('content');
-  const h2 = document.createElement('h2');
+function renderProductsPage(title, products) {
+  const c=document.getElementById('content');
+  const h2=document.createElement('h2');
   h2.className='page-title';
   h2.innerText=title;
-  container.appendChild(h2);
-
-  const grid = document.createElement('div');
+  c.appendChild(h2);
+  const grid=document.createElement('div');
   grid.className='products-grid';
-
-  products.forEach(p => {
-    const card = document.createElement('div');
+  products.forEach(p=>{
+    const card=document.createElement('div');
     card.className='product-card';
-
-    const img = document.createElement('img');
+    const img=document.createElement('img');
     img.src=p.image;
     img.className='product-image';
-
-    const pname = document.createElement('div');
+    const pname=document.createElement('div');
     pname.className='product-name';
     pname.innerText=p.name;
-
-    const pprice = document.createElement('div');
+    const pprice=document.createElement('div');
     pprice.className='product-price';
     pprice.innerText='$'+p.price;
-
-    const btn = document.createElement('button');
+    const btn=document.createElement('button');
     btn.className='add-cart-btn';
     btn.innerText='Add to Cart';
     btn.onclick=()=>addToCart({id:p.id, name:p.name, price:parseFloat(p.price), quantity:1});
-
     card.appendChild(img);
     card.appendChild(pname);
     card.appendChild(pprice);
     card.appendChild(btn);
     grid.appendChild(card);
   });
-  document.getElementById('content').appendChild(grid);
+  c.appendChild(grid);
 }
 
-function renderCart() {
-  const container=document.getElementById('content');
-  container.innerHTML='';
-
+function renderCartPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
   const h2=document.createElement('h2');
   h2.className='page-title';
   h2.innerText='Your Cart';
-  container.appendChild(h2);
-
-  if (cart.length===0) {
+  c.appendChild(h2);
+  if(cart.length===0){
     const msg=document.createElement('p');
-    msg.innerText='Your cart is empty!';
+    msg.innerText='Your cart is empty.';
     msg.style.textAlign='center';
     msg.style.fontSize='1.2em';
-    container.appendChild(msg);
+    c.appendChild(msg);
     return;
   }
-
   const table=document.createElement('table');
   table.id='cart-table';
-
   const headerRow=document.createElement('tr');
   ['Item','Price','Quantity','Total','Remove'].forEach(t=>{
     const th=document.createElement('th');
@@ -541,43 +315,35 @@ function renderCart() {
     headerRow.appendChild(th);
   });
   table.appendChild(headerRow);
-
-  let totalSum=0;
-  cart.forEach((item,i)=>{
+  let total=0;
+  cart.forEach((i,iIdx)=>{
     const row=document.createElement('tr');
-
     const itemTd=document.createElement('td');
-    itemTd.innerText=item.name;
-
+    itemTd.innerText=i.name;
     const priceTd=document.createElement('td');
-    priceTd.innerText='$'+item.price;
-
+    priceTd.innerText='$'+i.price;
     const qtyTd=document.createElement('td');
     const qtyInput=document.createElement('input');
     qtyInput.type='number';
     qtyInput.min=1;
     qtyInput.max=MAX_ITEMS;
-    qtyInput.value=item.quantity;
+    qtyInput.value=i.quantity;
     qtyInput.style.width='60px';
     qtyInput.onchange=()=>{
       const val=parseInt(qtyInput.value);
-      if (isNaN(val)||val<1){ qtyInput.value=item.quantity; return;}
-      item.quantity=val;
-      saveCart(); updateCartBadge(); renderCart();
+      if(isNaN(val)||val<1){ qtyInput.value=i.quantity; return;}
+      i.quantity=val; saveCart(); updateCartBadge(); renderCart();
     };
     qtyTd.appendChild(qtyInput);
-
     const totalTd=document.createElement('td');
-    const totalPrice=(item.price*item.quantity);
+    const totalPrice=(i.price*i.quantity);
     totalTd.innerText='$'+totalPrice.toFixed(2);
-    totalSum+=totalPrice;
-
+    total+=totalPrice;
     const removeTd=document.createElement('td');
     const remBtn=document.createElement('button');
     remBtn.innerText='Remove';
-    remBtn.onclick=()=>{ cart.splice(i,1); saveCart(); updateCartBadge(); renderCart();};
+    remBtn.onclick=()=>{ cart.splice(iIdx,1); saveCart(); updateCartBadge(); renderCart();};
     removeTd.appendChild(remBtn);
-
     row.appendChild(itemTd);
     row.appendChild(priceTd);
     row.appendChild(qtyTd);
@@ -598,89 +364,86 @@ function renderCart() {
   totalRow.appendChild(totalAmountTd);
   totalRow.appendChild(emptyTd);
   table.appendChild(totalRow);
-  container.appendChild(table);
+  c.appendChild(table);
   const btn=document.createElement('button');
   btn.id='checkout-btn';
-  btn.innerText='Proceed to Checkout';
-  btn.onclick=()=>renderCheckout();
-  container.appendChild(btn);
+  btn.innerText='Checkout';
+  btn.onclick=()=>render('checkout');
+  c.appendChild(btn);
 }
 
-function renderCheckout() {
-  const container=document.getElementById('content');
-  container.innerHTML='';
+function renderCheckoutPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
   const h2=document.createElement('h2');
   h2.className='page-title';
   h2.innerText='Checkout';
-  container.appendChild(h2);
-
-  if (cart.length===0) {
+  c.appendChild(h2);
+  if(cart.length===0){
     const msg=document.createElement('p');
-    msg.innerText='Your cart is empty!';
+    msg.innerText='Your cart is empty.';
     msg.style.textAlign='center';
     msg.style.fontSize='1.2em';
-    container.appendChild(msg);
+    c.appendChild(msg);
     return;
   }
+  const formDiv=document.createElement('div');
+  formDiv.style.maxWidth='600px';
+  formDiv.style.margin='0 auto';
 
-  // Summary of cart
-  const sumDiv=document.createElement('div');
-  sumDiv.style.maxWidth='600px';
-  sumDiv.style.margin='0 auto';
-
-  const ul=document.createElement('ul');
-  ul.style.listStyle='none';
-  ul.style.padding='0';
-
-  let total=0;
-  cart.forEach(i=>{
-    const li=document.createElement('li');
-    li.innerText=`${i.name} x ${i.quantity} = $${(i.price*i.quantity).toFixed(2)}`;
-    ul.appendChild(li);
-    total+=i.price*i.quantity;
-  });
-  sumDiv.appendChild(ul);
-  const totalP=document.createElement('p');
-  totalP.style.fontSize='1.4em';
-  totalP.style.fontWeight='bold';
-  totalP.innerText=`Total: $${total.toFixed(2)}`;
-  sumDiv.appendChild(totalP);
-
-  // Payment info form
+  // Customer info form
   const form=document.createElement('form');
-  form.style.marginTop='20px';
 
-  const nameL=document.createElement('label');
-  nameL.innerText='First Name:';
-  const nameI=document.createElement('input');
-  nameI.type='text'; nameI.required=true;
+  // First Name
+  const fnameL=document.createElement('label');
+  fnameL.innerText='First Name:';
+  const fnameI=document.createElement('input');
+  fnameI.type='text'; fnameI.required=true;
 
-  const lastNameL=document.createElement('label');
-  lastNameL.innerText='Last Name:';
-  const lastNameI=document.createElement('input');
-  lastNameI.type='text'; lastNameI.required=true;
+  // Last Name
+  const lnameL=document.createElement('label');
+  lnameL.innerText='Last Name:';
+  const lnameI=document.createElement('input');
+  lnameI.type='text'; lnameI.required=true;
 
+  // Email
   const emailL=document.createElement('label');
   emailL.innerText='Email:';
   const emailI=document.createElement('input');
   emailI.type='email'; emailI.required=true;
 
+  // Address
   const addressL=document.createElement('label');
   addressL.innerText='Address:';
   const addressI=document.createElement('input');
   addressI.type='text'; addressI.required=true;
 
+  // Card number
   const cardL=document.createElement('label');
   cardL.innerText='Card Number:';
   const cardI=document.createElement('input');
   cardI.type='text'; cardI.required=true;
 
+  // Expiry date
+  const expL=document.createElement('label');
+  expL.innerText='Expiry Date (MM/YY):';
+  const expI=document.createElement('input');
+  expI.type='text'; expI.placeholder='MM/YY'; expI.required=true;
+
+  // Security code
+  const secL=document.createElement('label');
+  secL.innerText='Security Code:';
+  const secI=document.createElement('input');
+  secI.type='text'; secI.required=true;
+
+  // Submit button
   const payBtn=document.createElement('button');
   payBtn.type='submit'; payBtn.innerText='Pay';
 
-  form.appendChild(nameL); form.appendChild(nameI);
+  // Append all inputs
+  form.appendChild(fnameL); form.appendChild(fnameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(lastNameL); form.appendChild(lastNameI);
+  form.appendChild(lnameL); form.appendChild(lnameI);
   form.appendChild(document.createElement('br'));
   form.appendChild(emailL); form.appendChild(emailI);
   form.appendChild(document.createElement('br'));
@@ -688,127 +451,74 @@ function renderCheckout() {
   form.appendChild(document.createElement('br'));
   form.appendChild(cardL); form.appendChild(cardI);
   form.appendChild(document.createElement('br'));
+  form.appendChild(expL); form.appendChild(expI);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(secL); form.appendChild(secI);
+  form.appendChild(document.createElement('br'));
   form.appendChild(payBtn);
 
   form.onsubmit=(e)=>{
     e.preventDefault();
-    alert('Thank you for your order!');
-    cart=[];
-    saveCart();
-    updateCartBadge();
-    render('home');
+    alert('Order confirmed! Thank you.');
+    cart=[]; saveCart(); updateCartBadge(); render('home');
   };
-
-  sumDiv.appendChild(form);
-  container.appendChild(sumDiv);
+  formDiv.appendChild(form);
+  document.getElementById('content').appendChild(formDiv);
 }
 
-function renderContact() {
-  const container=document.getElementById('content');
-  container.innerHTML='';
+// Review Page
+function renderReviewPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
 
   const h2=document.createElement('h2');
   h2.className='page-title';
-  h2.innerText='Contact & Reviews';
-  container.appendChild(h2);
+  h2.innerText='Customer Reviews';
+  c.appendChild(h2);
 
-  // Contact Form
-  const form=document.createElement('form');
-  form.style.maxWidth='600px';
-  form.style.margin='20px auto';
-
-  const nameL=document.createElement('label');
-  nameL.innerText='Name:';
-  const nameI=document.createElement('input');
-  nameI.type='text'; nameI.required=true;
-
-  const emailL=document.createElement('label');
-  emailL.innerText='Email:';
-  const emailI=document.createElement('input');
-  emailI.type='email'; emailI.required=true;
-
-  const messageL=document.createElement('label');
-  messageL.innerText='Message:';
-  const messageI=document.createElement('textarea');
-  messageI.required=true;
-
-  const submitBtn=document.createElement('button');
-  submitBtn.type='submit'; submitBtn.innerText='Send Message';
-
-  form.appendChild(nameL); form.appendChild(nameI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(emailL); form.appendChild(emailI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(messageL); form.appendChild(messageI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(submitBtn);
-
-  form.onsubmit=(e)=>{
-    e.preventDefault();
-    alert('Message sent! We will get back to you.');
-    form.reset();
-  };
-  container.appendChild(form);
-
-  // Review function
+  // Review submission form
   const reviewDiv=document.createElement('div');
   reviewDiv.id='review-section';
 
-  const reviewH=document.createElement('h3');
-  reviewH.innerText='Leave a Review';
-  reviewH.style.textAlign='center';
-  reviewDiv.appendChild(reviewH);
-
-  // Star rating
   const starContainer=document.createElement('div');
   starContainer.id='review-stars';
 
   let selectedStars=0;
-  const starsArr=[];
+  const starElems=[];
   for(let i=1;i<=5;i++){
     const star=document.createElement('span');
     star.className='star';
     star.innerHTML='&#9733;';
     star.dataset.value=i;
     star.onclick=()=>{ selectedStars=i; updateStars(); };
-    starsArr.push(star);
+    starElems.push(star);
     starContainer.appendChild(star);
   }
   function updateStars() {
-    starsArr.forEach((s,i)=> {
-      s.className='star'+(i+1<=selectedStars?' filled':'');
-    });
+    starElems.forEach((s,i)=>s.className='star'+(i+1<=selectedStars?' filled':''));
   }
-
   reviewDiv.appendChild(starContainer);
-
-  // Review text
+  // Review textarea
   const reviewText=document.createElement('textarea');
   reviewText.id='review-text';
   reviewText.placeholder='Write your review here...';
-
   reviewDiv.appendChild(reviewText);
-
-  // Submit review button
-  const reviewBtn=document.createElement('button');
-  reviewBtn.id='review-submit';
-  reviewBtn.innerText='Submit Review';
-
-  reviewBtn.onclick=()=>{
+  // Submit button
+  const submitBtn=document.createElement('button');
+  submitBtn.id='review-submit';
+  submitBtn.innerText='Submit Review';
+  submitBtn.onclick=()=>{
     if(selectedStars===0 || reviewText.value.trim()===''){ alert('Select stars and write review!'); return;}
-    reviews.push({stars:selectedStars,text:reviewText.value.trim(),date:new Date().toISOString()});
-    localStorage.setItem('reviews',JSON.stringify(reviews));
+    reviews.push({stars:selectedStars, text:reviewText.value.trim(), date:new Date().toISOString()});
+    saveReviews();
     alert('Thank you for your review!');
-    selectedStars=0;
-    updateStars();
-    reviewText.value='';
-    renderReviews();
+    selectedStars=0; updateStars(); reviewText.value=''; renderAllReviews();
   };
-  reviewDiv.appendChild(reviewBtn);
-  container.appendChild(reviewDiv);
-  renderReviews();
+  reviewDiv.appendChild(submitBtn);
+  c.appendChild(reviewDiv);
+  renderAllReviews();
 
-  function renderReviews() {
+  function renderAllReviews() {
     let existing=document.getElementById('reviews-list');
     if(existing) existing.remove();
     const listDiv=document.createElement('div');
@@ -821,8 +531,8 @@ function renderContact() {
       listDiv.appendChild(noRev);
     } else {
       reviews.slice().reverse().forEach(r=>{
-        const itemDiv=document.createElement('div');
-        itemDiv.className='review-item';
+        const rDiv=document.createElement('div');
+        rDiv.className='review-item';
 
         const headerDiv=document.createElement('div');
         headerDiv.className='review-header';
@@ -838,56 +548,52 @@ function renderContact() {
         headerDiv.appendChild(starsSpan);
         headerDiv.appendChild(dateSpan);
 
-        const reviewTxt=document.createElement('p');
-        reviewTxt.innerText=r.text;
+        const txtP=document.createElement('p');
+        txtP.innerText=r.text;
 
-        itemDiv.appendChild(headerDiv);
-        itemDiv.appendChild(reviewTxt);
-        listDiv.appendChild(itemDiv);
+        rDiv.appendChild(headerDiv);
+        rDiv.appendChild(txtP);
+        listDiv.appendChild(rDiv);
       });
     }
-    document.getElementById('review-section').appendChild(listDiv);
+    document.getElementById('content').appendChild(listDiv);
   }
 }
 
-// Event listeners for navigation
+/* ----------- Event Listeners ----------- */
 document.querySelectorAll('.nav-buttons a').forEach(l=> {
-  l.onclick=e=>{ e.preventDefault(); render(l.dataset.page); };
+  l.onclick=e=>{ e.preventDefault(); render(e.target.dataset.page); };
 });
 document.getElementById('cart-btn').onclick=()=>render('cart');
 
-// Add to cart
+/* ----------- Cart Functions ----------- */
 function addToCart(item) {
   const existing=cart.find(i=>i.id===item.id);
-  if(existing){
-    existing.quantity+=1;
-  } else {
-    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=MAX_ITEMS){
-      alert('Cart full');
-      return;
-    }
+  if(existing){ existing.quantity+=1; }
+  else {
+    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=MAX_ITEMS){ alert('Cart full'); return; }
     item.quantity=1;
     cart.push(item);
   }
   saveCart();
   updateCartBadge();
-  showNotification(`Added ${item.name} to cart`);
+  showNotification(`Added ${item.name}`);
 }
 
-// Render cart page
+/* ----------- Render Cart ----------- */
 function renderCart() {
-  const container=document.getElementById('content');
-  container.innerHTML='';
+  const c=document.getElementById('content');
+  c.innerHTML='';
   const h2=document.createElement('h2');
   h2.className='page-title';
   h2.innerText='Your Cart';
-  container.appendChild(h2);
+  c.appendChild(h2);
   if(cart.length===0){
     const msg=document.createElement('p');
     msg.innerText='Your cart is empty.';
     msg.style.textAlign='center';
     msg.style.fontSize='1.2em';
-    container.appendChild(msg);
+    c.appendChild(msg);
     return;
   }
   const table=document.createElement('table');
@@ -900,41 +606,34 @@ function renderCart() {
   });
   table.appendChild(headerRow);
   let total=0;
-  cart.forEach((item,i)=>{
+  cart.forEach((i,iIdx)=>{
     const row=document.createElement('tr');
-
     const itemTd=document.createElement('td');
-    itemTd.innerText=item.name;
-
+    itemTd.innerText=i.name;
     const priceTd=document.createElement('td');
-    priceTd.innerText='$'+item.price;
-
+    priceTd.innerText='$'+i.price;
     const qtyTd=document.createElement('td');
     const qtyInput=document.createElement('input');
     qtyInput.type='number';
     qtyInput.min=1;
     qtyInput.max=MAX_ITEMS;
-    qtyInput.value=item.quantity;
+    qtyInput.value=i.quantity;
     qtyInput.style.width='60px';
     qtyInput.onchange=()=>{
       const val=parseInt(qtyInput.value);
-      if(isNaN(val)||val<1){ qtyInput.value=item.quantity; return;}
-      item.quantity=val;
-      saveCart(); updateCartBadge(); renderCart();
+      if(isNaN(val)||val<1){ qtyInput.value=i.quantity; return;}
+      i.quantity=val; saveCart(); updateCartBadge(); renderCart();
     };
     qtyTd.appendChild(qtyInput);
-
     const totalTd=document.createElement('td');
-    const totalPrice=(item.price*item.quantity);
+    const totalPrice=(i.price*i.quantity);
     totalTd.innerText='$'+totalPrice.toFixed(2);
     total+=totalPrice;
-
     const removeTd=document.createElement('td');
     const remBtn=document.createElement('button');
     remBtn.innerText='Remove';
-    remBtn.onclick=()=>{ cart.splice(i,1); saveCart(); updateCartBadge(); renderCart();};
+    remBtn.onclick=()=>{ cart.splice(iIdx,1); saveCart(); updateCartBadge(); renderCart();};
     removeTd.appendChild(remBtn);
-
     row.appendChild(itemTd);
     row.appendChild(priceTd);
     row.appendChild(qtyTd);
@@ -946,7 +645,8 @@ function renderCart() {
   const totalRow=document.createElement('tr');
   totalRow.className='total-row';
   const totalLabelTd=document.createElement('td');
-  totalLabelTd.colSpan=3; totalLabelTd.innerText='Total';
+  totalLabelTd.colSpan=3;
+  totalLabelTd.innerText='Total';
   const totalAmountTd=document.createElement('td');
   totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
   const emptyTd=document.createElement('td');
@@ -954,171 +654,143 @@ function renderCart() {
   totalRow.appendChild(totalAmountTd);
   totalRow.appendChild(emptyTd);
   table.appendChild(totalRow);
-  container.appendChild(table);
-  const checkoutBtn=document.createElement('button');
-  checkoutBtn.id='checkout-btn';
-  checkoutBtn.innerText='Checkout';
-  checkoutBtn.onclick=()=>render('checkout');
-  container.appendChild(checkoutBtn);
+  c.appendChild(table);
+  const btn=document.createElement('button');
+  btn.id='checkout-btn';
+  btn.innerText='Checkout';
+  btn.onclick=()=>render('checkout');
+  c.appendChild(btn);
 }
 
-// Render checkout form
-function renderCheckout() {
-  const container=document.getElementById('content');
-  container.innerHTML='';
+/* Render checkout page */
+function renderCheckoutPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
   const h2=document.createElement('h2');
   h2.className='page-title';
   h2.innerText='Checkout';
-  container.appendChild(h2);
+  c.appendChild(h2);
   if(cart.length===0){
     const msg=document.createElement('p');
-    msg.innerText='Your cart is empty!';
+    msg.innerText='Your cart is empty.';
     msg.style.textAlign='center';
     msg.style.fontSize='1.2em';
-    container.appendChild(msg);
+    c.appendChild(msg);
     return;
   }
-  // Order summary
-  const sumDiv=document.createElement('div');
-  sumDiv.style.maxWidth='600px';
-  sumDiv.style.margin='0 auto';
-
-  const ul=document.createElement('ul');
-  ul.style.listStyle='none';
-  ul.style.padding='0';
-
-  let total=0;
-  cart.forEach(i=>{
-    const li=document.createElement('li');
-    li.innerText=`${i.name} x ${i.quantity} = $${(i.price*i.quantity).toFixed(2)}`;
-    ul.appendChild(li);
-    total+=i.price*i.quantity;
-  });
-  sumDiv.appendChild(ul);
-
-  const totalP=document.createElement('p');
-  totalP.style.fontSize='1.4em';
-  totalP.style.fontWeight='bold';
-  totalP.innerText=`Total: $${total.toFixed(2)}`;
-  sumDiv.appendChild(totalP);
-
-  // Payment form
   const form=document.createElement('form');
-  form.style.marginTop='20px';
+  form.style.maxWidth='600px'; form.style.margin='0 auto';
 
-  const fnameL=document.createElement('label');
-  fnameL.innerText='First Name:';
-  const fnameI=document.createElement('input');
-  fnameI.type='text'; fnameI.required=true;
+  // Customer info
+  function createLabelInput(labelText, type='text') {
+    const label=document.createElement('label');
+    label.innerText=labelText;
+    const input=document.createElement('input');
+    input.type=type;
+    input.required=true;
+    label.appendChild(input);
+    return label;
+  }
+  // First Name
+  const firstNameLabel=createLabelInput('First Name:');
+  // Last Name
+  const lastNameLabel=createLabelInput('Last Name:');
+  // Email
+  const emailLabel=createLabelInput('Email:','email');
+  // Address
+  const addressLabel=createLabelInput('Address:');
+  // Card Number
+  const cardLabel=createLabelInput('Card Number:');
+  // Expiry Date
+  const expiryLabel=createLabelInput('Expiry Date (MM/YY):');
+  // Security Code
+  const secLabel=createLabelInput('Security Code:');
 
-  const lnameL=document.createElement('label');
-  lnameL.innerText='Last Name:';
-  const lnameI=document.createElement('input');
-  lnameI.type='text'; lnameI.required=true;
+  // Append all labels
+  [firstNameLabel, lastNameLabel, emailLabel, addressLabel, cardLabel, expiryLabel, secLabel].forEach(lbl => {
+    form.appendChild(lbl);
+    form.appendChild(document.createElement('br'));
+  });
 
-  const emailL=document.createElement('label');
-  emailL.innerText='Email:';
-  const emailI=document.createElement('input');
-  emailI.type='email'; emailI.required=true;
-
-  const addressL=document.createElement('label');
-  addressL.innerText='Address:';
-  const addressI=document.createElement('input');
-  addressI.type='text'; addressI.required=true;
-
-  const cardL=document.createElement('label');
-  cardL.innerText='Card Number:';
-  const cardI=document.createElement('input');
-  cardI.type='text'; cardI.required=true;
-
+  // Submit button
   const payBtn=document.createElement('button');
   payBtn.type='submit'; payBtn.innerText='Pay';
 
-  form.appendChild(fnameL); form.appendChild(fnameI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(lnameL); form.appendChild(lnameI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(emailL); form.appendChild(emailI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(addressL); form.appendChild(addressI);
-  form.appendChild(document.createElement('br'));
-  form.appendChild(cardL); form.appendChild(cardI);
-  form.appendChild(document.createElement('br'));
   form.appendChild(payBtn);
 
   form.onsubmit=(e)=>{
     e.preventDefault();
-    alert('Thank you for your order!');
-    cart=[];
-    saveCart();
-    updateCartBadge();
-    render('home');
+    alert('Order confirmed! Thank you.');
+    cart=[]; saveCart(); updateCartBadge(); render('home');
   };
-  sumDiv.appendChild(form);
-  document.getElementById('content').appendChild(sumDiv);
+  document.getElementById('content').appendChild(form);
 }
 
-// Render contact & review page
-function renderContact() {
-  const container=document.getElementById('content');
-  container.innerHTML='';
-
+// Contact page
+function renderContactPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
   const h2=document.createElement('h2');
   h2.className='page-title';
-  h2.innerText='Contact & Reviews';
-  container.appendChild(h2);
-
-  // Contact Form
+  h2.innerText='Contact Us';
+  c.appendChild(h2);
+  
   const form=document.createElement('form');
-  form.style.maxWidth='600px';
-  form.style.margin='20px auto';
+  form.style.maxWidth='600px'; form.style.margin='20px auto';
 
-  const nameL=document.createElement('label');
-  nameL.innerText='Name:';
-  const nameI=document.createElement('input');
-  nameI.type='text'; nameI.required=true;
-
-  const emailL=document.createElement('label');
-  emailL.innerText='Email:';
-  const emailI=document.createElement('input');
-  emailI.type='email'; emailI.required=true;
-
-  const messageL=document.createElement('label');
-  messageL.innerText='Message:';
-  const messageI=document.createElement('textarea');
-  messageI.required=true;
-
-  const submitBtn=document.createElement('button');
-  submitBtn.type='submit'; submitBtn.innerText='Send Message';
-
-  form.appendChild(nameL); form.appendChild(nameI);
+  // Name
+  const nameLbl=document.createElement('label');
+  nameLbl.innerText='Name:';
+  const nameInput=document.createElement('input');
+  nameInput.type='text'; nameInput.required=true;
+  nameLbl.appendChild(nameInput);
+  form.appendChild(nameLbl);
   form.appendChild(document.createElement('br'));
-  form.appendChild(emailL); form.appendChild(emailI);
+
+  // Email
+  const emailLbl=document.createElement('label');
+  emailLbl.innerText='Email:';
+  const emailInput=document.createElement('input');
+  emailInput.type='email'; emailInput.required=true;
+  emailLbl.appendChild(emailInput);
+  form.appendChild(emailLbl);
   form.appendChild(document.createElement('br'));
-  form.appendChild(messageL); form.appendChild(messageI);
+
+  // Message
+  const msgLbl=document.createElement('label');
+  msgLbl.innerText='Message:';
+  const msgInput=document.createElement('textarea');
+  msgInput.required=true;
+  msgLbl.appendChild(msgInput);
+  form.appendChild(msgLbl);
   form.appendChild(document.createElement('br'));
-  form.appendChild(submitBtn);
+
+  // Submit
+  const sendBtn=document.createElement('button');
+  sendBtn.type='submit'; sendBtn.innerText='Send Message';
+  form.appendChild(sendBtn);
 
   form.onsubmit=(e)=>{
     e.preventDefault();
     alert('Message sent! We will get back to you.');
     form.reset();
   };
-  container.appendChild(form);
+  c.appendChild(form);
+}
 
-  // Review & Review section
-  const reviewDiv=document.createElement('div');
-  reviewDiv.id='review-section';
+// Review Page
+function renderReviewPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
 
-  const reviewH=document.createElement('h3');
-  reviewH.innerText='Leave a Review';
-  reviewH.style.textAlign='center';
-  reviewDiv.appendChild(reviewH);
-
-  // Star rating for review
-  const starContainer=document.createElement('div');
-  starContainer.id='review-stars';
-
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Leave a Review';
+  c.appendChild(h2);
+  
+  // Star rating
+  const starDiv=document.createElement('div');
+  starDiv.id='review-stars';
   let selectedStars=0;
   const starsArr=[];
   for(let i=1;i<=5;i++){
@@ -1128,45 +800,34 @@ function renderContact() {
     star.dataset.value=i;
     star.onclick=()=>{ selectedStars=i; updateStars(); };
     starsArr.push(star);
-    starContainer.appendChild(star);
+    starDiv.appendChild(star);
   }
   function updateStars() {
-    starsArr.forEach((s,i)=> {
-      s.className='star'+(i+1<=selectedStars?' filled':'');
-    });
+    starsArr.forEach((s,i)=>s.className='star'+(i+1<=selectedStars?' filled':''));
   }
-  reviewDiv.appendChild(starContainer);
-
-  // Review Text
-  const reviewText=document.createElement('textarea');
-  reviewText.id='review-text';
-  reviewText.placeholder='Write your review here...';
-
-  reviewDiv.appendChild(reviewText);
-
-  // Submit Review button
-  const reviewBtn=document.createElement('button');
-  reviewBtn.id='review-submit';
-  reviewBtn.innerText='Submit Review';
-
-  reviewBtn.onclick=()=>{
-    if(selectedStars===0 || reviewText.value.trim()===''){ alert('Select stars and write review!'); return;}
-    reviews.push({stars:selectedStars,text:reviewText.value.trim(),date:new Date().toISOString()});
-    localStorage.setItem('reviews',JSON.stringify(reviews));
+  c.appendChild(starDiv);
+  // Review textarea
+  const reviewTextarea=document.createElement('textarea');
+  reviewTextarea.id='review-textarea';
+  reviewTextarea.placeholder='Write your review here...';
+  c.appendChild(reviewTextarea);
+  // Submit button
+  const submitBtn=document.createElement('button');
+  submitBtn.id='review-submit';
+  submitBtn.innerText='Submit Review';
+  submitBtn.onclick=()=>{
+    if(selectedStars===0 || reviewTextarea.value.trim()===''){ alert('Choose stars and write review!'); return; }
+    reviews.push({stars:selectedStars, text:reviewTextarea.value.trim(), date:new Date().toISOString()});
+    saveReviews();
     alert('Thank you for your review!');
-    selectedStars=0;
-    updateStars();
-    reviewText.value='';
-    renderReviews();
+    selectedStars=0; updateStars(); reviewTextarea.value=''; renderAllReviews();
   };
-  reviewDiv.appendChild(reviewBtn);
-  container.appendChild(reviewDiv);
-  renderReviews();
+  c.appendChild(submitBtn);
+  renderAllReviews();
 
-  function renderReviews() {
+  function renderAllReviews() {
     let existing=document.getElementById('reviews-list');
     if(existing) existing.remove();
-
     const listDiv=document.createElement('div');
     listDiv.id='reviews-list';
 
@@ -1177,8 +838,8 @@ function renderContact() {
       listDiv.appendChild(noRev);
     } else {
       reviews.slice().reverse().forEach(r=>{
-        const itemDiv=document.createElement('div');
-        itemDiv.className='review-item';
+        const rDiv=document.createElement('div');
+        rDiv.className='review-item';
 
         const headerDiv=document.createElement('div');
         headerDiv.className='review-header';
@@ -1194,35 +855,927 @@ function renderContact() {
         headerDiv.appendChild(starsSpan);
         headerDiv.appendChild(dateSpan);
 
-        const reviewTxt=document.createElement('p');
-        reviewTxt.innerText=r.text;
+        const txtP=document.createElement('p');
+        txtP.innerText=r.text;
 
-        itemDiv.appendChild(headerDiv);
-        itemDiv.appendChild(reviewTxt);
-        listDiv.appendChild(itemDiv);
+        rDiv.appendChild(headerDiv);
+        rDiv.appendChild(txtP);
+        listDiv.appendChild(rDiv);
       });
     }
-    document.getElementById('review-section').appendChild(listDiv);
+    document.getElementById('content').appendChild(listDiv);
   }
 }
 
 /* =================== Event Listeners =================== */
-document.querySelectorAll('.nav-buttons a').forEach(link => {
-  link.onclick=(e)=>{
-    e.preventDefault();
-    const page=e.target.dataset.page;
-    if(pages.includes(page)){
-      render(page);
-    }
-  };
+document.querySelectorAll('.nav-buttons a').forEach(l=> {
+  l.onclick=e=>{ e.preventDefault(); render(e.target.dataset.page); };
 });
 document.getElementById('cart-btn').onclick=()=>render('cart');
 
-/* =================== Initialization =================== */
-window.onload=()=> {
-  loadCart();
+/* =================== Cart Management =================== */
+function addToCart(item) {
+  const existing=cart.find(i=>i.id===item.id);
+  if(existing){ existing.quantity+=1; }
+  else {
+    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=MAX_ITEMS){ alert('Cart full'); return; }
+    item.quantity=1;
+    cart.push(item);
+  }
+  saveCart();
   updateCartBadge();
-  render('home');
+  showNotification(`Added ${item.name}`);
+}
+
+/* =================== Render Cart =================== */
+function renderCart() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Your Cart';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const table=document.createElement('table');
+  table.id='cart-table';
+  const headerRow=document.createElement('tr');
+  ['Item','Price','Quantity','Total','Remove'].forEach(t=> {
+    const th=document.createElement('th');
+    th.innerText=t;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  let total=0;
+  cart.forEach((i,iIdx)=>{
+    const row=document.createElement('tr');
+    const itemTd=document.createElement('td');
+    itemTd.innerText=i.name;
+    const priceTd=document.createElement('td');
+    priceTd.innerText='$'+i.price;
+    const qtyTd=document.createElement('td');
+    const qtyInput=document.createElement('input');
+    qtyInput.type='number';
+    qtyInput.min=1;
+    qtyInput.max=MAX_ITEMS;
+    qtyInput.value=i.quantity;
+    qtyInput.style.width='60px';
+    qtyInput.onchange=()=>{
+      const val=parseInt(qtyInput.value);
+      if(isNaN(val)||val<1){ qtyInput.value=i.quantity; return;}
+      i.quantity=val; saveCart(); updateCartBadge(); renderCart();
+    };
+    qtyTd.appendChild(qtyInput);
+    const totalTd=document.createElement('td');
+    const totalPrice=(i.price*i.quantity);
+    totalTd.innerText='$'+totalPrice.toFixed(2);
+    total+=totalPrice;
+    const removeTd=document.createElement('td');
+    const remBtn=document.createElement('button');
+    remBtn.innerText='Remove';
+    remBtn.onclick=()=>{ cart.splice(iIdx,1); saveCart(); updateCartBadge(); renderCart();};
+    removeTd.appendChild(remBtn);
+    row.appendChild(itemTd);
+    row.appendChild(priceTd);
+    row.appendChild(qtyTd);
+    row.appendChild(totalTd);
+    row.appendChild(removeTd);
+    table.appendChild(row);
+  });
+  // Total row
+  const totalRow=document.createElement('tr');
+  totalRow.className='total-row';
+  const totalLabelTd=document.createElement('td');
+  totalLabelTd.colSpan=3;
+  totalLabelTd.innerText='Total';
+  const totalAmountTd=document.createElement('td');
+  totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
+  const emptyTd=document.createElement('td');
+  totalRow.appendChild(totalLabelTd);
+  totalRow.appendChild(totalAmountTd);
+  totalRow.appendChild(emptyTd);
+  table.appendChild(totalRow);
+  c.appendChild(table);
+  const btn=document.createElement('button');
+  btn.id='checkout-btn';
+  btn.innerText='Checkout';
+  btn.onclick=()=>render('checkout');
+  c.appendChild(btn);
+}
+
+/* Render checkout form */
+function renderCheckoutPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Checkout';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const form=document.createElement('form');
+  form.style.maxWidth='600px'; form.style.margin='0 auto';
+
+  // Customer info
+  const fnL=createLabelInput('First Name:');
+  const lnL=createLabelInput('Last Name:');
+  const emailL=createLabelInput('Email:','email');
+  const addrL=createLabelInput('Address:');
+  const cardL=createLabelInput('Card Number:');
+  const expiryL=createLabelInput('Expiry Date (MM/YY):');
+  const secL=createLabelInput('Security Code:');
+
+  [fnL,lnL,emailL,addrL,cardL,expiryL,secL].forEach(lbl => { form.appendChild(lbl); form.appendChild(document.createElement('br')); });
+
+  const payBtn=document.createElement('button');
+  payBtn.type='submit'; payBtn.innerText='Pay';
+
+  form.appendChild(payBtn);
+  form.onsubmit=(e)=>{
+    e.preventDefault();
+    alert('Order confirmed! Thank you.');
+    cart=[]; saveCart(); updateCartBadge(); render('home');
+  };
+  document.getElementById('content').appendChild(form);
+}
+
+// Contact page
+function renderContactPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Contact Us';
+  c.appendChild(h2);
+  const form=document.createElement('form');
+  form.style.maxWidth='600px'; form.style.margin='20px auto';
+
+  // Name
+  const nameL=document.createElement('label');
+  nameL.innerText='Name:';
+  const nameI=document.createElement('input');
+  nameI.type='text'; nameI.required=true;
+  nameL.appendChild(nameI);
+  form.appendChild(nameL);
+  form.appendChild(document.createElement('br'));
+
+  // Email
+  const emailL=document.createElement('label');
+  emailL.innerText='Email:';
+  const emailI=document.createElement('input');
+  emailI.type='email'; emailI.required=true;
+  emailL.appendChild(emailI);
+  form.appendChild(emailL);
+  form.appendChild(document.createElement('br'));
+
+  // Message
+  const msgL=document.createElement('label');
+  msgL.innerText='Message:';
+  const msgI=document.createElement('textarea');
+  msgI.required=true;
+  msgL.appendChild(msgI);
+  form.appendChild(msgL);
+  form.appendChild(document.createElement('br'));
+
+  // Send button
+  const sendBtn=document.createElement('button');
+  sendBtn.type='submit'; sendBtn.innerText='Send Message';
+  form.appendChild(sendBtn);
+
+  form.onsubmit=(e)=>{
+    e.preventDefault();
+    alert('Message sent! We will get back to you.');
+    form.reset();
+  };
+  c.appendChild(form);
+}
+
+// Review submission page
+function renderReviewPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Leave a Review';
+  c.appendChild(h2);
+
+  const reviewDiv=document.createElement('div');
+  reviewDiv.id='review-section';
+
+  const starContainer=document.createElement('div');
+  starContainer.id='review-stars';
+
+  let selectedStars=0;
+  const starsArr=[];
+  for(let i=1;i<=5;i++){
+    const star=document.createElement('span');
+    star.className='star';
+    star.innerHTML='&#9733;';
+    star.dataset.value=i;
+    star.onclick=()=>{ selectedStars=i; updateStars(); };
+    starsArr.push(star);
+    starContainer.appendChild(star);
+  }
+  function updateStars() {
+    starsArr.forEach((s,i)=>s.className='star'+(i+1<=selectedStars?' filled':''));
+  }
+  reviewDiv.appendChild(starContainer);
+
+  const reviewTextarea=document.createElement('textarea');
+  reviewTextarea.id='review-text';
+  reviewTextarea.placeholder='Write your review here...';
+  reviewDiv.appendChild(reviewTextarea);
+
+  const submitBtn=document.createElement('button');
+  submitBtn.id='review-submit';
+  submitBtn.innerText='Submit Review';
+  submitBtn.onclick=()=>{
+    if(selectedStars===0 || reviewTextarea.value.trim()===''){ alert('Choose stars and write review!'); return; }
+    reviews.push({stars:selectedStars, text:reviewTextarea.value.trim(), date:new Date().toISOString()});
+    saveReviews();
+    alert('Thank you for your review!');
+    selectedStars=0; updateStars(); reviewTextarea.value=''; renderAllReviews();
+  };
+  reviewDiv.appendChild(submitBtn);
+
+  c.appendChild(reviewDiv);
+  renderAllReviews();
+
+  function renderAllReviews() {
+    let existing=document.getElementById('reviews-list');
+    if(existing) existing.remove();
+    const listDiv=document.createElement('div');
+    listDiv.id='reviews-list';
+
+    if(reviews.length===0){
+      const noRev=document.createElement('p');
+      noRev.innerText='No reviews yet.';
+      noRev.style.textAlign='center';
+      listDiv.appendChild(noRev);
+    } else {
+      reviews.slice().reverse().forEach(r=>{
+        const rDiv=document.createElement('div');
+        rDiv.className='review-item';
+
+        const headerDiv=document.createElement('div');
+        headerDiv.className='review-header';
+
+        const starsSpan=document.createElement('span');
+        starsSpan.className='review-stars';
+        starsSpan.innerHTML='&#9733;'.repeat(r.stars)+'&#9734;'.repeat(5 - r.stars);
+
+        const dateSpan=document.createElement('span');
+        dateSpan.className='review-date';
+        dateSpan.innerText=new Date(r.date).toLocaleString();
+
+        headerDiv.appendChild(starsSpan);
+        headerDiv.appendChild(dateSpan);
+
+        const txtP=document.createElement('p');
+        txtP.innerText=r.text;
+
+        rDiv.appendChild(headerDiv);
+        rDiv.appendChild(txtP);
+        listDiv.appendChild(rDiv);
+      });
+    }
+    document.getElementById('content').appendChild(listDiv);
+  }
+}
+
+/* =================== Event Listeners =================== */
+document.querySelectorAll('.nav-buttons a').forEach(l=> {
+  l.onclick=e=>{ e.preventDefault(); render(e.target.dataset.page); };
+});
+document.getElementById('cart-btn').onclick=()=>render('cart');
+
+/* =================== Cart Management =================== */
+function addToCart(item) {
+  const existing=cart.find(i=>i.id===item.id);
+  if(existing){ existing.quantity+=1; }
+  else {
+    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=999){ alert('Cart full'); return; }
+    item.quantity=1;
+    cart.push(item);
+  }
+  saveCart();
+  updateCartBadge();
+  showNotification(`Added ${item.name}`);
+}
+
+/* =================== Render Cart =================== */
+function renderCart() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Your Cart';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const table=document.createElement('table');
+  table.id='cart-table';
+  const headerRow=document.createElement('tr');
+  ['Item','Price','Quantity','Total','Remove'].forEach(t=> {
+    const th=document.createElement('th');
+    th.innerText=t;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  let total=0;
+  cart.forEach((i,iIdx)=>{
+    const row=document.createElement('tr');
+    const itemTd=document.createElement('td');
+    itemTd.innerText=i.name;
+    const priceTd=document.createElement('td');
+    priceTd.innerText='$'+i.price;
+    const qtyTd=document.createElement('td');
+    const qtyInput=document.createElement('input');
+    qtyInput.type='number';
+    qtyInput.min=1;
+    qtyInput.max=999;
+    qtyInput.value=i.quantity;
+    qtyInput.style.width='60px';
+    qtyInput.onchange=()=>{
+      const val=parseInt(qtyInput.value);
+      if(isNaN(val)||val<1){ qtyInput.value=i.quantity; return;}
+      i.quantity=val; saveCart(); updateCartBadge(); renderCart();
+    };
+    qtyTd.appendChild(qtyInput);
+    const totalTd=document.createElement('td');
+    const totalPrice=(i.price*i.quantity);
+    totalTd.innerText='$'+totalPrice.toFixed(2);
+    total+=totalPrice;
+    const removeTd=document.createElement('td');
+    const remBtn=document.createElement('button');
+    remBtn.innerText='Remove';
+    remBtn.onclick=()=>{ cart.splice(iIdx,1); saveCart(); updateCartBadge(); renderCart();};
+    removeTd.appendChild(remBtn);
+    row.appendChild(itemTd);
+    row.appendChild(priceTd);
+    row.appendChild(qtyTd);
+    row.appendChild(totalTd);
+    row.appendChild(removeTd);
+    table.appendChild(row);
+  });
+  // Total row
+  const totalRow=document.createElement('tr');
+  totalRow.className='total-row';
+  const totalLabelTd=document.createElement('td');
+  totalLabelTd.colSpan=3;
+  totalLabelTd.innerText='Total';
+  const totalAmountTd=document.createElement('td');
+  totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
+  const emptyTd=document.createElement('td');
+  totalRow.appendChild(totalLabelTd);
+  totalRow.appendChild(totalAmountTd);
+  totalRow.appendChild(emptyTd);
+  table.appendChild(totalRow);
+  c.appendChild(table);
+  const btn=document.createElement('button');
+  btn.id='checkout-btn';
+  btn.innerText='Checkout';
+  btn.onclick=()=>render('checkout');
+  c.appendChild(btn);
+}
+
+/* Render checkout form */
+function renderCheckoutPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Checkout';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const form=document.createElement('form');
+  form.style.maxWidth='600px'; form.style.margin='0 auto';
+
+  // Customer info inputs
+  const firstNameLbl=createLabelInput('First Name:');
+  const lastNameLbl=createLabelInput('Last Name:');
+  const emailLbl=createLabelInput('Email:','email');
+  const addressLbl=createLabelInput('Address:');
+  const cardLbl=createLabelInput('Card Number:');
+  const expiryLbl=createLabelInput('Expiry Date (MM/YY):');
+  const secLbl=createLabelInput('Security Code:');
+
+  [firstNameLbl,lastNameLbl,emailLbl,addressLbl,cardLbl,expiryLbl,secLbl].forEach(lbl => { form.appendChild(lbl); form.appendChild(document.createElement('br')); });
+
+  const payBtn=document.createElement('button');
+  payBtn.type='submit'; payBtn.innerText='Pay';
+
+  form.appendChild(payBtn);
+
+  form.onsubmit=(e)=>{
+    e.preventDefault();
+    alert('Order confirmed! Thank you.');
+    cart=[]; saveCart(); updateCartBadge(); render('home');
+  };
+  document.getElementById('content').appendChild(form);
+}
+
+// Review page with star review
+function renderReviewPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Customer Reviews';
+  c.appendChild(h2);
+
+  // Review form
+  const reviewDiv=document.createElement('div');
+  reviewDiv.id='review-section';
+
+  // Star rating selector
+  const starSelector=document.createElement('div');
+  starSelector.id='review-stars';
+
+  let selectedStars=0;
+  const starElems=[];
+  for(let i=1;i<=5;i++){
+    const star=document.createElement('span');
+    star.className='star';
+    star.innerHTML='&#9733;';
+    star.dataset.value=i;
+    star.onclick=()=>{ selectedStars=i; updateStars(); };
+    starElems.push(star);
+    starSelector.appendChild(star);
+  }
+  function updateStars() {
+    starElems.forEach((s,i)=>s.className='star'+(i+1<=selectedStars?' filled':''));
+  }
+  c.appendChild(starSelector);
+
+  // Review textarea
+  const reviewText=document.createElement('textarea');
+  reviewText.id='review-text';
+  reviewText.placeholder='Write your review here...';
+  c.appendChild(reviewText);
+
+  // Submit button
+  const submitBtn=document.createElement('button');
+  submitBtn.id='review-submit';
+  submitBtn.innerText='Submit Review';
+  submitBtn.onclick=()=>{
+    if(selectedStars===0 || reviewText.value.trim()===''){ alert('Choose stars and write review!'); return; }
+    reviews.push({stars:selectedStars, text:reviewText.value.trim(), date:new Date().toISOString()});
+    saveReviews();
+    alert('Thank you for your review!');
+    selectedStars=0; updateStars(); reviewText.value=''; renderAllReviews();
+  };
+  c.appendChild(submitBtn);
+  renderAllReviews();
+
+  function renderAllReviews() {
+    let existing=document.getElementById('reviews-list');
+    if(existing) existing.remove();
+    const listDiv=document.createElement('div');
+    listDiv.id='reviews-list';
+
+    if(reviews.length===0){
+      const noRev=document.createElement('p');
+      noRev.innerText='No reviews yet.';
+      noRev.style.textAlign='center';
+      listDiv.appendChild(noRev);
+    } else {
+      reviews.slice().reverse().forEach(r=>{
+        const rDiv=document.createElement('div');
+        rDiv.className='review-item';
+
+        const headerDiv=document.createElement('div');
+        headerDiv.className='review-header';
+
+        const starsSpan=document.createElement('span');
+        starsSpan.className='review-stars';
+        starsSpan.innerHTML='&#9733;'.repeat(r.stars)+'&#9734;'.repeat(5 - r.stars);
+
+        const dateSpan=document.createElement('span');
+        dateSpan.className='review-date';
+        dateSpan.innerText=new Date(r.date).toLocaleString();
+
+        headerDiv.appendChild(starsSpan);
+        headerDiv.appendChild(dateSpan);
+
+        const txtP=document.createElement('p');
+        txtP.innerText=r.text;
+
+        rDiv.appendChild(headerDiv);
+        rDiv.appendChild(txtP);
+        listDiv.appendChild(rDiv);
+      });
+    }
+    document.getElementById('content').appendChild(listDiv);
+  }
+}
+
+/* =================== Page Navigation =================== */
+document.querySelectorAll('.nav-buttons a').forEach(l=> {
+  l.onclick=e=>{ e.preventDefault(); render(e.target.dataset.page); };
+});
+document.getElementById('cart-btn').onclick=()=>render('cart');
+
+/* =================== Cart & Local Storage =================== */
+function addToCart(item) {
+  const existing=cart.find(i=>i.id===item.id);
+  if(existing){ existing.quantity+=1; }
+  else {
+    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=999){ alert('Cart full'); return; }
+    item.quantity=1;
+    cart.push(item);
+  }
+  saveCart();
+  updateCartBadge();
+  showNotification(`Added ${item.name}`);
+}
+
+function renderCartPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Your Cart';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const table=document.createElement('table');
+  table.id='cart-table';
+  const headerRow=document.createElement('tr');
+  ['Item','Price','Quantity','Total','Remove'].forEach(t=> {
+    const th=document.createElement('th');
+    th.innerText=t;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  let total=0;
+  cart.forEach((i,iIdx)=>{
+    const row=document.createElement('tr');
+    const itemTd=document.createElement('td');
+    itemTd.innerText=i.name;
+    const priceTd=document.createElement('td');
+    priceTd.innerText='$'+i.price;
+    const qtyTd=document.createElement('td');
+    const qtyInput=document.createElement('input');
+    qtyInput.type='number';
+    qtyInput.min=1;
+    qtyInput.max=999;
+    qtyInput.value=i.quantity;
+    qtyInput.style.width='60px';
+    qtyInput.onchange=()=>{
+      const val=parseInt(qtyInput.value);
+      if(isNaN(val)||val<1){ qtyInput.value=i.quantity; return; }
+      i.quantity=val; saveCart(); updateCartBadge(); renderCart();
+    };
+    qtyTd.appendChild(qtyInput);
+    const totalTd=document.createElement('td');
+    const totalPrice=(i.price*i.quantity);
+    totalTd.innerText='$'+totalPrice.toFixed(2);
+    total+=totalPrice;
+    const removeTd=document.createElement('td');
+    const remBtn=document.createElement('button');
+    remBtn.innerText='Remove';
+    remBtn.onclick=()=>{ cart.splice(iIdx,1); saveCart(); updateCartBadge(); renderCart();};
+    removeTd.appendChild(remBtn);
+    row.appendChild(itemTd);
+    row.appendChild(priceTd);
+    row.appendChild(qtyTd);
+    row.appendChild(totalTd);
+    row.appendChild(removeTd);
+    table.appendChild(row);
+  });
+  // Total row
+  const totalRow=document.createElement('tr');
+  totalRow.className='total-row';
+  const totalLabelTd=document.createElement('td');
+  totalLabelTd.colSpan=3;
+  totalLabelTd.innerText='Total';
+  const totalAmountTd=document.createElement('td');
+  totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
+  const emptyTd=document.createElement('td');
+  totalRow.appendChild(totalLabelTd);
+  totalRow.appendChild(totalAmountTd);
+  totalRow.appendChild(emptyTd);
+  table.appendChild(totalRow);
+  c.appendChild(table);
+  const btn=document.createElement('button');
+  btn.id='checkout-btn';
+  btn.innerText='Checkout';
+  btn.onclick=()=>render('checkout');
+  c.appendChild(btn);
+}
+
+function renderCheckoutPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Checkout';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const form=document.createElement('form');
+  form.style.maxWidth='600px'; form.style.margin='0 auto';
+
+  // Customer info
+  const firstName=createLabelInput('First Name:');
+  const lastName=createLabelInput('Last Name:');
+  const email=createLabelInput('Email:','email');
+  const address=createLabelInput('Address:');
+  const cardNumber=createLabelInput('Card Number:');
+  const expiry=createLabelInput('Expiry Date (MM/YY):');
+  const securityCode=createLabelInput('Security Code:');
+
+  [firstName,lastName,email,address,cardNumber,expiry,securityCode].forEach(lbl=> {
+    form.appendChild(lbl); form.appendChild(document.createElement('br'));
+  });
+
+  // Submit button
+  const payBtn=document.createElement('button');
+  payBtn.type='submit'; payBtn.innerText='Pay';
+
+  form.appendChild(payBtn);
+  form.onsubmit=(e)=>{
+    e.preventDefault();
+    alert('Order confirmed! Thank you.');
+    cart=[]; saveCart(); updateCartBadge(); render('home');
+  };
+  document.getElementById('content').appendChild(form);
+}
+
+// Contact page
+function renderContactPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Contact Us';
+  c.appendChild(h2);
+  const form=document.createElement('form');
+  form.style.maxWidth='600px'; form.style.margin='20px auto';
+
+  const nameLbl=createLabelInput('Name:');
+  const emailLbl=createLabelInput('Email:','email');
+  const messageLbl=document.createElement('label');
+  messageLbl.innerText='Message:';
+  const messageI=document.createElement('textarea');
+  messageI.required=true;
+  messageLbl.appendChild(messageI);
+  // Send button
+  const sendBtn=document.createElement('button');
+  sendBtn.type='submit'; sendBtn.innerText='Send Message';
+
+  form.appendChild(nameLbl); form.appendChild(document.createElement('br'));
+  form.appendChild(emailLbl); form.appendChild(document.createElement('br'));
+  form.appendChild(messageLbl); form.appendChild(document.createElement('br'));
+  form.appendChild(sendBtn);
+  form.onsubmit=(e)=>{
+    e.preventDefault();
+    alert('Message sent! We will reply soon.');
+    form.reset();
+  };
+  c.appendChild(form);
+}
+
+// Review Page (list reviews + submit new review)
+function renderReviewPage() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Customer Reviews';
+  c.appendChild(h2);
+
+  // Review submission form
+  const reviewContainer=document.createElement('div');
+  reviewContainer.id='review-section';
+
+  // Star rating selector
+  const starSelector=document.createElement('div');
+  starSelector.id='review-stars';
+
+  let selectedStars=0;
+  const starEls=[];
+  for(let i=1;i<=5;i++){
+    const star=document.createElement('span');
+    star.className='star';
+    star.innerHTML='&#9733;';
+    star.dataset.value=i;
+    star.onclick=()=>{ selectedStars=i; updateStars(); };
+    starEls.push(star);
+    starSelector.appendChild(star);
+  }
+  function updateStars() {
+    starEls.forEach((s,i)=>s.className='star'+(i+1<=selectedStars?' filled':''));
+  }
+  c.appendChild(starSelector);
+
+  const reviewTextArea=document.createElement('textarea');
+  reviewTextArea.id='review-text';
+  reviewTextArea.placeholder='Write your review here...';
+  c.appendChild(reviewTextArea);
+
+  const submitBtn=document.createElement('button');
+  submitBtn.id='review-submit';
+  submitBtn.innerText='Submit Review';
+  submitBtn.onclick=()=>{
+    if(selectedStars===0 || reviewTextArea.value.trim()===''){ alert('Choose stars and write review!'); return; }
+    reviews.push({stars:selectedStars, text:reviewTextArea.value.trim(), date:new Date().toISOString()});
+    saveReviews();
+    alert('Thank you for your review!');
+    selectedStars=0; updateStars(); reviewTextArea.value=''; renderAllReviews();
+  };
+  c.appendChild(submitBtn);
+  renderAllReviews();
+
+  function renderAllReviews() {
+    let existing=document.getElementById('reviews-list');
+    if(existing) existing.remove();
+    const listDiv=document.createElement('div');
+    listDiv.id='reviews-list';
+
+    if(reviews.length===0){
+      const noRev=document.createElement('p');
+      noRev.innerText='No reviews yet.';
+      noRev.style.textAlign='center';
+      listDiv.appendChild(noRev);
+    } else {
+      reviews.slice().reverse().forEach(r=>{
+        const rDiv=document.createElement('div');
+        rDiv.className='review-item';
+
+        const headerDiv=document.createElement('div');
+        headerDiv.className='review-header';
+
+        const starsSpan=document.createElement('span');
+        starsSpan.className='review-stars';
+        starsSpan.innerHTML='&#9733;'.repeat(r.stars)+'&#9734;'.repeat(5 - r.stars);
+
+        const dateSpan=document.createElement('span');
+        dateSpan.className='review-date';
+        dateSpan.innerText=new Date(r.date).toLocaleString();
+
+        headerDiv.appendChild(starsSpan);
+        headerDiv.appendChild(dateSpan);
+
+        const txtP=document.createElement('p');
+        txtP.innerText=r.text;
+
+        rDiv.appendChild(headerDiv);
+        rDiv.appendChild(txtP);
+        listDiv.appendChild(rDiv);
+      });
+    }
+    document.getElementById('content').appendChild(listDiv);
+  }
+}
+
+/* =================== Page Navigation =================== */
+document.querySelectorAll('.nav-buttons a').forEach(l=> {
+  l.onclick=e=>{ e.preventDefault(); render(e.target.dataset.page); };
+});
+document.getElementById('cart-btn').onclick=()=>render('cart');
+
+/* =================== Cart & Local Storage =================== */
+function addToCart(item) {
+  const existing=cart.find(i=>i.id===item.id);
+  if(existing){ existing.quantity+=1; }
+  else {
+    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=999){ alert('Cart full'); return; }
+    item.quantity=1;
+    cart.push(item);
+  }
+  saveCart();
+  updateCartBadge();
+  showNotification(`Added ${item.name}`);
+}
+
+/* =================== Render cart (common) =================== */
+function renderCart() {
+  const c=document.getElementById('content');
+  c.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Your Cart';
+  c.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    c.appendChild(msg);
+    return;
+  }
+  const table=document.createElement('table');
+  table.id='cart-table';
+  const headerRow=document.createElement('tr');
+  ['Item','Price','Quantity','Total','Remove'].forEach(t=> {
+    const th=document.createElement('th');
+    th.innerText=t;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+  let total=0;
+  cart.forEach((i,iIdx)=>{
+    const row=document.createElement('tr');
+    const itemTd=document.createElement('td');
+    itemTd.innerText=i.name;
+    const priceTd=document.createElement('td');
+    priceTd.innerText='$'+i.price;
+    const qtyTd=document.createElement('td');
+    const qtyInput=document.createElement('input');
+    qtyInput.type='number';
+    qtyInput.min=1;
+    qtyInput.max=999;
+    qtyInput.value=i.quantity;
+    qtyInput.style.width='60px';
+    qtyInput.onchange=()=>{
+      const val=parseInt(qtyInput.value);
+      if(isNaN(val)||val<1){ qtyInput.value=i.quantity; return; }
+      i.quantity=val; saveCart(); updateCartBadge(); renderCart();
+    };
+    qtyTd.appendChild(qtyInput);
+    const totalTd=document.createElement('td');
+    const totalPrice=(i.price*i.quantity);
+    totalTd.innerText='$'+totalPrice.toFixed(2);
+    total+=totalPrice;
+    const removeTd=document.createElement('td');
+    const remBtn=document.createElement('button');
+    remBtn.innerText='Remove';
+    remBtn.onclick=()=>{ cart.splice(iIdx,1); saveCart(); updateCartBadge(); renderCart();};
+    removeTd.appendChild(remBtn);
+    row.appendChild(itemTd);
+    row.appendChild(priceTd);
+    row.appendChild(qtyTd);
+    row.appendChild(totalTd);
+    row.appendChild(removeTd);
+    table.appendChild(row);
+  });
+  const totalRow=document.createElement('tr');
+  totalRow.className='total-row';
+  const totalLabelTd=document.createElement('td');
+  totalLabelTd.colSpan=3;
+  totalLabelTd.innerText='Total';
+  const totalAmountTd=document.createElement('td');
+  totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
+  const emptyTd=document.createElement('td');
+  totalRow.appendChild(totalLabelTd);
+  totalRow.appendChild(totalAmountTd);
+  totalRow.appendChild(emptyTd);
+  table.appendChild(totalRow);
+  c.appendChild(table);
+  const btn=document.createElement('button');
+  btn.id='checkout-btn';
+  btn.innerText='Checkout';
+  btn.onclick=()=>render('checkout');
+  c.appendChild(btn);
+}
+
+/* =================== Initialize App =================== */
+window.onload=()=> {
+  loadCart(); updateCartBadge(); render('home');
+  // Initialize map
+  initMap();
 };
 
 /* =================== Google Map =================== */
@@ -1231,12 +1784,12 @@ function initMap() {
   if(!mapDiv) return;
   const map=new google.maps.Map(mapDiv,{
     center:{lat:40.7128,lng:-74.0060},
-    zoom:12
+    zoom:12,
   });
   new google.maps.Marker({position:{lat:40.7128,lng:-74.0060},map:map});
 }
 </script>
-<!-- Replace 'YOUR_API_KEY' with your actual Google Maps API key -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
+<!-- Replace 'YOUR_API_KEY' with your Google Map API key above -->
 </body>
 </html>
