@@ -15,9 +15,9 @@ body {
   font-family: 'Arial', sans-serif;
   background: #fff8f0;
   color: #333;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   line-height: 1.6;
 }
 a {
@@ -36,7 +36,7 @@ button {
   font-weight: bold;
   padding: 10px 20px;
   font-size: 1em;
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
 }
 button:hover {
   background-color: #e65b50;
@@ -91,8 +91,8 @@ button:hover {
   background: rgba(255,255,255,0.2);
   transform: translateY(-2px);
 }
-/* Cart Badge and Notification */
-.cart-container {
+/* Cart Icon & Badge */
+#cart-container {
   position: relative;
   margin-left: 15px;
 }
@@ -102,7 +102,7 @@ button:hover {
   display: flex;
   align-items: center;
 }
-#cart-count {
+#cart-badge {
   position: absolute;
   top: -8px;
   right: -8px;
@@ -111,63 +111,53 @@ button:hover {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  font-weight: bold;
   font-size: 0.8em;
+  font-weight: bold;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
+/* Notification near navbar */
 #notification {
   position: absolute;
-  top: 50px;
+  top: 70px;
   right: 20px;
   background-color: #4BB543;
   color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-weight: bold;
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 0.4s, transform 0.4s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  font-weight: bold;
   z-index: 1000;
 }
 #notification.show {
   opacity: 1;
   transform: translateY(0);
 }
-/* Main Content */
+
+/* ==================== Main Content ==================== */
 #content {
   flex: 1;
   padding: 20px;
   max-width: 1200px;
   margin: auto;
+  width: 100%;
 }
-/* Footer Styles */
-footer {
-  background-color: #222;
-  color: #eee;
-  padding: 20px;
-  text-align: center;
-}
-footer h3 {
-  margin-bottom: 10px;
-}
-footer p {
-  margin: 5px 0;
-}
-/* Page Titles */
 .page-title {
   font-family: 'Brush Script MT', cursive;
-  font-size: 2em;
+  font-size: 2.5em;
   text-align: center;
   margin-bottom: 20px;
   color: #ff6f61;
   letter-spacing: 2px;
 }
-/* Product Grid */
+
+/* ==================== Product Grid ==================== */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -182,11 +172,11 @@ footer p {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
 }
 .product-card:hover {
   transform: scale(1.03);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 .product-image {
   width: 100%;
@@ -208,13 +198,14 @@ footer p {
   padding: 8px 14px;
   border-radius: 4px;
   font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
 }
 .add-cart-btn:hover {
   background-color: #e65b50;
   transform: scale(1.02);
 }
-/* Cart Table Styles */
+
+/* ==================== Cart & Checkout Styles ==================== */
 #cart-table {
   width: 100%;
   border-collapse: collapse;
@@ -231,30 +222,50 @@ footer p {
 .total-row {
   font-weight: bold;
   font-size: 1.2em;
+  background-color: #fafafa;
 }
 #checkout-btn {
   display: block;
   margin: 30px auto;
-  padding: 14px 28px;
+  padding: 14px 20px;
   font-size: 1.2em;
   background-color: #ff6f61;
 }
 #checkout-btn:hover {
   background-color: #e65b50;
 }
-/* Review Section styles */
-#review-section {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
+
+/* ==================== Contact & Review Styles ==================== */
+#contact-form, #review-form {
+  max-width: 600px;
+  margin: 20px auto;
   background: #fff;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+#contact-form label, #review-form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: #ff6f61;
+  outline: none;
 }
 #review-stars {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-top: 10px;
 }
 .star {
   font-size: 2em;
@@ -267,13 +278,9 @@ footer p {
   color: gold;
 }
 #review-text {
-  width: 100%;
   min-height: 80px;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 1em;
   resize: vertical;
+  margin-top: 10px;
 }
 #review-submit {
   margin-top: 15px;
@@ -282,23 +289,16 @@ footer p {
   margin-right: auto;
 }
 
-/* Responsive adjustments */
+/* ==================== Responsive & Animations ==================== */
 @media(max-width: 768px) {
   .nav-buttons {
     flex-direction: column;
   }
-  #review-section {
-    margin: 20px;
-  }
 }
-
-/* Animations */
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
 }
-
-/* Notification banner styles (for JS) */
 .notification-banner {
   position: fixed;
   top: 80px;
@@ -311,22 +311,18 @@ footer p {
   font-weight: bold;
   opacity: 0;
   transform: translateY(-20px);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: all 0.4s ease;
   z-index: 1050;
 }
 .notification-banner.show {
   opacity: 1;
   transform: translateY(0);
 }
-.notification-banner.hide {
-  opacity: 0;
-  transform: translateY(-20px);
-}
 </style>
 </head>
 <body>
 
-<!-- Navigation Bar -->
+<!-- Navigation -->
 <header class="navbar">
   <div class="logo-section">
     <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.4&auto=format&fit=crop&w=50&q=80" alt="Candy Logo"/>
@@ -338,9 +334,9 @@ footer p {
     <a href="#" data-page="chocolates">Chocolates</a>
     <a href="#" data-page="drinks">Drinks</a>
     <a href="#" data-page="chips">Chips</a>
-    <div class="cart-container">
-      <button id="cart-button" aria-label="Cart">🛒</button>
-      <div id="cart-count">0</div>
+    <div id="cart-container" style="position: relative;">
+      <button id="cart-btn" aria-label="Cart">🛒</button>
+      <div id="cart-badge">0</div>
     </div>
   </div>
 </header>
@@ -348,279 +344,238 @@ footer p {
 <!-- Main Content -->
 <div id="content"></div>
 
-<!-- Scripts -->
-<script>
-// =================== JavaScript ===================
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 
-/* ----- Global Variables ----- */
-const pages = ['home', 'lollies', 'chocolates', 'drinks', 'chips', 'cart', 'checkout', 'contact'];
+<script>
+// =================== JavaScript Logic ===================
+
+const pages = ['home','lollies','chocolates','drinks','chips','cart','checkout','contact'];
 let currentPage = 'home';
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-const MAX_CART_ITEMS = 999;
+const MAX_ITEMS = 999;
 
 let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
 
-/* ----- Utility Functions ----- */
-
-// Show notification near navbar
-function showNotification(message) {
-  const notif = document.createElement('div');
-  notif.className = 'notification-banner show';
-  notif.innerText = message;
-  document.body.appendChild(notif);
+/* Utility functions */
+function showNotification(msg) {
+  const div = document.createElement('div');
+  div.className = 'notification-banner show';
+  div.innerText = msg;
+  document.body.appendChild(div);
   setTimeout(() => {
-    notif.className = 'notification-banner hide';
-    setTimeout(() => {
-      notif.remove();
-    }, 500);
+    div.className = 'notification-banner hide';
+    setTimeout(() => div.remove(), 500);
   }, 2500);
 }
 
-// Update cart item count badge
 function updateCartBadge() {
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cart-count').innerText = totalItems;
+  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById('cart-badge').innerText = totalCount;
 }
 
-// Save cart to local storage
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Load cart from local storage
 function loadCart() {
   const stored = localStorage.getItem('cart');
-  if (stored) {
-    cart = JSON.parse(stored);
-  }
+  if (stored) cart = JSON.parse(stored);
 }
 
-/* ----- Page Rendering Functions ----- */
-
-// Render pages based on current state
-function renderPage(page) {
+/* Page rendering functions */
+function render(page) {
   currentPage = page;
   document.getElementById('content').innerHTML = '';
-  if (page === 'home') {
-    renderHomePage();
-  } else if (page === 'lollies') {
-    renderProductsPage('Lollies', generateProducts('Lollies'));
-  } else if (page === 'chocolates') {
-    renderProductsPage('Chocolates', generateProducts('Chocolates'));
-  } else if (page === 'drinks') {
-    renderProductsPage('Drinks', generateProducts('Drinks'));
-  } else if (page === 'chips') {
-    renderProductsPage('Chips', generateProducts('Chips'));
-  } else if (page === 'cart') {
-    renderCartPage();
-  } else if (page === 'checkout') {
-    renderCheckoutPage();
-  } else if (page === 'contact') {
-    renderContactPage();
-  }
+  if (page==='home') renderHome();
+  else if (page==='lollies') renderProducts('Lollies', generateProducts('Lollies'));
+  else if (page==='chocolates') renderProducts('Chocolates', generateProducts('Chocolates'));
+  else if (page==='drinks') renderProducts('Drinks', generateProducts('Drinks'));
+  else if (page==='chips') renderProducts('Chips', generateProducts('Chips'));
+  else if (page==='cart') renderCart();
+  else if (page==='checkout') renderCheckout();
+  else if (page==='contact') renderContact();
 }
 
-/* ----- Generate Product Data with Names ----- */
-
+/* Generate product data with names */
 function generateProducts(type) {
-  const productNames = {
+  const namesMap = {
     'Lollies': ['Rainbow Swirl', 'Strawberry Bliss', 'Gummy Bears', 'Lemon Zest', 'Cherry Pop', 'Fruit Chews', 'Sour Worms', 'Candy Cane'],
     'Chocolates': ['Milk Chocolate Bar', 'Dark Chocolate Truffle', 'Caramel Fudge', 'White Chocolate Mousse', 'Almond Chocolate', 'Hazelnut Kisses', 'Chocolate Bites', 'Cocoa Dreams'],
     'Drinks': ['Cola Classic', 'Lemonade Spark', 'Strawberry Shake', 'Mint Mojito', 'Fruit Punch', 'Cream Soda', 'Iced Tea', 'Grape Fizz'],
-    'Chips': ['Salt & Vinegar', 'BBQ Ribs', 'Cheddar Crisps', 'Spicy Jalapeño', 'Sweet Potato', 'Classic Potato', 'Sour Cream & Onion', 'BBQ Blaze']
+    'Chips': ['Salt & Vinegar', 'BBQ Ribs', 'Cheddar Crisps', 'Spicy Jalapeno', 'Sweet Potato', 'Classic Potato', 'Sour Cream & Onion', 'BBQ Blaze']
   };
-  const names = productNames[type] || [`${type} ${Math.ceil(Math.random()*100)}`];
-
+  const names = namesMap[type] || [`${type} ${Math.ceil(Math.random()*100)}`];
   return names.map((name, index) => ({
     id: `${type.toLowerCase()}_${index}`,
     name,
-    price: (Math.random() * 4 + 1).toFixed(2),
-    image: `https://via.placeholder.com/200x150?text=${encodeURIComponent(name)}`
+    price: (Math.random()*3+1).toFixed(2),
+    image: 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(name)
   }));
 }
 
-/* ----- Home Page Rendering ----- */
-function renderHomePage() {
+/* =================== Page Components =================== */
+
+function renderHome() {
   const container = document.getElementById('content');
 
-  // Welcome message
+  // Welcome Header
   const header = document.createElement('h1');
-  header.innerText = 'Welcome to Candy Cartel!';
-  header.style.textAlign = 'center';
-  header.style.marginBottom = '20px';
-  header.style.fontFamily = "'Brush Script MT', cursive";
-  header.style.color = '#ff6f61';
+  header.innerText='Welcome to Candy Cartel!';
+  header.style.textAlign='center';
+  header.style.marginBottom='20px';
+  header.style.fontFamily="'Brush Script MT', cursive";
+  header.style.color='#ff6f61';
   container.appendChild(header);
 
   // Google Map
   const mapDiv = document.createElement('div');
-  mapDiv.id = 'map';
-  mapDiv.style.width = '100%';
-  mapDiv.style.height = '400px';
-  mapDiv.style.borderRadius = '8px';
-  mapDiv.style.overflow = 'hidden';
+  mapDiv.id='map';
+  mapDiv.style.width='100%';
+  mapDiv.style.height='400px';
+  mapDiv.style.borderRadius='8px';
+  mapDiv.style.overflow='hidden';
   container.appendChild(mapDiv);
   setTimeout(initMap, 100);
 
-  // Contact info block
-  const contactInfo = document.createElement('div');
-  contactInfo.style.display = 'flex';
-  contactInfo.style.justifyContent = 'space-around';
-  contactInfo.style.marginTop = '30px';
+  // Contact Info
+  const contactDiv = document.createElement('div');
+  contactDiv.style.display='flex';
+  contactDiv.style.justifyContent='space-around';
+  contactDiv.style.marginTop='30px';
 
-  const contactDetails = [
+  const contacts = [
     { title: 'Phone', info: '+1 234 567 8901' },
     { title: 'Email', info: 'info@candycartel.com' },
-    { title: 'Address', info: '456 Candy Street, Sweet City' }
+    { title: 'Message', info: 'Visit us for sweet treats!' }
   ];
 
-  contactDetails.forEach(c => {
+  contacts.forEach(c => {
     const box = document.createElement('div');
-    box.style.background = '#fff';
-    box.style.padding = '15px';
-    box.style.borderRadius = '8px';
-    box.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
-    box.style.minWidth = '200px';
+    box.style.background='#fff';
+    box.style.padding='15px';
+    box.style.borderRadius='8px';
+    box.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';
+    box.style.minWidth='200px';
 
     const title = document.createElement('h3');
-    title.innerText = c.title;
-    title.style.color = '#ff6f61';
+    title.innerText=c.title;
+    title.style.color='#ff6f61';
 
     const info = document.createElement('p');
-    info.innerText = c.info;
+    info.innerText=c.info;
 
     box.appendChild(title);
     box.appendChild(info);
-    contactInfo.appendChild(box);
+    contactDiv.appendChild(box);
   });
-  container.appendChild(contactInfo);
+  container.appendChild(contactDiv);
 }
 
-/* ----- Product Pages with Names ----- */
-function renderProductsPage(title, products) {
+function renderProducts(title, products) {
   const container = document.getElementById('content');
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = title;
-  container.appendChild(header);
+  const h2 = document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText=title;
+  container.appendChild(h2);
 
   const grid = document.createElement('div');
-  grid.className = 'products-grid';
+  grid.className='products-grid';
 
-  products.forEach(product => {
+  products.forEach(p => {
     const card = document.createElement('div');
-    card.className = 'product-card';
+    card.className='product-card';
 
     const img = document.createElement('img');
-    img.src = product.image;
-    img.className = 'product-image';
+    img.src=p.image;
+    img.className='product-image';
 
-    const nameDiv = document.createElement('div');
-    nameDiv.className = 'product-name';
-    nameDiv.innerText = product.name;
+    const pname = document.createElement('div');
+    pname.className='product-name';
+    pname.innerText=p.name;
 
-    const priceDiv = document.createElement('div');
-    priceDiv.className = 'product-price';
-    priceDiv.innerText = `$${product.price}`;
+    const pprice = document.createElement('div');
+    pprice.className='product-price';
+    pprice.innerText='$'+p.price;
 
     const btn = document.createElement('button');
-    btn.className = 'add-cart-btn';
-    btn.innerText = 'Add to Cart';
-    btn.onclick = () => {
-      addToCart({ id: product.id, name: product.name, price: parseFloat(product.price), quantity: 1 });
-    };
+    btn.className='add-cart-btn';
+    btn.innerText='Add to Cart';
+    btn.onclick=()=>addToCart({id:p.id, name:p.name, price:parseFloat(p.price), quantity:1});
 
     card.appendChild(img);
-    card.appendChild(nameDiv);
-    card.appendChild(priceDiv);
+    card.appendChild(pname);
+    card.appendChild(pprice);
     card.appendChild(btn);
     grid.appendChild(card);
   });
-
   document.getElementById('content').appendChild(grid);
 }
 
-/* ----- Cart Page ----- */
-function renderCartPage() {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
+function renderCart() {
+  const container=document.getElementById('content');
+  container.innerHTML='';
 
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = 'Your Shopping Cart';
-  container.appendChild(header);
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Your Cart';
+  container.appendChild(h2);
 
-  if (cart.length === 0) {
-    const emptyMsg = document.createElement('p');
-    emptyMsg.innerText = 'Your cart is empty!';
-    emptyMsg.style.textAlign = 'center';
-    emptyMsg.style.fontSize = '1.2em';
-    container.appendChild(emptyMsg);
+  if (cart.length===0) {
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty!';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    container.appendChild(msg);
     return;
   }
 
-  // Table for cart items
-  const table = document.createElement('table');
-  table.id = 'cart-table';
+  const table=document.createElement('table');
+  table.id='cart-table';
 
-  const headerRow = document.createElement('tr');
-  ['Item', 'Price', 'Quantity', 'Total', 'Remove'].forEach(t => {
-    const th = document.createElement('th');
-    th.innerText = t;
+  const headerRow=document.createElement('tr');
+  ['Item','Price','Quantity','Total','Remove'].forEach(t=>{
+    const th=document.createElement('th');
+    th.innerText=t;
     headerRow.appendChild(th);
   });
   table.appendChild(headerRow);
 
-  let totalSum = 0;
-  cart.forEach((item, index) => {
-    const row = document.createElement('tr');
+  let totalSum=0;
+  cart.forEach((item,i)=>{
+    const row=document.createElement('tr');
 
-    // Item name
-    const itemTd = document.createElement('td');
-    itemTd.innerText = item.name;
+    const itemTd=document.createElement('td');
+    itemTd.innerText=item.name;
 
-    // Price
-    const priceTd = document.createElement('td');
-    priceTd.innerText = `$${item.price}`;
+    const priceTd=document.createElement('td');
+    priceTd.innerText='$'+item.price;
 
-    // Quantity
-    const qtyTd = document.createElement('td');
-    const qtyInput = document.createElement('input');
-    qtyInput.type = 'number';
-    qtyInput.min = 1;
-    qtyInput.max = MAX_CART_ITEMS;
-    qtyInput.value = item.quantity;
-    qtyInput.style.width = '60px';
-    qtyInput.onchange = () => {
-      const newQty = parseInt(qtyInput.value);
-      if (isNaN(newQty) || newQty < 1) {
-        qtyInput.value = item.quantity;
-        return;
-      }
-      item.quantity = newQty;
-      saveCart();
-      updateCartBadge();
-      renderCartPage();
+    const qtyTd=document.createElement('td');
+    const qtyInput=document.createElement('input');
+    qtyInput.type='number';
+    qtyInput.min=1;
+    qtyInput.max=MAX_ITEMS;
+    qtyInput.value=item.quantity;
+    qtyInput.style.width='60px';
+    qtyInput.onchange=()=>{
+      const val=parseInt(qtyInput.value);
+      if (isNaN(val)||val<1){ qtyInput.value=item.quantity; return;}
+      item.quantity=val;
+      saveCart(); updateCartBadge(); renderCart();
     };
     qtyTd.appendChild(qtyInput);
 
-    // Total
-    const totalTd = document.createElement('td');
-    const totalPrice = (item.price * item.quantity);
-    totalTd.innerText = `$${totalPrice.toFixed(2)}`;
-    totalSum += totalPrice;
+    const totalTd=document.createElement('td');
+    const totalPrice=(item.price*item.quantity);
+    totalTd.innerText='$'+totalPrice.toFixed(2);
+    totalSum+=totalPrice;
 
-    // Remove button
-    const removeTd = document.createElement('td');
-    const remBtn = document.createElement('button');
-    remBtn.innerText = 'Remove';
-    remBtn.onclick = () => {
-      cart.splice(index, 1);
-      saveCart();
-      updateCartBadge();
-      renderCartPage();
-    };
+    const removeTd=document.createElement('td');
+    const remBtn=document.createElement('button');
+    remBtn.innerText='Remove';
+    remBtn.onclick=()=>{ cart.splice(i,1); saveCart(); updateCartBadge(); renderCart();};
     removeTd.appendChild(remBtn);
 
     row.appendChild(itemTd);
@@ -630,291 +585,264 @@ function renderCartPage() {
     row.appendChild(removeTd);
     table.appendChild(row);
   });
-
-  // Total sum row
-  const totalRow = document.createElement('tr');
-  totalRow.className = 'total-row';
-
-  const totalLabelTd = document.createElement('td');
-  totalLabelTd.colSpan = 3;
-  totalLabelTd.innerText = 'Total';
-
-  const totalPriceTd = document.createElement('td');
-  totalPriceTd.innerText = `$${cart.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2)}`;
-
-  const emptyTd = document.createElement('td');
-
+  // Total row
+  const totalRow=document.createElement('tr');
+  totalRow.className='total-row';
+  const totalLabelTd=document.createElement('td');
+  totalLabelTd.colSpan=3;
+  totalLabelTd.innerText='Total';
+  const totalAmountTd=document.createElement('td');
+  totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
+  const emptyTd=document.createElement('td');
   totalRow.appendChild(totalLabelTd);
-  totalRow.appendChild(totalPriceTd);
+  totalRow.appendChild(totalAmountTd);
   totalRow.appendChild(emptyTd);
   table.appendChild(totalRow);
-
   container.appendChild(table);
-
-  // Checkout Button
-  const checkoutBtn = document.createElement('button');
-  checkoutBtn.id = 'checkout-btn';
-  checkoutBtn.innerText = 'Proceed to Checkout';
-  checkoutBtn.onclick = () => { renderPage('checkout'); };
-  container.appendChild(checkoutBtn);
+  const btn=document.createElement('button');
+  btn.id='checkout-btn';
+  btn.innerText='Proceed to Checkout';
+  btn.onclick=()=>renderCheckout();
+  container.appendChild(btn);
 }
 
-/* ----- Checkout Page ----- */
-function renderCheckoutPage() {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
+function renderCheckout() {
+  const container=document.getElementById('content');
+  container.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Checkout';
+  container.appendChild(h2);
 
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = 'Checkout';
-  container.appendChild(header);
-
-  if (cart.length === 0) {
-    const msg = document.createElement('p');
-    msg.innerText = 'Your cart is empty!';
-    msg.style.textAlign = 'center';
-    msg.style.fontSize = '1.2em';
+  if (cart.length===0) {
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty!';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
     container.appendChild(msg);
     return;
   }
 
-  // Cart Summary
-  const summaryDiv = document.createElement('div');
-  summaryDiv.style.maxWidth = '600px';
-  summaryDiv.style.margin = '0 auto';
+  // Summary of cart
+  const sumDiv=document.createElement('div');
+  sumDiv.style.maxWidth='600px';
+  sumDiv.style.margin='0 auto';
 
-  const list = document.createElement('ul');
-  list.style.listStyle = 'none';
-  list.style.padding = '0';
+  const ul=document.createElement('ul');
+  ul.style.listStyle='none';
+  ul.style.padding='0';
 
-  let totalAmount = 0;
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.innerText = `${item.name} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`;
-    list.appendChild(li);
-    totalAmount += item.price * item.quantity;
+  let total=0;
+  cart.forEach(i=>{
+    const li=document.createElement('li');
+    li.innerText=`${i.name} x ${i.quantity} = $${(i.price*i.quantity).toFixed(2)}`;
+    ul.appendChild(li);
+    total+=i.price*i.quantity;
   });
-  summaryDiv.appendChild(list);
-
-  const totalP = document.createElement('p');
-  totalP.style.fontSize = '1.4em';
-  totalP.style.fontWeight = 'bold';
-  totalP.innerText = `Total: $${totalAmount.toFixed(2)}`;
-  summaryDiv.appendChild(totalP);
+  sumDiv.appendChild(ul);
+  const totalP=document.createElement('p');
+  totalP.style.fontSize='1.4em';
+  totalP.style.fontWeight='bold';
+  totalP.innerText=`Total: $${total.toFixed(2)}`;
+  sumDiv.appendChild(totalP);
 
   // Payment info form
-  const form = document.createElement('form');
-  form.style.marginTop = '20px';
+  const form=document.createElement('form');
+  form.style.marginTop='20px';
 
-  const nameLabel = document.createElement('label');
-  nameLabel.innerText = 'Name:';
-  const nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.required = true;
+  const nameL=document.createElement('label');
+  nameL.innerText='First Name:';
+  const nameI=document.createElement('input');
+  nameI.type='text'; nameI.required=true;
 
-  const emailLabel = document.createElement('label');
-  emailLabel.innerText = 'Email:';
-  const emailInput = document.createElement('input');
-  emailInput.type = 'email';
-  emailInput.required = true;
+  const lastNameL=document.createElement('label');
+  lastNameL.innerText='Last Name:';
+  const lastNameI=document.createElement('input');
+  lastNameI.type='text'; lastNameI.required=true;
 
-  const addressLabel = document.createElement('label');
-  addressLabel.innerText = 'Address:';
-  const addressInput = document.createElement('input');
-  addressInput.type = 'text';
-  addressInput.required = true;
+  const emailL=document.createElement('label');
+  emailL.innerText='Email:';
+  const emailI=document.createElement('input');
+  emailI.type='email'; emailI.required=true;
 
-  const payBtn = document.createElement('button');
-  payBtn.type = 'submit';
-  payBtn.innerText = 'Pay Now';
+  const addressL=document.createElement('label');
+  addressL.innerText='Address:';
+  const addressI=document.createElement('input');
+  addressI.type='text'; addressI.required=true;
 
-  form.appendChild(nameLabel);
-  form.appendChild(nameInput);
+  const cardL=document.createElement('label');
+  cardL.innerText='Card Number:';
+  const cardI=document.createElement('input');
+  cardI.type='text'; cardI.required=true;
+
+  const payBtn=document.createElement('button');
+  payBtn.type='submit'; payBtn.innerText='Pay';
+
+  form.appendChild(nameL); form.appendChild(nameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(emailLabel);
-  form.appendChild(emailInput);
+  form.appendChild(lastNameL); form.appendChild(lastNameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(addressLabel);
-  form.appendChild(addressInput);
+  form.appendChild(emailL); form.appendChild(emailI);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(addressL); form.appendChild(addressI);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(cardL); form.appendChild(cardI);
   form.appendChild(document.createElement('br'));
   form.appendChild(payBtn);
 
-  form.onsubmit = (e) => {
+  form.onsubmit=(e)=>{
     e.preventDefault();
-    alert('Thank you for your purchase!');
-    cart = [];
+    alert('Thank you for your order!');
+    cart=[];
     saveCart();
     updateCartBadge();
-    renderPage('home');
+    render('home');
   };
 
-  summaryDiv.appendChild(form);
-  container.appendChild(summaryDiv);
+  sumDiv.appendChild(form);
+  container.appendChild(sumDiv);
 }
 
-/* ----- Contact Page & Review System ----- */
-function renderContactPage() {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
+function renderContact() {
+  const container=document.getElementById('content');
+  container.innerHTML='';
 
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = 'Contact & Review';
-  container.appendChild(header);
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Contact & Reviews';
+  container.appendChild(h2);
 
   // Contact Form
-  const form = document.createElement('form');
-  form.style.maxWidth = '600px';
-  form.style.margin = '20px auto';
+  const form=document.createElement('form');
+  form.style.maxWidth='600px';
+  form.style.margin='20px auto';
 
-  const nameLabel = document.createElement('label');
-  nameLabel.innerText = 'Name:';
-  const nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.required = true;
+  const nameL=document.createElement('label');
+  nameL.innerText='Name:';
+  const nameI=document.createElement('input');
+  nameI.type='text'; nameI.required=true;
 
-  const emailLabel = document.createElement('label');
-  emailLabel.innerText = 'Email:';
-  const emailInput = document.createElement('input');
-  emailInput.type = 'email';
-  emailInput.required = true;
+  const emailL=document.createElement('label');
+  emailL.innerText='Email:';
+  const emailI=document.createElement('input');
+  emailI.type='email'; emailI.required=true;
 
-  const messageLabel = document.createElement('label');
-  messageLabel.innerText = 'Message:';
-  const messageInput = document.createElement('textarea');
-  messageInput.required = true;
+  const messageL=document.createElement('label');
+  messageL.innerText='Message:';
+  const messageI=document.createElement('textarea');
+  messageI.required=true;
 
-  const submitBtn = document.createElement('button');
-  submitBtn.type = 'submit';
-  submitBtn.innerText = 'Send Message';
+  const submitBtn=document.createElement('button');
+  submitBtn.type='submit'; submitBtn.innerText='Send Message';
 
-  form.appendChild(nameLabel);
-  form.appendChild(nameInput);
+  form.appendChild(nameL); form.appendChild(nameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(emailLabel);
-  form.appendChild(emailInput);
+  form.appendChild(emailL); form.appendChild(emailI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(messageLabel);
-  form.appendChild(messageInput);
+  form.appendChild(messageL); form.appendChild(messageI);
   form.appendChild(document.createElement('br'));
   form.appendChild(submitBtn);
 
-  form.onsubmit = (e) => {
+  form.onsubmit=(e)=>{
     e.preventDefault();
-    alert('Your message has been sent!');
+    alert('Message sent! We will get back to you.');
     form.reset();
   };
-
   container.appendChild(form);
 
-  // Review Section
-  const reviewDiv = document.createElement('div');
-  reviewDiv.id = 'review-section';
+  // Review function
+  const reviewDiv=document.createElement('div');
+  reviewDiv.id='review-section';
 
-  const reviewHeader = document.createElement('h3');
-  reviewHeader.innerText = 'Leave a Review';
-  reviewHeader.style.textAlign = 'center';
-  reviewDiv.appendChild(reviewHeader);
+  const reviewH=document.createElement('h3');
+  reviewH.innerText='Leave a Review';
+  reviewH.style.textAlign='center';
+  reviewDiv.appendChild(reviewH);
 
-  // Star Rating
-  const starContainer = document.createElement('div');
-  starContainer.id = 'review-stars';
+  // Star rating
+  const starContainer=document.createElement('div');
+  starContainer.id='review-stars';
 
-  let selectedStars = 0;
-  const starsArray = [];
-  for (let i=1; i<=5; i++) {
-    const star = document.createElement('span');
-    star.className = 'star';
-    star.innerHTML = '&#9733;';
-    star.dataset.value = i;
-    star.onclick = () => {
-      selectedStars = i;
-      updateStarDisplay();
-    };
-    starsArray.push(star);
+  let selectedStars=0;
+  const starsArr=[];
+  for(let i=1;i<=5;i++){
+    const star=document.createElement('span');
+    star.className='star';
+    star.innerHTML='&#9733;';
+    star.dataset.value=i;
+    star.onclick=()=>{ selectedStars=i; updateStars(); };
+    starsArr.push(star);
     starContainer.appendChild(star);
   }
-
-  function updateStarDisplay() {
-    starsArray.forEach((s, index) => {
-      s.className = 'star' + ((index + 1) <= selectedStars ? ' filled' : '');
+  function updateStars() {
+    starsArr.forEach((s,i)=> {
+      s.className='star'+(i+1<=selectedStars?' filled':'');
     });
   }
 
   reviewDiv.appendChild(starContainer);
 
-  // Review Textarea
-  const reviewTextArea = document.createElement('textarea');
-  reviewTextArea.id = 'review-text';
-  reviewTextArea.placeholder = 'Write your review here...';
+  // Review text
+  const reviewText=document.createElement('textarea');
+  reviewText.id='review-text';
+  reviewText.placeholder='Write your review here...';
 
-  reviewDiv.appendChild(reviewTextArea);
+  reviewDiv.appendChild(reviewText);
 
-  // Submit button for review
-  const reviewBtn = document.createElement('button');
-  reviewBtn.id = 'review-submit';
-  reviewBtn.innerText = 'Submit Review';
+  // Submit review button
+  const reviewBtn=document.createElement('button');
+  reviewBtn.id='review-submit';
+  reviewBtn.innerText='Submit Review';
 
-  reviewBtn.onclick = () => {
-    if (selectedStars === 0 || reviewTextArea.value.trim() === '') {
-      alert('Please select stars and write a review!');
-      return;
-    }
-    // Save review
-    reviews.push({
-      stars: selectedStars,
-      text: reviewTextArea.value.trim(),
-      date: new Date().toISOString()
-    });
-    localStorage.setItem('reviews', JSON.stringify(reviews));
+  reviewBtn.onclick=()=>{
+    if(selectedStars===0 || reviewText.value.trim()===''){ alert('Select stars and write review!'); return;}
+    reviews.push({stars:selectedStars,text:reviewText.value.trim(),date:new Date().toISOString()});
+    localStorage.setItem('reviews',JSON.stringify(reviews));
     alert('Thank you for your review!');
-    selectedStars = 0;
-    updateStarDisplay();
-    reviewTextArea.value = '';
+    selectedStars=0;
+    updateStars();
+    reviewText.value='';
     renderReviews();
   };
-
   reviewDiv.appendChild(reviewBtn);
   container.appendChild(reviewDiv);
   renderReviews();
 
-  // Render reviews list
   function renderReviews() {
-    let existing = document.getElementById('reviews-list');
-    if (existing) existing.remove();
+    let existing=document.getElementById('reviews-list');
+    if(existing) existing.remove();
+    const listDiv=document.createElement('div');
+    listDiv.id='reviews-list';
 
-    const listDiv = document.createElement('div');
-    listDiv.id = 'reviews-list';
-
-    if (reviews.length === 0) {
-      const noRev = document.createElement('p');
-      noRev.innerText = 'No reviews yet.';
-      noRev.style.textAlign = 'center';
+    if(reviews.length===0){
+      const noRev=document.createElement('p');
+      noRev.innerText='No reviews yet.';
+      noRev.style.textAlign='center';
       listDiv.appendChild(noRev);
     } else {
-      reviews.slice().reverse().forEach(r => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'review-item';
+      reviews.slice().reverse().forEach(r=>{
+        const itemDiv=document.createElement('div');
+        itemDiv.className='review-item';
 
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'review-header';
+        const headerDiv=document.createElement('div');
+        headerDiv.className='review-header';
 
-        const starsSpan = document.createElement('span');
-        starsSpan.className = 'review-stars';
-        starsSpan.innerHTML = '&#9733;'.repeat(r.stars) + '&#9734;'.repeat(5 - r.stars);
+        const starsSpan=document.createElement('span');
+        starsSpan.className='review-stars';
+        starsSpan.innerHTML='&#9733;'.repeat(r.stars)+'&#9734;'.repeat(5 - r.stars);
 
-        const dateSpan = document.createElement('span');
-        dateSpan.className = 'review-date';
-        dateSpan.innerText = new Date(r.date).toLocaleString();
+        const dateSpan=document.createElement('span');
+        dateSpan.className='review-date';
+        dateSpan.innerText=new Date(r.date).toLocaleString();
 
         headerDiv.appendChild(starsSpan);
         headerDiv.appendChild(dateSpan);
 
-        const reviewTextP = document.createElement('p');
-        reviewTextP.innerText = r.text;
+        const reviewTxt=document.createElement('p');
+        reviewTxt.innerText=r.text;
 
         itemDiv.appendChild(headerDiv);
-        itemDiv.appendChild(reviewTextP);
+        itemDiv.appendChild(reviewTxt);
         listDiv.appendChild(itemDiv);
       });
     }
@@ -922,31 +850,23 @@ function renderContactPage() {
   }
 }
 
-/* ----- Event Listeners ----- */
-document.querySelectorAll('.nav-buttons a').forEach(link => {
-  link.onclick = (e) => {
-    e.preventDefault();
-    const page = e.target.dataset.page;
-    if (pages.includes(page)) {
-      renderPage(page);
-    }
-  };
+// Event listeners for navigation
+document.querySelectorAll('.nav-buttons a').forEach(l=> {
+  l.onclick=e=>{ e.preventDefault(); render(l.dataset.page); };
 });
-document.getElementById('cart-button').onclick = () => {
-  renderPage('cart');
-};
+document.getElementById('cart-btn').onclick=()=>render('cart');
 
-/* ----- Add to Cart Function ----- */
+// Add to cart
 function addToCart(item) {
-  const existing = cart.find(i => i.id === item.id);
-  if (existing) {
-    existing.quantity += 1;
+  const existing=cart.find(i=>i.id===item.id);
+  if(existing){
+    existing.quantity+=1;
   } else {
-    if (cart.reduce((sum, i) => sum + i.quantity, 0) >= MAX_CART_ITEMS) {
-      alert('Cart limit reached!');
+    if(cart.reduce((sum,i)=>sum+i.quantity,0)>=MAX_ITEMS){
+      alert('Cart full');
       return;
     }
-    item.quantity = 1;
+    item.quantity=1;
     cart.push(item);
   }
   saveCart();
@@ -954,86 +874,65 @@ function addToCart(item) {
   showNotification(`Added ${item.name} to cart`);
 }
 
-/* ----- Render Cart Page ----- */
-function renderCartPage() {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
-
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = 'Your Shopping Cart';
-  container.appendChild(header);
-
-  if (cart.length === 0) {
-    const emptyMsg = document.createElement('p');
-    emptyMsg.innerText = 'Your cart is empty!';
-    emptyMsg.style.textAlign = 'center';
-    emptyMsg.style.fontSize = '1.2em';
-    container.appendChild(emptyMsg);
+// Render cart page
+function renderCart() {
+  const container=document.getElementById('content');
+  container.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Your Cart';
+  container.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty.';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
+    container.appendChild(msg);
     return;
   }
-
-  // Table for cart items
-  const table = document.createElement('table');
-  table.id = 'cart-table';
-
-  const headerRow = document.createElement('tr');
-  ['Item', 'Price', 'Quantity', 'Total', 'Remove'].forEach(t => {
-    const th = document.createElement('th');
-    th.innerText = t;
+  const table=document.createElement('table');
+  table.id='cart-table';
+  const headerRow=document.createElement('tr');
+  ['Item','Price','Quantity','Total','Remove'].forEach(t=> {
+    const th=document.createElement('th');
+    th.innerText=t;
     headerRow.appendChild(th);
   });
   table.appendChild(headerRow);
+  let total=0;
+  cart.forEach((item,i)=>{
+    const row=document.createElement('tr');
 
-  let totalSum = 0;
-  cart.forEach((item, index) => {
-    const row = document.createElement('tr');
+    const itemTd=document.createElement('td');
+    itemTd.innerText=item.name;
 
-    // Item name
-    const itemTd = document.createElement('td');
-    itemTd.innerText = item.name;
+    const priceTd=document.createElement('td');
+    priceTd.innerText='$'+item.price;
 
-    // Price
-    const priceTd = document.createElement('td');
-    priceTd.innerText = `$${item.price}`;
-
-    // Quantity
-    const qtyTd = document.createElement('td');
-    const qtyInput = document.createElement('input');
-    qtyInput.type = 'number';
-    qtyInput.min = 1;
-    qtyInput.max = MAX_CART_ITEMS;
-    qtyInput.value = item.quantity;
-    qtyInput.style.width = '60px';
-    qtyInput.onchange = () => {
-      const newQ = parseInt(qtyInput.value);
-      if (isNaN(newQ) || newQ < 1) {
-        qtyInput.value = item.quantity;
-        return;
-      }
-      item.quantity = newQ;
-      saveCart();
-      updateCartBadge();
-      renderCartPage();
+    const qtyTd=document.createElement('td');
+    const qtyInput=document.createElement('input');
+    qtyInput.type='number';
+    qtyInput.min=1;
+    qtyInput.max=MAX_ITEMS;
+    qtyInput.value=item.quantity;
+    qtyInput.style.width='60px';
+    qtyInput.onchange=()=>{
+      const val=parseInt(qtyInput.value);
+      if(isNaN(val)||val<1){ qtyInput.value=item.quantity; return;}
+      item.quantity=val;
+      saveCart(); updateCartBadge(); renderCart();
     };
     qtyTd.appendChild(qtyInput);
 
-    // Total for item
-    const totalTd = document.createElement('td');
-    const totalPrice = (item.price * item.quantity);
-    totalTd.innerText = `$${totalPrice.toFixed(2)}`;
-    totalSum += totalPrice;
+    const totalTd=document.createElement('td');
+    const totalPrice=(item.price*item.quantity);
+    totalTd.innerText='$'+totalPrice.toFixed(2);
+    total+=totalPrice;
 
-    // Remove button
-    const removeTd = document.createElement('td');
-    const remBtn = document.createElement('button');
-    remBtn.innerText = 'Remove';
-    remBtn.onclick = () => {
-      cart.splice(index, 1);
-      saveCart();
-      updateCartBadge();
-      renderCartPage();
-    };
+    const removeTd=document.createElement('td');
+    const remBtn=document.createElement('button');
+    remBtn.innerText='Remove';
+    remBtn.onclick=()=>{ cart.splice(i,1); saveCart(); updateCartBadge(); renderCart();};
     removeTd.appendChild(remBtn);
 
     row.appendChild(itemTd);
@@ -1043,284 +942,263 @@ function renderCartPage() {
     row.appendChild(removeTd);
     table.appendChild(row);
   });
-
   // Total row
-  const totalRow = document.createElement('tr');
-  totalRow.className = 'total-row';
-
-  const totalLabelTd = document.createElement('td');
-  totalLabelTd.colSpan = 3;
-  totalLabelTd.innerText = 'Total';
-
-  const totalPriceTd = document.createElement('td');
-  totalPriceTd.innerText = `$${cart.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2)}`;
-
-  const emptyTd = document.createElement('td');
-
+  const totalRow=document.createElement('tr');
+  totalRow.className='total-row';
+  const totalLabelTd=document.createElement('td');
+  totalLabelTd.colSpan=3; totalLabelTd.innerText='Total';
+  const totalAmountTd=document.createElement('td');
+  totalAmountTd.innerText='$'+cart.reduce((sum,i)=>sum+i.price*i.quantity,0).toFixed(2);
+  const emptyTd=document.createElement('td');
   totalRow.appendChild(totalLabelTd);
-  totalRow.appendChild(totalPriceTd);
+  totalRow.appendChild(totalAmountTd);
   totalRow.appendChild(emptyTd);
   table.appendChild(totalRow);
-
   container.appendChild(table);
-
-  const checkoutBtn = document.createElement('button');
-  checkoutBtn.id = 'checkout-btn';
-  checkoutBtn.innerText = 'Proceed to Checkout';
-  checkoutBtn.onclick = () => { renderPage('checkout'); };
+  const checkoutBtn=document.createElement('button');
+  checkoutBtn.id='checkout-btn';
+  checkoutBtn.innerText='Checkout';
+  checkoutBtn.onclick=()=>render('checkout');
   container.appendChild(checkoutBtn);
 }
 
-/* ----- Checkout Page ----- */
-function renderCheckoutPage() {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
-
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = 'Checkout';
-  container.appendChild(header);
-
-  if (cart.length === 0) {
-    const msg = document.createElement('p');
-    msg.innerText = 'Your cart is empty!';
-    msg.style.textAlign = 'center';
-    msg.style.fontSize = '1.2em';
+// Render checkout form
+function renderCheckout() {
+  const container=document.getElementById('content');
+  container.innerHTML='';
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Checkout';
+  container.appendChild(h2);
+  if(cart.length===0){
+    const msg=document.createElement('p');
+    msg.innerText='Your cart is empty!';
+    msg.style.textAlign='center';
+    msg.style.fontSize='1.2em';
     container.appendChild(msg);
     return;
   }
+  // Order summary
+  const sumDiv=document.createElement('div');
+  sumDiv.style.maxWidth='600px';
+  sumDiv.style.margin='0 auto';
 
-  const summaryDiv = document.createElement('div');
-  summaryDiv.style.maxWidth = '600px';
-  summaryDiv.style.margin = '0 auto';
+  const ul=document.createElement('ul');
+  ul.style.listStyle='none';
+  ul.style.padding='0';
 
-  const list = document.createElement('ul');
-  list.style.listStyle = 'none';
-  list.style.padding = '0';
-
-  let totalAmount = 0;
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.innerText = `${item.name} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}`;
-    list.appendChild(li);
-    totalAmount += item.price * item.quantity;
+  let total=0;
+  cart.forEach(i=>{
+    const li=document.createElement('li');
+    li.innerText=`${i.name} x ${i.quantity} = $${(i.price*i.quantity).toFixed(2)}`;
+    ul.appendChild(li);
+    total+=i.price*i.quantity;
   });
-  summaryDiv.appendChild(list);
+  sumDiv.appendChild(ul);
 
-  const totalP = document.createElement('p');
-  totalP.style.fontSize = '1.4em';
-  totalP.style.fontWeight = 'bold';
-  totalP.innerText = `Total: $${totalAmount.toFixed(2)}`;
-  summaryDiv.appendChild(totalP);
+  const totalP=document.createElement('p');
+  totalP.style.fontSize='1.4em';
+  totalP.style.fontWeight='bold';
+  totalP.innerText=`Total: $${total.toFixed(2)}`;
+  sumDiv.appendChild(totalP);
 
   // Payment form
-  const form = document.createElement('form');
-  form.style.marginTop = '20px';
+  const form=document.createElement('form');
+  form.style.marginTop='20px';
 
-  const nameLabel = document.createElement('label');
-  nameLabel.innerText = 'Name:';
-  const nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.required = true;
+  const fnameL=document.createElement('label');
+  fnameL.innerText='First Name:';
+  const fnameI=document.createElement('input');
+  fnameI.type='text'; fnameI.required=true;
 
-  const emailLabel = document.createElement('label');
-  emailLabel.innerText = 'Email:';
-  const emailInput = document.createElement('input');
-  emailInput.type = 'email';
-  emailInput.required = true;
+  const lnameL=document.createElement('label');
+  lnameL.innerText='Last Name:';
+  const lnameI=document.createElement('input');
+  lnameI.type='text'; lnameI.required=true;
 
-  const addressLabel = document.createElement('label');
-  addressLabel.innerText = 'Address:';
-  const addressInput = document.createElement('input');
-  addressInput.type = 'text';
-  addressInput.required = true;
+  const emailL=document.createElement('label');
+  emailL.innerText='Email:';
+  const emailI=document.createElement('input');
+  emailI.type='email'; emailI.required=true;
 
-  const payBtn = document.createElement('button');
-  payBtn.type = 'submit';
-  payBtn.innerText = 'Pay Now';
+  const addressL=document.createElement('label');
+  addressL.innerText='Address:';
+  const addressI=document.createElement('input');
+  addressI.type='text'; addressI.required=true;
 
-  form.appendChild(nameLabel);
-  form.appendChild(nameInput);
+  const cardL=document.createElement('label');
+  cardL.innerText='Card Number:';
+  const cardI=document.createElement('input');
+  cardI.type='text'; cardI.required=true;
+
+  const payBtn=document.createElement('button');
+  payBtn.type='submit'; payBtn.innerText='Pay';
+
+  form.appendChild(fnameL); form.appendChild(fnameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(emailLabel);
-  form.appendChild(emailInput);
+  form.appendChild(lnameL); form.appendChild(lnameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(addressLabel);
-  form.appendChild(addressInput);
+  form.appendChild(emailL); form.appendChild(emailI);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(addressL); form.appendChild(addressI);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(cardL); form.appendChild(cardI);
   form.appendChild(document.createElement('br'));
   form.appendChild(payBtn);
 
-  form.onsubmit = (e) => {
+  form.onsubmit=(e)=>{
     e.preventDefault();
-    alert('Thank you for your purchase!');
-    cart = [];
+    alert('Thank you for your order!');
+    cart=[];
     saveCart();
     updateCartBadge();
-    renderPage('home');
+    render('home');
   };
-
-  summaryDiv.appendChild(form);
-  container.appendChild(summaryDiv);
+  sumDiv.appendChild(form);
+  document.getElementById('content').appendChild(sumDiv);
 }
 
-/* ----- Contact & Review Part ----- */
-function renderContactPage() {
-  const container = document.getElementById('content');
-  container.innerHTML = '';
+// Render contact & review page
+function renderContact() {
+  const container=document.getElementById('content');
+  container.innerHTML='';
 
-  const header = document.createElement('h2');
-  header.className = 'page-title';
-  header.innerText = 'Contact & Review';
-  container.appendChild(header);
+  const h2=document.createElement('h2');
+  h2.className='page-title';
+  h2.innerText='Contact & Reviews';
+  container.appendChild(h2);
 
-  // Contact form
-  const form = document.createElement('form');
-  form.style.maxWidth = '600px';
-  form.style.margin = '20px auto';
+  // Contact Form
+  const form=document.createElement('form');
+  form.style.maxWidth='600px';
+  form.style.margin='20px auto';
 
-  const nameLabel = document.createElement('label');
-  nameLabel.innerText = 'Name:';
-  const nameInput = document.createElement('input');
-  nameInput.type = 'text';
-  nameInput.required = true;
+  const nameL=document.createElement('label');
+  nameL.innerText='Name:';
+  const nameI=document.createElement('input');
+  nameI.type='text'; nameI.required=true;
 
-  const emailLabel = document.createElement('label');
-  emailLabel.innerText = 'Email:';
-  const emailInput = document.createElement('input');
-  emailInput.type = 'email';
-  emailInput.required = true;
+  const emailL=document.createElement('label');
+  emailL.innerText='Email:';
+  const emailI=document.createElement('input');
+  emailI.type='email'; emailI.required=true;
 
-  const messageLabel = document.createElement('label');
-  messageLabel.innerText = 'Message:';
-  const messageInput = document.createElement('textarea');
-  messageInput.required = true;
+  const messageL=document.createElement('label');
+  messageL.innerText='Message:';
+  const messageI=document.createElement('textarea');
+  messageI.required=true;
 
-  const submitBtn = document.createElement('button');
-  submitBtn.type = 'submit';
-  submitBtn.innerText = 'Send Message';
+  const submitBtn=document.createElement('button');
+  submitBtn.type='submit'; submitBtn.innerText='Send Message';
 
-  form.appendChild(nameLabel);
-  form.appendChild(nameInput);
+  form.appendChild(nameL); form.appendChild(nameI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(emailLabel);
-  form.appendChild(emailInput);
+  form.appendChild(emailL); form.appendChild(emailI);
   form.appendChild(document.createElement('br'));
-  form.appendChild(messageLabel);
-  form.appendChild(messageInput);
+  form.appendChild(messageL); form.appendChild(messageI);
   form.appendChild(document.createElement('br'));
   form.appendChild(submitBtn);
 
-  form.onsubmit = (e) => {
+  form.onsubmit=(e)=>{
     e.preventDefault();
-    alert('Your message has been sent!');
+    alert('Message sent! We will get back to you.');
     form.reset();
   };
-
   container.appendChild(form);
 
-  // Review section
-  const reviewDiv = document.createElement('div');
-  reviewDiv.id = 'review-section';
+  // Review & Review section
+  const reviewDiv=document.createElement('div');
+  reviewDiv.id='review-section';
 
-  const reviewHeader = document.createElement('h3');
-  reviewHeader.innerText = 'Leave a Review';
-  reviewHeader.style.textAlign = 'center';
-  reviewDiv.appendChild(reviewHeader);
+  const reviewH=document.createElement('h3');
+  reviewH.innerText='Leave a Review';
+  reviewH.style.textAlign='center';
+  reviewDiv.appendChild(reviewH);
 
-  // Star rating
-  const starContainer = document.createElement('div');
-  starContainer.id = 'review-stars';
+  // Star rating for review
+  const starContainer=document.createElement('div');
+  starContainer.id='review-stars';
 
-  let selectedStars = 0;
-  const starsArray = [];
-  for (let i=1; i<=5; i++) {
-    const starSpan = document.createElement('span');
-    starSpan.className = 'star';
-    starSpan.innerHTML = '&#9733;';
-    starSpan.dataset.value = i;
-    starSpan.onclick = () => {
-      selectedStars = i;
-      updateStarDisplay();
-    };
-    starsArray.push(starSpan);
-    starContainer.appendChild(starSpan);
+  let selectedStars=0;
+  const starsArr=[];
+  for(let i=1;i<=5;i++){
+    const star=document.createElement('span');
+    star.className='star';
+    star.innerHTML='&#9733;';
+    star.dataset.value=i;
+    star.onclick=()=>{ selectedStars=i; updateStars(); };
+    starsArr.push(star);
+    starContainer.appendChild(star);
   }
-
-  function updateStarDisplay() {
-    starsArray.forEach((s, index) => {
-      s.className = 'star' + ((index + 1) <= selectedStars ? ' filled' : '');
+  function updateStars() {
+    starsArr.forEach((s,i)=> {
+      s.className='star'+(i+1<=selectedStars?' filled':'');
     });
   }
+  reviewDiv.appendChild(starContainer);
 
-  // Review textarea
-  const reviewText = document.createElement('textarea');
-  reviewText.id = 'review-text';
-  reviewText.placeholder = 'Write your review here...';
+  // Review Text
+  const reviewText=document.createElement('textarea');
+  reviewText.id='review-text';
+  reviewText.placeholder='Write your review here...';
 
-  // Submit review button
-  const reviewBtn = document.createElement('button');
-  reviewBtn.id = 'review-submit';
-  reviewBtn.innerText = 'Submit Review';
+  reviewDiv.appendChild(reviewText);
 
-  reviewBtn.onclick = () => {
-    if (selectedStars === 0 || reviewText.value.trim() === '') {
-      alert('Please select stars and write a review!');
-      return;
-    }
-    reviews.push({
-      stars: selectedStars,
-      text: reviewText.value.trim(),
-      date: new Date().toISOString()
-    });
-    localStorage.setItem('reviews', JSON.stringify(reviews));
+  // Submit Review button
+  const reviewBtn=document.createElement('button');
+  reviewBtn.id='review-submit';
+  reviewBtn.innerText='Submit Review';
+
+  reviewBtn.onclick=()=>{
+    if(selectedStars===0 || reviewText.value.trim()===''){ alert('Select stars and write review!'); return;}
+    reviews.push({stars:selectedStars,text:reviewText.value.trim(),date:new Date().toISOString()});
+    localStorage.setItem('reviews',JSON.stringify(reviews));
     alert('Thank you for your review!');
-    selectedStars = 0;
-    updateStarDisplay();
-    reviewText.value = '';
+    selectedStars=0;
+    updateStars();
+    reviewText.value='';
     renderReviews();
   };
-
   reviewDiv.appendChild(reviewBtn);
   container.appendChild(reviewDiv);
   renderReviews();
 
-  // Render reviews list
   function renderReviews() {
-    let existing = document.getElementById('reviews-list');
-    if (existing) existing.remove();
+    let existing=document.getElementById('reviews-list');
+    if(existing) existing.remove();
 
-    const listDiv = document.createElement('div');
-    listDiv.id = 'reviews-list';
+    const listDiv=document.createElement('div');
+    listDiv.id='reviews-list';
 
-    if (reviews.length === 0) {
-      const noRev = document.createElement('p');
-      noRev.innerText = 'No reviews yet.';
-      noRev.style.textAlign = 'center';
+    if(reviews.length===0){
+      const noRev=document.createElement('p');
+      noRev.innerText='No reviews yet.';
+      noRev.style.textAlign='center';
       listDiv.appendChild(noRev);
     } else {
-      reviews.slice().reverse().forEach(r => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'review-item';
+      reviews.slice().reverse().forEach(r=>{
+        const itemDiv=document.createElement('div');
+        itemDiv.className='review-item';
 
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'review-header';
+        const headerDiv=document.createElement('div');
+        headerDiv.className='review-header';
 
-        const starsSpan = document.createElement('span');
-        starsSpan.className = 'review-stars';
-        starsSpan.innerHTML = '&#9733;'.repeat(r.stars) + '&#9734;'.repeat(5 - r.stars);
+        const starsSpan=document.createElement('span');
+        starsSpan.className='review-stars';
+        starsSpan.innerHTML='&#9733;'.repeat(r.stars)+'&#9734;'.repeat(5 - r.stars);
 
-        const dateSpan = document.createElement('span');
-        dateSpan.className = 'review-date';
-        dateSpan.innerText = new Date(r.date).toLocaleString();
+        const dateSpan=document.createElement('span');
+        dateSpan.className='review-date';
+        dateSpan.innerText=new Date(r.date).toLocaleString();
 
         headerDiv.appendChild(starsSpan);
         headerDiv.appendChild(dateSpan);
 
-        const reviewTextP = document.createElement('p');
-        reviewTextP.innerText = r.text;
+        const reviewTxt=document.createElement('p');
+        reviewTxt.innerText=r.text;
 
         itemDiv.appendChild(headerDiv);
-        itemDiv.appendChild(reviewTextP);
+        itemDiv.appendChild(reviewTxt);
         listDiv.appendChild(itemDiv);
       });
     }
@@ -1328,40 +1206,37 @@ function renderContactPage() {
   }
 }
 
-/* ----- Event Listeners for Navigation ----- */
+/* =================== Event Listeners =================== */
 document.querySelectorAll('.nav-buttons a').forEach(link => {
-  link.onclick = (e) => {
+  link.onclick=(e)=>{
     e.preventDefault();
-    const page = e.target.dataset.page;
-    if (pages.includes(page)) {
-      renderPage(page);
+    const page=e.target.dataset.page;
+    if(pages.includes(page)){
+      render(page);
     }
   };
 });
-document.getElementById('cart-button').onclick = () => {
-  renderPage('cart');
-};
+document.getElementById('cart-btn').onclick=()=>render('cart');
 
-/* ----- Initialize on Load ----- */
-window.onload = () => {
+/* =================== Initialization =================== */
+window.onload=()=> {
   loadCart();
   updateCartBadge();
-  renderPage('home');
+  render('home');
 };
 
-// ----- Google Map Initialization -----
+/* =================== Google Map =================== */
 function initMap() {
-  const mapDiv = document.getElementById('map');
-  if (!mapDiv) return;
-  const map = new google.maps.Map(mapDiv, {
-    center: { lat: 40.7128, lng: -74.0060 },
-    zoom: 12
+  const mapDiv=document.getElementById('map');
+  if(!mapDiv) return;
+  const map=new google.maps.Map(mapDiv,{
+    center:{lat:40.7128,lng:-74.0060},
+    zoom:12
   });
-  new google.maps.Marker({ position: { lat: 40.7128, lng: -74.0060 }, map: map });
+  new google.maps.Marker({position:{lat:40.7128,lng:-74.0060},map:map});
 }
-
 </script>
-<!-- Load Google Maps API -->
+<!-- Replace 'YOUR_API_KEY' with your actual Google Maps API key -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 </body>
 </html>
