@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Candy Cartel - Sweet Confections</title>
   <style>
-    /* ... (your existing styles remain unchanged) ... */
+    /* =================== Reset & Base Styles =================== */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Arial', sans-serif; background: #fff8f0; color: #333; display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6;
@@ -17,14 +17,51 @@
     }
     button:hover { background-color: #e65b50; transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
-    /* ... (rest of your styles) ... */
+    /* =================== Navbar Styles =================== */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #ff6f61, #ff3b3b);
+      padding: 10px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); flex-wrap: wrap; position: relative; z-index: 999;
+    }
+    .logo-section { display: flex; align-items: center; }
+    .logo-section img { height: 50px; width: 50px; margin-right: 10px; animation: bounce 2s infinite; }
+    .store-name {
+      font-family: 'Brush Script MT', cursive; font-size: 1.8em; color: #fff; font-weight: bold; letter-spacing: 2px;
+    }
+    .nav-buttons {
+      display: flex; align-items: center; margin-top: 5px;
+    }
+    .nav-buttons a {
+      padding: 8px 14px; margin: 0 8px; font-size: 1em; font-weight: bold; border-radius: 4px; background: transparent; transition: background 0.3s, transform 0.2s;
+    }
+    .nav-buttons a:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+    /* Cart & Notification */
+    #cart-container { position: relative; margin-left: 15px; }
+    #cart-btn { font-size: 1.8em; position: relative; display: flex; align-items: center; }
+    #cart-badge {
+      position: absolute; top: -8px; right: -8px; background: #fff; color: #ff6f61; width: 20px; height: 20px; border-radius: 50%; font-size: 0.8em; font-weight: bold; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.3s ease;
+    }
+    /* Notifications near navbar */
+    #notification {
+      position: absolute; top: 70px; right: 20px; background-color: #4BB543; color: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: bold; opacity: 0; transform: translateY(-10px); transition: all 0.4s ease; z-index: 1050;
+    }
+    #notification.show { opacity: 1; transform: translateY(0); }
+
+    /* =================== Main Content Styles =================== */
+    #content {
+      flex: 1; padding: 20px; max-width: 1200px; margin: auto; width: 100%;
+    }
+    .page-title {
+      font-family: 'Brush Script MT', cursive; font-size: 2.5em; text-align: center; margin-bottom: 20px; color: #ff6f61; letter-spacing: 2px;
+    }
+    /* Product Grid */
     .products-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
     }
     .product-card {
       background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 10px; transition: all 0.3s ease;
     }
-    /* Removed image styles for clarity since images are no longer used */
+    /* Removed image styles because images are no longer used */
     /* ... */
   </style>
 </head>
@@ -134,7 +171,7 @@
       }));
     }
 
-    // =================== Page Components ===================
+    /* =================== Page Components =================== */
     function renderHomePage() {
       const c = document.getElementById('content');
       const header = document.createElement('h1');
@@ -200,7 +237,7 @@
 
         // Removed image creation
         // const img = document.createElement('img');
-        // img.src = p.image; // No longer used
+        // img.src = p.image; // no longer used
         // img.className = 'product-image';
         // card.appendChild(img);
 
@@ -338,7 +375,7 @@
         label.appendChild(input);
         return label;
       }
-      
+
       const firstNameLabel = createLabelInput('First Name:');
       const lastNameLabel = createLabelInput('Last Name:');
       const emailLabel = createLabelInput('Email:', 'email');
